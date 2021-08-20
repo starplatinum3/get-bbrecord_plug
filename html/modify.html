@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modify</title>
+    <link rel="stylesheet" type="text/css" href="../css/modify.css">
+</head>
+<body>
+<div id="title"></div>
+<div id="description"></div>
+
+
+<!--ul>li*4>div{queNum="$"}+div{scoreStr="$"}+div{queText="$"}+ul>li*4{$}-->
+<!--ul>li*4>div{queNum="$"}+div{scoreStr="$"}+div{queText="$"}+ul>li{$}*4>input[type="radio"]-->
+<ul id="questions">
+    <li>
+        <ul>
+            <li>
+
+                <div class="label">题号:</div>
+                <div class="content">${i + 1}</div>
+            </li>
+            <li>
+
+                <div class="label"> 分数:</div>
+                <div class="content"> ${questionObjs[i].scoreStr}</div>
+
+            </li>
+            <li>
+                <div class="label"> 问题:</div>
+                <div class="content">${questionObjs[i].queText}</div>
+            </li>
+            <li>
+                <div>你的答案:</div>
+            </li>
+        </ul>
+
+    </li>
+</ul>
+
+
+<!--ul>li*4>div[queNum="$"]+div[scoreStr="$"]+div[queText="$"]+ul>li{$}*4-->
+<!--ul>li*4>div[queNum="$"]+div[scoreStr="$"]+div[queText="$"]+ul>li{$}*4-->
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script src="../js/writeData.js" type="text/javascript"></script>
+<script src="../js/strutil.js" type="text/javascript"></script>
+<script src="../js/cookie.js" type="text/javascript"></script>
+<script src="../js/modify.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        area{
+            border: 1px purple solid;
+            width: 10px;
+            height: 10px;
+        }
+        map{
+            border: 1px purple solid;
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+<!--<a href="index.jpg">-->
+<!--../img/48x48.png-->
+<!--src="1.jpg"-->
+<form id="formTest">
+    <label>hello
+        <input type="radio" name="ok" checked>
+
+    </label>
+    <label >  not hello
+        <input type="radio" name="ok"></label>
+
+</form>
+
+<fieldset></fieldset>
+<a href="../img/48x48.png"><img src="../img/1" usemap="#map1"></a> <hr />
+<!--这id 不应该是1啊-->
+<!--<map id="1" name="1">-->
+<!--他们说每个都有错的 但是我发现不了了-->
+<map id="map1" name="map1">
+    <area shape="circle" coords="100,100,100" href="#abc" />
+<!--    <area shape="poly" coords="200,200,400,400" href="#abc" />-->
+    <area shape="polyen" coords="200,200,400,400" href="#abc" />
+<!--    可能是英语错了-->
+    <area shape="rect" coords="400,400,600,600" href="#abc" title="abc" />
+</map>
+
+<script type="text/javascript" src="../js/test.js"></script>
+</body>
+</html>

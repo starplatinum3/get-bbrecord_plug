@@ -1,0 +1,17 @@
+
+.content {
+    float: left;
+}
+
+/*左右两个div都设置为float:left,如*/
+.label {
+    float: left;
+    margin-right: 2px;
+}
+
+/*.ans-checkbox {*/
+/*    display: block;*/
+/*}*/
+/*.ans-text{*/
+/*    float: left;*/
+/*}*/

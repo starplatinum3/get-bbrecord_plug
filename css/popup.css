@@ -1,0 +1,27 @@
+.kg_main{
+    font-size: 12px;
+    width: 250px;
+    position: relative;
+    background: white;
+}
+h2{
+    color: blueviole;
+    text-align: center;
+}
+
+h3{
+    font-size: 12px;
+    text-align: center;
+}
+
+.kg_main{
+    width: 242px;
+    margin: 3px;
+}
+
+.kg_rr1{
+    width: 100%;
+    word-wrap:none;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
