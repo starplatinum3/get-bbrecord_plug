@@ -25,3 +25,8 @@ h3{
     overflow: hidden;
     margin-bottom: 10px;
 }
+
+.font-sm{
+    font-size: 0.1rem;
+}
+

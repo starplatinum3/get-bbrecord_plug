@@ -43,6 +43,7 @@
     "storage",
     "tabs",
     "cookies",
-    "<all_urls>"
+    "<all_urls>",
+    "https://www.icourse163.org/*"
   ]
 }

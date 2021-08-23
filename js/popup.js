@@ -25,7 +25,8 @@ function main() {
     getBBRecordBtn.onclick = function () {
         // alert("getBBRecordMain");
         sendMessageToContentScript({action: 'getBBRecord', value: '你好，我是popup！'}, function (response) {
-            console.log('来自content的回复：' + response);
+            console.log('来自content的回复：');
+            console.log( response);
         });
 
         // chrome.runtime.sendMessage({action: 'getBBRecord'}, function(response) {
@@ -117,8 +118,8 @@ function sendMessageToContentScript(message, callback) {
     // typeof chrome.tabs === 'object'
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
-            console.log("message");
-            console.log(message);
+            // console.log("message");
+            // console.log(message);
             // if (callback){
             //     callback(response);
             // }

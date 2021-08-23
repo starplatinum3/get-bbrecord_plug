@@ -3,9 +3,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // console.log(request.value);
     // {action:'putAns', value:'你好，我是popup！'}
     // sendResponse('我收到了你的情书，popup~');
+    // 只有在 zucc 才可以用
     switch (request.action) {
         case "getBBRecord":
             // 这代码在哪里。。。
+            console.log("getBBRecord");
             getBBRecordMain();
             sendResponse('我收到了你的情书，popup~,getBBRecordMain');
             break;
@@ -19,12 +21,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case "putAns":
             // console.log("request");
             // console.log(request.value);
+            console.log("putAns");
             bbRecordObj=request.value;
-            putAnsMain((bbRecordObj));
+            putAnsMain(bbRecordObj);
 
             sendResponse('我收到了你的情书，popup~,putAnsMain');
             break;
         case "downloadPage":
+            console.log("downloadPage");
+            
             try{
                 downloadPage();
                 sendResponse('download good');

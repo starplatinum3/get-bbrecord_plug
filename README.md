@@ -20,6 +20,7 @@ https://gitee.com/starplatinum111/get-bbrecord_plug/tree/master
 getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个有题目有成绩的txt下来
 形式大概如此
 
+```
 题号: 2
 分数: 得 1 分，满分 1 分
 问题: 2.The passage suggests that __________.
@@ -28,18 +29,30 @@ getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个
 2、 B) in pursuing material gains the French are suffering losses elsewhere    :你选择了他
 3、 C) the French are fed up with the smell of freshly picked apples
 4、 D) great changes have occurred in the style of all Frenchmen
+```
 
 update：
+
+2021年8月23日11:50:54
+可以在mooc平台使用；
+使用bootstrap css 样式 比较好看；
+
+
 个人认为重大更新
+```
 putAns 
   // 2021年4月8日  增加了.trim() 这样可以去掉回车什么的
         // 大部分情况下 可以相等了
         if (questionsFromObj[i].queText.trim() === queText.trim()) {
             return i;
         }
+```
+
+```
 putAns  大概率可以使用，还没有多次测试，只测试了一次。
 按逻辑来说，题目顺序不一样，答案顺序不一样的，已经可以填上了。但是还没做过很多测试
 方法就是把json文件拖到那个插件上，然后按putans按钮
+```
 
 这是另外一个项目的介绍 ,因为我插件还没写好,这个项目是放了一些代码,复制了可以直接贴到console来用
 文档：bb自己选的答案记录.note

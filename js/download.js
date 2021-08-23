@@ -158,6 +158,8 @@ function textareasPutVals (textareas) {
 
 // 可以下载mooc  但是 mooc 的那个文件还要加载
 function downloadPage () {
+    console.log("downloadPage");
+    
     // https://blog.csdn.net/weixin_42649856/article/details/104325029
     // console.log(document.);
     //  console.log(document.getElementsByTagName('html')[0].outerHTML);
@@ -176,6 +178,8 @@ function downloadPage () {
     // }
 
     let title = getTitle();
+    console.log("title");
+    console.log(title);
 
     // title = to_file_path_name(title);
     // htmlDom = removeAllScript(htmlDom);
