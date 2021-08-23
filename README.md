@@ -16,6 +16,11 @@ https://gitee.com/starplatinum111/get-bbrecord_plug/tree/master
 ## 如何使用
 这是一个插件,载入浏览器,按照按钮使用就好了
 
+安装插件的方法，并非此插件，装插件方法都类似，供参考
+
+文档：插件.note
+链接：http://note.youdao.com/noteshare?id=&sub=6887B99401ED40FD9E42F9DE90F67399
+
 
 getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个有题目有成绩的txt下来
 形式大概如此
@@ -34,7 +39,9 @@ getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个
 update：
 
 2021年8月23日11:50:54
+
 可以在mooc平台使用；
+
 使用bootstrap css 样式 比较好看；
 
 
