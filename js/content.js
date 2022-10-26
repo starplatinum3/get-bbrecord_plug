@@ -73,3 +73,45 @@ function putHtml(){
 // $("#uploadBBRecord")
 
 // $("#addDiv")
+
+console.log("this is index.js")
+console.log(document)
+console.log(location)
+
+alert("this is index.js")
+
+//创建页面函数
+function createPage () {
+    const page = $('<div id="cj_move_page"></div>')
+    const h3 = $('<h3 id="cj_move_h3">my Plugin</h3>')
+    page.append(h3)
+    $('body').append(page)
+    //拖拽
+    drag(cj_move_h3)
+}
+createPage()
+
+//拖拽
+function drag(ele) {
+    let oldX, oldY, newX, newY
+    ele.onmousedown = function (e) {
+        if (!cj_move_page.style.right && !cj_move_page.style.bottom) {
+            cj_move_page.style.right = 0
+            cj_move_page.style.bottom = 0
+        }
+        oldX = e.clientX
+        oldY = e.clientY
+        document.onmousemove = function (e) {
+            newX = e.clientX
+            newY = e.clientY
+            cj_move_page.style.right = parseInt(cj_move_page.style.right) - newX + oldX + 'px'
+            cj_move_page.style.bottom = parseInt(cj_move_page.style.bottom) - newY + oldY + 'px'
+            oldX = newX
+            oldY = newY
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null
+            document.onmouseup = null
+        }
+    }
+}
