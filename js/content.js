@@ -82,9 +82,12 @@ alert("this is index.js")
 
 //创建页面函数
 function createPage () {
+    console.log("createPage");
     const page = $('<div id="cj_move_page"></div>')
     const h3 = $('<h3 id="cj_move_h3">my Plugin</h3>')
     page.append(h3)
+    console.log("page");
+    console.log(page);
     $('body').append(page)
     //拖拽
     drag(cj_move_h3)
