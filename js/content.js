@@ -103,7 +103,8 @@ console.log(location)
 function createPage () {
     console.log("createPage");
     // const page = $('<div id="cj_move_page"></div>')
-    const page = $(`<div id="addRight" style="float: right;">
+    let docStr=` <div class="right_fbox" style="position: fixed;
+    right: 1%;" >
     python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大
     python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大的序列 。。堆栈帧实际上不在堆栈上——它在堆（内存）上。。bool(gen_fn.__code__.co_flags & generator_bit)。。 “last instruction”(  > gen.send(None)。。线程  class myThread (threading.Thread):  threadLock = threading.Lock() threadLock.acquire() threadLock.release() 。解释器全局锁。只有一个线程在执行。。 元类： ins = type('Fake', (), {'a': 1, 'b': 2, 'method_a': method_a})() 。。 class New_Hello2(metaclass=HelloMeta2):  。。def funSelf(self): 实例方法  Python中，主要通过 引用计数（Reference Counting） 进行垃圾回收。Python的字符串驻留机制.字符中有一个空格所以才不采用驻留.IO多路复用单线程或单进程同时监测若干个文件描述符是否可以执行IO操作的能力。select、poll、epoll，TIME_WAIT状态存在的理由：可靠地实现TCP全双工连接的终止.允许老的重复分节在网络中消逝 .高并发短连接.大量TIME_WAIT.65535端口。业务处理+传输数据的时间 远远小于 TIMEWAIT超时的时间。。进程通信方式。匿名管匿名管道( pipe )。高级管道通信/有名管道。消息队列通信。信号量通信。信号。共享内存通信。套接字通信。进程状态。在三态模型中，进程状态分为三个基本状态，即运行态，就绪态，阻塞态。在五态模型中，进程分为新建态、终止态，运行态，就绪态，阻塞态
 孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。
@@ -139,18 +140,41 @@ TCP的可靠性传输是如何保证的。检验和。序列号/确认应答。�
 @decorator_01  先
 def func():
 print('This is func')
+    </div>`
+    // const page = $(docStr)
+    // console.log("page");
+    // console.log(page);
 
-</div>`)
     // const h3 = $('<h3 id="cj_move_h3">my Plugin</h3>')
     // page.append(h3)
-    console.log("page");
-    console.log(page);
-    $('.tw-w-10 tw-fixed tw-right-2.5').append(page)
+
+    // $('.tw-w-10 tw-fixed tw-right-2.5').append(page)
     // $('body').append(page)
+    // document.write(docStr)
+//     var txt = document.createTextNode("New insert text.");
+// insertElement.appendChild(txt);
+
+var insertElement = document.createElement("div");
+insertElement.innerHTML=docStr
+// document.getElementById("insert").appendChild(insertElement);
+
+console.log("insertElement");
+console.log(insertElement);
+//  let bodys= document.getElementsByTagName('body')
+//  console.log("bodys");
+//  console.log(bodys);
+//     let  body=document.getElementsByTagName('body')[0]
+//     body.appendChild(insertElement)
+//     console.log("body");
+//     console.log(body);
+
+    document.body.appendChild(insertElement);
+    // document.getElementsByTagName('body')[0].appendChild(page)
+    // document.getElementsByTagName('body')[0].appendChild(page)
     //拖拽
     // drag(cj_move_h3)
 }
-createPage()
+// createPage()
 
 //拖拽
 function drag(ele) {
