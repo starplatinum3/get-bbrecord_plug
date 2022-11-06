@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>popup</title>
+    <!-- Buefy CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+
+
+    <!-- Bootstrap CSS -->
+    <!-- 有文件导入 但是 插件 popup 好大 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- 这个版本貌似 没有 文件导入的 样式 -->
+    <!-- https://hovertree.com/h/bjaf/4slmqpp2.htm -->
+    <!-- <link rel="stylesheet" href="http://hovertree.com/ziyuan/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+
+    <link rel="stylesheet" href="../css/popup.css">
+    <!-- 按钮大小的主要问题 是字体的大小 -->
+    <style>
+
+        .container {
+           /* width: 300px; */
+           /* width: 900px; */
+           /* width: 999px; */
+           /* width: 699px; */
+           /* width: 599px; */
+           width: 499px;
+                }
+    
+        </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大
+        python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大的序列 。。堆栈帧实际上不在堆栈上——它在堆（内存）上。。bool(gen_fn.__code__.co_flags & generator_bit)。。 “last instruction”(  > gen.send(None)。。线程  class myThread (threading.Thread):  threadLock = threading.Lock() threadLock.acquire() threadLock.release() 。解释器全局锁。只有一个线程在执行。。 元类： ins = type('Fake', (), {'a': 1, 'b': 2, 'method_a': method_a})() 。。 class New_Hello2(metaclass=HelloMeta2):  。。def funSelf(self): 实例方法  Python中，主要通过 引用计数（Reference Counting） 进行垃圾回收。Python的字符串驻留机制.字符中有一个空格所以才不采用驻留.IO多路复用单线程或单进程同时监测若干个文件描述符是否可以执行IO操作的能力。select、poll、epoll，TIME_WAIT状态存在的理由：可靠地实现TCP全双工连接的终止.允许老的重复分节在网络中消逝 .高并发短连接.大量TIME_WAIT.65535端口。业务处理+传输数据的时间 远远小于 TIMEWAIT超时的时间。。进程通信方式。匿名管匿名管道( pipe )。高级管道通信/有名管道。消息队列通信。信号量通信。信号。共享内存通信。套接字通信。进程状态。在三态模型中，进程状态分为三个基本状态，即运行态，就绪态，阻塞态。在五态模型中，进程分为新建态、终止态，运行态，就绪态，阻塞态
+孤儿进程：一个父进程退出，而它的一个或多个子进程还在运行，那么那些子进程将成为孤儿进程。孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。
+　　僵尸进程：一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中。这种进程称之为僵死进程。  事务管理（ACID）。原子性（Atomicity）。一致性（Consistency）事务前后数据的完整性必须保持一致。。隔离性（Isolation）。持久性（Durability）
+HTTP1.0 HTTP 1.1主要区别. 长连接, HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接.  节约带宽 . HTTP 1.1支持只发送header信息(不带任何body信息)  ,  HOST域
+HTTP1.1 HTTP 2.0主要区别 .多路复用 .数据压缩  服务器推送
+程序进程中的分区中都存些什么？ BSS区：未初始化的全局变量。 数据段 代码段 堆 栈。非对称加密算法：RSA，DSA/DSS。对称加密算法：AES，RC4，3DES。HASH算法 MD5，SHA1，SHA256   。浏览器发加密规则 ，选出加密算法与HASH算法。验证证书。随机数 公钥加密。 HASH 握手消息，随机数对消息加密。私钥解密取出密码，密码解密握手消息，验证HASH。 密码加密握手消息。浏览器解密HASH
+
+协程
+#-*- coding:utf8 -*-
+import asyncio
+
+@asyncio.coroutine
+def test(i):
+    print('test_1', i)
+    r = yield from asyncio.sleep(1)
+    print('test_2', i)
+
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    tasks = [test(i) for i in range(3)]
+    loop.run_until_complete(asyncio.wait(tasks))
+    loop.close()
+
+说明多线程适合IO密集型任务。说明多进程适合计算密集型任务
+tcp
+
+TCP的可靠性传输是如何保证的。检验和。序列号/确认应答。超时重传。最大消息长度。滑动窗口控制。拥塞控制。UDP 单播、广播和多播。求序列的中值，然后选取序列的中值作为主元素
+若一棵二叉树至多只有最下面两层的结点的度数可以小于2，并且最下层的结点都集中在该层最左边的若干位置上，则此二叉树为完全二叉树。高速缓冲器cache作用是可以大大提高cPU访问主存的速度
+
+
+@decorator_02
+@decorator_01  先
+def func():
+    print('This is func')
+
+    </div>
+
+</body>
+
+</html>

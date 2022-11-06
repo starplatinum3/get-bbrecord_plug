@@ -15,25 +15,25 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case "getBBScores":
             getBBScoresMain();
             console.log("getBBScoresMain");
-            
+
             sendResponse('我收到了你的情书，popup~,getBBScoresMain');
             break;
         case "putAns":
             // console.log("request");
             // console.log(request.value);
             console.log("putAns");
-            bbRecordObj=request.value;
+            bbRecordObj = request.value;
             putAnsMain(bbRecordObj);
 
             sendResponse('我收到了你的情书，popup~,putAnsMain');
             break;
         case "downloadPage":
             console.log("downloadPage");
-            
-            try{
+
+            try {
                 downloadPage();
                 sendResponse('download good');
-            }catch (e) {
+            } catch (e) {
                 sendResponse('download not  good');
                 console.log(e);
             }
@@ -54,13 +54,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 // <input id="uploadBBRecord" type="file"/> <br>
 // inputHtml=`<input type="file" οnchange="upload(this)" />`;
-function putHtml(){
-    divHtml=`<div id="addDiv" style="width: 300px;height: 300px;background-color:yellow;"></div>`;
-    inputHtml=`<input id="uploadBBRecord" type="file"/>`;
+function putHtml() {
+    divHtml = `<div id="addDiv" style="width: 300px;height: 300px;background-color:yellow;"></div>`;
+    inputHtml = `<input id="uploadBBRecord" type="file"/>`;
     // $('body').append(divHtml);
     // $('body').appendChild(divHtml);
     let body = document.getElementsByTagName("body")[0];
-    body.innerHTML+=divHtml;
+    body.innerHTML += divHtml;
     // https://blog.csdn.net/weixin_43749561/article/details/86173893
 }
 //
@@ -79,6 +79,144 @@ console.log("document")
 console.log(document)
 console.log("location")
 console.log(location)
+// host
+
+
+
+function downloadTxt(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    } else {
+        pom.click();
+    }
+}
+
+
+function downloadPage() {
+
+    let J_searchForm = document.getElementById("J_searchForm")
+    console.log(J_searchForm);
+
+    
+    let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
+    let itemNames = document.getElementsByClassName("pc-items-item-title pc-items-item-title-row2")
+
+    console.log(itemNames);
+
+    // let  searchWord= document.getElementsByClassName("text-wrap")[0].textContent
+    // console.log(searchWord);
+
+    // let  searchWord= document.getElementById("J_searchForm").textContent
+    // console.log(searchWord);
+    
+
+    // let  searchWord= J_searchForm.innerText
+    // let  searchWord= J_searchForm.value 
+    // console.log(searchWord);
+    let inputs = J_searchForm.getElementsByTagName("input")
+    // console.log(inputs);
+    // let input0=  inputs[0]
+    // console.log("input0");
+    // console.log(input0);
+
+
+    // 热卖PC搜索
+    // https://uland.taobao.com/sem/tbsearch?refpid=mm_26632258_3504122_32538762&keyword=java&clk1=f0c0948220ecee34d8e48fcb4b69b80b&upsId=f0c0948220ecee34d8e48fcb4b69b80b&spm=a2e0b.20350158.search.1&pid=mm_26632258_3504122_32538762&union_lens=recoveryid%3A201_33.42.156.233_16319860_1667716432848%3Bprepvid%3A201_33.8.41.104_12221870_1667717148444
+
+
+    let searchWord = searchWordInput.value
+    console.log(searchWord);
+
+
+
+    let afterCouponList = document.getElementsByClassName("coupon-price-afterCoupon")
+    console.log(afterCouponList);
+
+    let res = []
+
+    if (itemNames.length != afterCouponList.length) {
+        console.log("长度不同");
+        alert("长度不同");
+    } else {
+        // console.log("长度相同" );
+        // alert("长度相同" );
+    }
+
+
+    for (let i = 0; i < itemNames.length; i++) {
+        // itemNames[i]
+        res.push({
+            itemName: itemNames[i].innerText,
+            afterCoupon: afterCouponList[i].innerText,
+            date: new Date()
+        })
+        // console.log(itemNames[i].innerText,afterCouponList[i].innerText)
+    }
+
+    let NowTimeStr = getNowTimeStr()
+    let answerListStr = JSON.stringify(res)
+    let txtName = `taobao_${searchWord}_${NowTimeStr}.json`
+
+    downloadTxt(txtName, answerListStr)
+
+}
+
+function getNowTimeStr() {
+    var current = new Date(); //实例化Date对象
+    var nowYear = current.getFullYear(); //获取当前的年份
+    var nowMonth = current.getMonth() + 1; //默认显示的是0-11月，比我们正常的月份少一个月，所以要+1
+    var nowdates = current.getDate(); //获取日期
+    // ————————————————
+    // 版权声明：本文为CSDN博主「樱花树下的空白」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+    // 原文链接：https://blog.csdn.net/qq_45382872/article/details/124325266
+    var nowHours = current.getHours(); //获取小时
+    var nowMinutes = current.getMinutes(); //获取分钟
+    var nowSeconds = current.getSeconds(); //获取秒
+    // var nowTime = nowYear + "-" + nowMonth + "-" + nowdates + " " + nowHours + ":" + nowMinutes + ":" + nowSeconds;
+    // console.log(nowTime);
+    var nowTime = nowYear + "_" + nowMonth + "_" + nowdates + "_" + nowHours + "_" + nowMinutes + "_" + nowSeconds;
+    return nowTime
+}
+
+function initClick(){
+
+
+    let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
+    searchWordInput.value = "手机"
+
+    let submitBtn = document.getElementsByClassName("submit")[0]
+    // .click()
+    // submit
+    // let submitBtn= inputs[0].getElementsByTagName("input")[0]
+    console.log("submitBtn");
+    console.log(submitBtn);
+
+    submitBtn.click()
+
+}
+
+
+if (location.host == "uland.taobao.com") {
+    console.log("uland.taobao.com");
+
+
+
+
+    setTimeout(() => {
+        downloadPage()
+    }, 4000);
+
+    // let downloadPageInterval = setInterval(() => {
+    //     downloadPage()
+    // }, 4000)
+
+}
+
 // alert("this is index.js")
 
 // let  Datagrid1 =document.getElementById("Datagrid1")
@@ -100,10 +238,10 @@ console.log(location)
 
 
 //创建页面函数
-function createPage () {
+function createPage() {
     console.log("createPage");
     // const page = $('<div id="cj_move_page"></div>')
-    let docStr=` <div class="right_fbox" style="position: fixed;
+    let docStr = ` <div class="right_fbox" style="position: fixed;
     right: 1%;" >
     python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大
     python 面试。  OSI七层，别是物理层,数据链路层,网络层,传输层,会话层，表示层和应用层。 五层：物理、数据链路、网络、传输、应用。。生成器 #调用 next() 内置函数  print(next(num))   #调用 __next__() 方法  print(num.__next__())  。。节省内存空间，即它不会一次性生成所有的数据，而是什么时候需要，什么时候生成。 巨大的序列 。。堆栈帧实际上不在堆栈上——它在堆（内存）上。。bool(gen_fn.__code__.co_flags & generator_bit)。。 “last instruction”(  > gen.send(None)。。线程  class myThread (threading.Thread):  threadLock = threading.Lock() threadLock.acquire() threadLock.release() 。解释器全局锁。只有一个线程在执行。。 元类： ins = type('Fake', (), {'a': 1, 'b': 2, 'method_a': method_a})() 。。 class New_Hello2(metaclass=HelloMeta2):  。。def funSelf(self): 实例方法  Python中，主要通过 引用计数（Reference Counting） 进行垃圾回收。Python的字符串驻留机制.字符中有一个空格所以才不采用驻留.IO多路复用单线程或单进程同时监测若干个文件描述符是否可以执行IO操作的能力。select、poll、epoll，TIME_WAIT状态存在的理由：可靠地实现TCP全双工连接的终止.允许老的重复分节在网络中消逝 .高并发短连接.大量TIME_WAIT.65535端口。业务处理+传输数据的时间 远远小于 TIMEWAIT超时的时间。。进程通信方式。匿名管匿名管道( pipe )。高级管道通信/有名管道。消息队列通信。信号量通信。信号。共享内存通信。套接字通信。进程状态。在三态模型中，进程状态分为三个基本状态，即运行态，就绪态，阻塞态。在五态模型中，进程分为新建态、终止态，运行态，就绪态，阻塞态
@@ -151,22 +289,24 @@ print('This is func')
     // $('.tw-w-10 tw-fixed tw-right-2.5').append(page)
     // $('body').append(page)
     // document.write(docStr)
-//     var txt = document.createTextNode("New insert text.");
-// insertElement.appendChild(txt);
+    //     var txt = document.createTextNode("New insert text.");
+    // insertElement.appendChild(txt);
 
-var insertElement = document.createElement("div");
-insertElement.innerHTML=docStr
-// document.getElementById("insert").appendChild(insertElement);
+    var insertElement = document.createElement("div");
+    insertElement.innerHTML = docStr
+    // document.getElementById("insert").appendChild(insertElement);
 
-console.log("insertElement");
-console.log(insertElement);
-//  let bodys= document.getElementsByTagName('body')
-//  console.log("bodys");
-//  console.log(bodys);
-//     let  body=document.getElementsByTagName('body')[0]
-//     body.appendChild(insertElement)
-//     console.log("body");
-//     console.log(body);
+    // https://uland.taobao.com/
+
+    console.log("insertElement");
+    console.log(insertElement);
+    //  let bodys= document.getElementsByTagName('body')
+    //  console.log("bodys");
+    //  console.log(bodys);
+    //     let  body=document.getElementsByTagName('body')[0]
+    //     body.appendChild(insertElement)
+    //     console.log("body");
+    //     console.log(body);
 
     document.body.appendChild(insertElement);
     // document.getElementsByTagName('body')[0].appendChild(page)
