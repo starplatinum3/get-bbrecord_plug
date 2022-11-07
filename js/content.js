@@ -209,7 +209,7 @@ if (location.host == "uland.taobao.com") {
 
     setTimeout(() => {
         downloadPage()
-    }, 4000);
+    }, 11000);
 
     // let downloadPageInterval = setInterval(() => {
     //     downloadPage()
