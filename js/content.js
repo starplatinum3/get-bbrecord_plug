@@ -96,7 +96,11 @@ function downloadTxt(filename, text) {
         pom.click();
     }
 }
-let  searchWordList=["手机","橘子","香蕉","面包","泡面"]
+let  searchWordList=["手机","橘子","香蕉","面包","泡面",
+"男装","帽子","内裤","java","python","饼干","矿泉水",
+"手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
+"马桶","抽水马桶","士力架","脉动",
+"可乐","雪碧","芬达","联想","华为手机",]
 
 function searchWordListAllDownload(searchWordList){
    
@@ -105,30 +109,6 @@ function searchWordListAllDownload(searchWordList){
     searchWordAndDownloadPage(searchWordList,0)
 
     
-    for(let i=0;i<searchWordList.length;i++){
-        
-        setTimeout(()=>{
-            let searchWord=searchWordList[i];
-            let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
-            console.log("searchWord");
-            console.log(searchWord);
-            searchWordInput.value=searchWord
-
-            let submitBtn = document.getElementsByClassName("submit")[0]
-            // .click()
-            // submit
-            // let submitBtn= inputs[0].getElementsByTagName("input")[0]
-            console.log("submitBtn");
-            console.log(submitBtn);
-        
-            submitBtn.click()
-            setTimeout(()=>{
-                downloadPage()
-            },7000)
-            // downloadPage();
-        },i*10000)
- 
-    }
 }
 
 // searchWord,
@@ -152,14 +132,23 @@ function searchWordAndDownloadPage(searchWordList,idx){
     console.log(submitBtn);
 
     submitBtn.click()
-    setTimeout(()=>{
-        downloadPage()
-        searchWordAndDownloadPage(searchWordList,idx+1)
-        // if(callback){
-        //     callback()
-        // }
+    // 读取 window.location.href 的参数 js 获取url参数
+
+
+
+//     setTimeout(()=>{
+//         downloadPage()
+
+// //         setTimeout(()=>{
+// //             console.log("searchWordAndDownloadPage");
+// // //    searchWordAndDownloadPage(searchWordList,idx+1)
+// //         },7000)
+     
+//         // if(callback){
+//         //     callback()
+//         // }
         
-    },7000)
+//     },7000)
 }
 
 function delayDownloadPage(){
@@ -167,6 +156,24 @@ function delayDownloadPage(){
         downloadPage()
     })
    
+}
+
+function getQueryString(name) {
+
+var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+
+var result = window.location.search.substr(1).match(reg);
+
+if (result!=null) {
+
+return result[2];
+
+} else {
+
+return null;
+
+};
+
 }
 function downloadPage(callback) {
 
@@ -252,7 +259,27 @@ function downloadPage(callback) {
     let txtName = `taobao_${searchWord}_${NowTimeStr}.json`
 
     downloadTxt(txtName, answerListStr)
-    callback()
+    // callback()
+
+   
+    let  idx=     getQueryString("idx")
+    console.log("idx");
+    console.log(idx);
+    if(!idx){
+        idx="0"
+    }
+   let idxInt=  parseInt(idx)
+   let  idxIntNext= idxInt+1
+   if(idxIntNext>=searchWordList.length){
+    return
+   }
+
+ let   searchWordNext= searchWordList[idxIntNext]
+//  location.href.replace 
+
+window.location.href=`https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
+    
+    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
 
 }
 
@@ -296,11 +323,17 @@ if (location.host == "uland.taobao.com") {
 
 
 
-
+//  searchWordListAllDownload(searchWordList)
     setTimeout(() => {
-        // downloadPage()
-        searchWordListAllDownload(searchWordList)
-    }, 11000);
+        downloadPage()
+        // searchWordListAllDownload(searchWordList)
+    // let  idx=     getQueryString("idx")
+    // console.log("idx");
+    // console.log(idx);
+    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
+    }, 5000);
+    // 7000
+    // 11000
 
     // let downloadPageInterval = setInterval(() => {
     //     downloadPage()
