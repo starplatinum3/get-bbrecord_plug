@@ -75,13 +75,6 @@ function putHtml() {
 // idea 回车 不能 
 // $("#addDiv")
 
-console.log("this is index.js")
-console.log("document")
-console.log(document)
-console.log("location")
-console.log(location)
-// host
-
 
 
 function downloadTxt(filename, text) {
@@ -96,11 +89,12 @@ function downloadTxt(filename, text) {
         pom.click();
     }
 }
-let  searchWordList=["手机","橘子","香蕉","面包","泡面",
-"男装","帽子","内裤","java","python","饼干","矿泉水",
-"手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
-"马桶","抽水马桶","士力架","脉动",
-"可乐","雪碧","芬达","联想","华为手机",]
+
+// let  searchWordList=["手机","橘子","香蕉","面包","泡面",
+// "男装","帽子","内裤","java","python","饼干","矿泉水",
+// "手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
+// "马桶","抽水马桶","士力架","脉动",
+// "可乐","雪碧","芬达","联想","华为手机",]
 
 function searchWordListAllDownload(searchWordList){
    
@@ -224,6 +218,7 @@ function downloadPage(callback) {
     
     let coupon_price_olds = document.getElementsByClassName("coupon-price-old")
     let sell_infos = document.getElementsByClassName("sell-info")
+    let seller_name_list = document.getElementsByClassName("seller-name")
     
     let res = []
 
@@ -236,12 +231,14 @@ function downloadPage(callback) {
     }
 
    let  date= new Date()
+//    keywo
 
     for (let i = 0; i < itemNames.length; i++) {
        let  pc_items_item_li= pc_items_item_lis[i]
        let  coupon_price_old=    coupon_price_olds[i]
         // itemNames[i]
         let  sell_info=    sell_infos[i]
+        let  seller_name=    seller_name_list[i]
         res.push({
             itemName: itemNames[i].innerText,
             afterCoupon: afterCouponList[i].innerText,
@@ -250,6 +247,8 @@ function downloadPage(callback) {
             coupon_price_old:coupon_price_old.innerText,
             sell_info:sell_info.innerText,
             // 卖出了100 
+            seller_name:seller_name.innerText,
+            searchWord:searchWord,
         })
         // console.log(itemNames[i].innerText,afterCouponList[i].innerText)
     }
@@ -317,29 +316,6 @@ function initClick(){
 
 }
 
-
-if (location.host == "uland.taobao.com") {
-    console.log("uland.taobao.com");
-
-
-
-//  searchWordListAllDownload(searchWordList)
-    setTimeout(() => {
-        downloadPage()
-        // searchWordListAllDownload(searchWordList)
-    // let  idx=     getQueryString("idx")
-    // console.log("idx");
-    // console.log(idx);
-    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
-    }, 5000);
-    // 7000
-    // 11000
-
-    // let downloadPageInterval = setInterval(() => {
-    //     downloadPage()
-    // }, 4000)
-
-}
 
 // alert("this is index.js")
 
@@ -463,4 +439,46 @@ function drag(ele) {
             document.onmouseup = null
         }
     }
+}
+
+
+console.log("this is index.js")
+console.log("document")
+console.log(document)
+console.log("location")
+console.log(location)
+// host
+
+
+let  searchWordList=["手机","橘子","香蕉","面包","泡面",
+"男装","帽子","内裤","java","python","饼干","矿泉水",
+"手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
+"马桶","抽水马桶","士力架","脉动",
+"可乐","雪碧","芬达","联想","华为手机",
+"优衣库","连衣裙","零食","床","女套装","男士t恤","充电宝","洗面奶","iphone",
+"泡面","香肠","寿司","手撕面包","感冒药","止泻药","薯片","止疼药",
+"发烧药","防窥膜","防晒霜","手套","床垫","床单","被子","电热毯","电热水壶",
+]
+
+if (location.host == "uland.taobao.com") {
+    console.log("uland.taobao.com");
+
+
+
+//  searchWordListAllDownload(searchWordList)
+    setTimeout(() => {
+        downloadPage()
+        // searchWordListAllDownload(searchWordList)
+    // let  idx=     getQueryString("idx")
+    // console.log("idx");
+    // console.log(idx);
+    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
+    }, 5000);
+    // 7000
+    // 11000
+
+    // let downloadPageInterval = setInterval(() => {
+    //     downloadPage()
+    // }, 4000)
+
 }
