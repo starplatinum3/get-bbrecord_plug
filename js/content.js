@@ -72,6 +72,7 @@ function putHtml() {
 
 // $("#uploadBBRecord")
 
+// idea 回车 不能 
 // $("#addDiv")
 
 console.log("this is index.js")
@@ -95,9 +96,79 @@ function downloadTxt(filename, text) {
         pom.click();
     }
 }
+let  searchWordList=["手机","橘子","香蕉","面包","泡面"]
 
+function searchWordListAllDownload(searchWordList){
+   
+    // searchWordAndDownloadPage(searchWordList[i],searchWordAndDownloadPage,searchWordList[i+1])
 
-function downloadPage() {
+    searchWordAndDownloadPage(searchWordList,0)
+
+    
+    for(let i=0;i<searchWordList.length;i++){
+        
+        setTimeout(()=>{
+            let searchWord=searchWordList[i];
+            let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
+            console.log("searchWord");
+            console.log(searchWord);
+            searchWordInput.value=searchWord
+
+            let submitBtn = document.getElementsByClassName("submit")[0]
+            // .click()
+            // submit
+            // let submitBtn= inputs[0].getElementsByTagName("input")[0]
+            console.log("submitBtn");
+            console.log(submitBtn);
+        
+            submitBtn.click()
+            setTimeout(()=>{
+                downloadPage()
+            },7000)
+            // downloadPage();
+        },i*10000)
+ 
+    }
+}
+
+// searchWord,
+// callback,
+function searchWordAndDownloadPage(searchWordList,idx){
+    if(idx>=searchWordList.length){
+        return
+    }
+    // let searchWord=searchWordList[i];
+    let searchWord=searchWordList[idx];
+    let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
+    console.log("searchWord");
+    console.log(searchWord);
+    searchWordInput.value=searchWord
+
+    let submitBtn = document.getElementsByClassName("submit")[0]
+    // .click()
+    // submit
+    // let submitBtn= inputs[0].getElementsByTagName("input")[0]
+    console.log("submitBtn");
+    console.log(submitBtn);
+
+    submitBtn.click()
+    setTimeout(()=>{
+        downloadPage()
+        searchWordAndDownloadPage(searchWordList,idx+1)
+        // if(callback){
+        //     callback()
+        // }
+        
+    },7000)
+}
+
+function delayDownloadPage(){
+    setTimeout(()=>{
+        downloadPage()
+    })
+   
+}
+function downloadPage(callback) {
 
     let J_searchForm = document.getElementById("J_searchForm")
     console.log(J_searchForm);
@@ -132,11 +203,21 @@ function downloadPage() {
     let searchWord = searchWordInput.value
     console.log(searchWord);
 
+    
 
 
     let afterCouponList = document.getElementsByClassName("coupon-price-afterCoupon")
     console.log(afterCouponList);
-
+    let pc_items_item_lis = document.getElementsByClassName("pc-items-item item-undefined")
+    console.log("pc_items_item_lis");
+    console.log(pc_items_item_lis);
+    // pc_items_item_lis.setAttribute("data-itemid")
+    console.log("pc_items_item_lis.length");
+    console.log(pc_items_item_lis.length);
+    
+    let coupon_price_olds = document.getElementsByClassName("coupon-price-old")
+    let sell_infos = document.getElementsByClassName("sell-info")
+    
     let res = []
 
     if (itemNames.length != afterCouponList.length) {
@@ -147,13 +228,21 @@ function downloadPage() {
         // alert("长度相同" );
     }
 
+   let  date= new Date()
 
     for (let i = 0; i < itemNames.length; i++) {
+       let  pc_items_item_li= pc_items_item_lis[i]
+       let  coupon_price_old=    coupon_price_olds[i]
         // itemNames[i]
+        let  sell_info=    sell_infos[i]
         res.push({
             itemName: itemNames[i].innerText,
             afterCoupon: afterCouponList[i].innerText,
-            date: new Date()
+            date: date,
+            "data_itemid":pc_items_item_li.getAttribute("data-itemid"),
+            coupon_price_old:coupon_price_old.innerText,
+            sell_info:sell_info.innerText,
+            // 卖出了100 
         })
         // console.log(itemNames[i].innerText,afterCouponList[i].innerText)
     }
@@ -163,6 +252,7 @@ function downloadPage() {
     let txtName = `taobao_${searchWord}_${NowTimeStr}.json`
 
     downloadTxt(txtName, answerListStr)
+    callback()
 
 }
 
@@ -208,7 +298,8 @@ if (location.host == "uland.taobao.com") {
 
 
     setTimeout(() => {
-        downloadPage()
+        // downloadPage()
+        searchWordListAllDownload(searchWordList)
     }, 11000);
 
     // let downloadPageInterval = setInterval(() => {
