@@ -450,7 +450,7 @@ console.log(location)
 // host
 
 
-let  searchWordList=["手机","橘子","香蕉","面包","泡面",
+let  searchWordList=["手机","面包","泡面",
 "男装","帽子","内裤","java","python","饼干","矿泉水",
 "手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
 "马桶","抽水马桶","士力架","脉动",
@@ -458,9 +458,49 @@ let  searchWordList=["手机","橘子","香蕉","面包","泡面",
 "优衣库","连衣裙","零食","床","女套装","男士t恤","充电宝","洗面奶","iphone",
 "泡面","香肠","寿司","手撕面包","感冒药","止泻药","薯片","止疼药",
 "发烧药","防窥膜","防晒霜","手套","床垫","床单","被子","电热毯","电热水壶",
-"运动鞋","洗发水","剃须刀","即热食品","热干面","热狗","紫菜"
+"运动鞋","洗发水","剃须刀","即热食品","热干面","热狗","紫菜",
+"即时","凤爪","棉拖鞋","麻花","手套","酒精","巧克力","蛋糕",
+"烤鸭","烤鸡","马桶坐垫","不锈钢脸盆","洗脚盆","电饭煲","洗衣液",
 ]
+let fruits=['樱桃', '西瓜', '葡萄', "橘子",
+"香蕉",'水蜜桃', '芒果', '石榴', '李子', '柚子', '橄榄', '荔枝', '柠檬', 
+'龙眼', '椰子', '甘蔗', '山楂', '栗子', '柿子', '番石榴', '杏仁', ]
 
+// 零食 
+let snacks=["薯片","玉米片","坚果"," 杏仁","腰果","核桃","开心果","爆米花","牛油果酱","洋葱","番茄",
+"奶黄包","肉包","速冻饺子","肉干","猪肉干","香肠","火鸡","小熊软糖","士力架","糖豆","棒棒糖"
+,"牙膏","牙刷","蜜饯","话梅"]
+let chinese_snacks
+['瓜子', '剝壳嗑瓜子', '鱼片干', '鱿鱼丝', '内脏', '鸭舌头', '鸭翅膀', '辣条', '海苔']
+// +fruits
+// js 列表 相加 
+snacks=
+addAll(snacks,chinese_snacks)
+
+
+
+function removeSame(arr){
+
+    // var a = [1,2,3,4,5,2,3,5,5,5,5]
+    let list = [...new Set(arr)]
+    // console.log(list); // 输出结果 [1, 2, 3, 4, 5]
+    return list
+}
+function addAll(srcList,addList){
+    for (let i = 0; i < addList.length; i++) {
+        srcList.push(addList[i])
+    }
+    return srcList
+}
+
+
+searchWordList=
+addAll(searchWordList,fruits)
+// 水果 fruit
+
+searchWordList=addAll(searchWordList,snacks)
+searchWordList=
+removeSame(searchWordList)
 if (location.host == "uland.taobao.com") {
     console.log("uland.taobao.com");
 
