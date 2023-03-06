@@ -105,3 +105,63 @@ console.log(questionObj);
 
 
 // document.getElementsByClassName("qaDescription f-fl f-cb")[0].innerHTML = "test";
+
+
+
+function downloadJob() {
+    // title = document.getElementsByClassName('f-fl j-hwname')[0].textContent
+    // let  title="欢迎访问浙大城市学院就业信息网"
+    let title = "浙大城市学院就业信息网"
+
+    let jobs = document.getElementsByClassName('job')
+    let names = document.getElementsByClassName('name')
+
+    let jobsArray = Array.from(jobs)
+    // Array.from(jobs)
+    let resList = []
+    let baseUrl="http://career.zucc.edu.cn"
+    for (let i = 0; i < names.length; i++) {
+        let nameDom= names[i]
+    //   let  jobDetailLinkSuffix=   nameDom.getElementsByTagName('a')[0].href
+    //   let  jobDetailLink= `${baseUrl}${jobDetailLinkSuffix}`
+
+      let  jobDetailLink= nameDom.getElementsByTagName('a')[0].href
+      
+      //       【2023届】实习生
+// http://career.zucc.edu.cn/job/view/id/1194903
+        let name = names[i].textContent.trim()
+        let job = jobsArray[i].innerHTML.trim()
+        resList.push({
+            name,
+            job,
+            jobDetailLink
+        })
+        // console.log(names[i].innerHTML)
+    }
+
+    // resList[0]
+
+    // let page = getQueryString("page")
+    // let idxIntNext = genNextIdx()
+    // console.log("idxIntNext");
+    // console.log(idxIntNext);
+    // downloadTxt(`${title}_page_${page}.json`, JSON.stringify(resList))
+
+    // if (idxIntNext >= contentIdList.length) {
+    //     return
+    // }
+    // let lastPageNum = 30
+    // if (idxIntNext >= lastPageNum) {
+    //     return
+    // }
+
+    // let contentIdNext = contentIdList[idxIntNext]
+    // console.log("contentIdNext");
+    // console.log(contentIdNext);
+
+    // let nextLink = `http://career.zucc.edu.cn/job/search?title=&city=&d_skill=&d_industry=&d_major=&d_education=&d_category=&d_salary=&nature=&scale=&time=&page=${idxIntNext}&idx=${idxIntNext}`
+    // setTimeout(() => {
+    //     window.location.href = nextLink
+    // }, 3000)
+
+}
