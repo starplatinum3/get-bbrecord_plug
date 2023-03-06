@@ -96,27 +96,27 @@ function downloadTxt(filename, text) {
 // "马桶","抽水马桶","士力架","脉动",
 // "可乐","雪碧","芬达","联想","华为手机",]
 
-function searchWordListAllDownload(searchWordList){
-   
+function searchWordListAllDownload(searchWordList) {
+
     // searchWordAndDownloadPage(searchWordList[i],searchWordAndDownloadPage,searchWordList[i+1])
 
-    searchWordAndDownloadPage(searchWordList,0)
+    searchWordAndDownloadPage(searchWordList, 0)
 
-    
+
 }
 
 // searchWord,
 // callback,
-function searchWordAndDownloadPage(searchWordList,idx){
-    if(idx>=searchWordList.length){
+function searchWordAndDownloadPage(searchWordList, idx) {
+    if (idx >= searchWordList.length) {
         return
     }
     // let searchWord=searchWordList[i];
-    let searchWord=searchWordList[idx];
+    let searchWord = searchWordList[idx];
     let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
     console.log("searchWord");
     console.log(searchWord);
-    searchWordInput.value=searchWord
+    searchWordInput.value = searchWord
 
     let submitBtn = document.getElementsByClassName("submit")[0]
     // .click()
@@ -130,51 +130,62 @@ function searchWordAndDownloadPage(searchWordList,idx){
 
 
 
-//     setTimeout(()=>{
-//         downloadPage()
+    //     setTimeout(()=>{
+    //         downloadPage()
 
-// //         setTimeout(()=>{
-// //             console.log("searchWordAndDownloadPage");
-// // //    searchWordAndDownloadPage(searchWordList,idx+1)
-// //         },7000)
-     
-//         // if(callback){
-//         //     callback()
-//         // }
-        
-//     },7000)
+    // //         setTimeout(()=>{
+    // //             console.log("searchWordAndDownloadPage");
+    // // //    searchWordAndDownloadPage(searchWordList,idx+1)
+    // //         },7000)
+
+    //         // if(callback){
+    //         //     callback()
+    //         // }
+
+    //     },7000)
 }
 
-function delayDownloadPage(){
-    setTimeout(()=>{
+function delayDownloadPage() {
+    setTimeout(() => {
         downloadPage()
     })
-   
+
 }
 
 function getQueryString(name) {
 
-var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 
-var result = window.location.search.substr(1).match(reg);
+    console.log("reg");
+    console.log(reg);
+    console.log("window.location.search");
+    console.log(window.location.search);
+    var result = window.location.search.substr(1).match(reg);
 
-if (result!=null) {
+    console.log("result");
+    console.log(result);
 
-return result[2];
 
-} else {
+    if (result != null) {
+        let QueryString = result[2];
+        console.log("QueryString");
+        console.log(QueryString);
+        return QueryString
 
-return null;
+    } else {
 
-};
+        return null;
+
+    };
 
 }
+
 function downloadPage(callback) {
 
     let J_searchForm = document.getElementById("J_searchForm")
     console.log(J_searchForm);
 
-    
+
     let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
     let itemNames = document.getElementsByClassName("pc-items-item-title pc-items-item-title-row2")
 
@@ -185,7 +196,7 @@ function downloadPage(callback) {
 
     // let  searchWord= document.getElementById("J_searchForm").textContent
     // console.log(searchWord);
-    
+
 
     // let  searchWord= J_searchForm.innerText
     // let  searchWord= J_searchForm.value 
@@ -204,7 +215,7 @@ function downloadPage(callback) {
     let searchWord = searchWordInput.value
     console.log(searchWord);
 
-    
+
 
 
     let afterCouponList = document.getElementsByClassName("coupon-price-afterCoupon")
@@ -215,11 +226,11 @@ function downloadPage(callback) {
     // pc_items_item_lis.setAttribute("data-itemid")
     console.log("pc_items_item_lis.length");
     console.log(pc_items_item_lis.length);
-    
+
     let coupon_price_olds = document.getElementsByClassName("coupon-price-old")
     let sell_infos = document.getElementsByClassName("sell-info")
     let seller_name_list = document.getElementsByClassName("seller-name")
-    
+
     let res = []
 
     if (itemNames.length != afterCouponList.length) {
@@ -230,25 +241,25 @@ function downloadPage(callback) {
         // alert("长度相同" );
     }
 
-   let  date= new Date()
-//    keywo
+    let date = new Date()
+    //    keywo
 
     for (let i = 0; i < itemNames.length; i++) {
-       let  pc_items_item_li= pc_items_item_lis[i]
-       let  coupon_price_old=    coupon_price_olds[i]
+        let pc_items_item_li = pc_items_item_lis[i]
+        let coupon_price_old = coupon_price_olds[i]
         // itemNames[i]
-        let  sell_info=    sell_infos[i]
-        let  seller_name=    seller_name_list[i]
+        let sell_info = sell_infos[i]
+        let seller_name = seller_name_list[i]
         res.push({
             itemName: itemNames[i].innerText,
             afterCoupon: afterCouponList[i].innerText,
             date: date,
-            "data_itemid":pc_items_item_li.getAttribute("data-itemid"),
-            coupon_price_old:coupon_price_old.innerText,
-            sell_info:sell_info.innerText,
+            "data_itemid": pc_items_item_li.getAttribute("data-itemid"),
+            coupon_price_old: coupon_price_old.innerText,
+            sell_info: sell_info.innerText,
             // 卖出了100 
-            seller_name:seller_name.innerText,
-            searchWord:searchWord,
+            seller_name: seller_name.innerText,
+            searchWord: searchWord,
         })
         // console.log(itemNames[i].innerText,afterCouponList[i].innerText)
     }
@@ -260,24 +271,24 @@ function downloadPage(callback) {
     downloadTxt(txtName, answerListStr)
     // callback()
 
-   
-    let  idx=     getQueryString("idx")
+
+    let idx = getQueryString("idx")
     console.log("idx");
     console.log(idx);
-    if(!idx){
-        idx="0"
+    if (!idx) {
+        idx = "0"
     }
-   let idxInt=  parseInt(idx)
-   let  idxIntNext= idxInt+1
-   if(idxIntNext>=searchWordList.length){
-    return
-   }
+    let idxInt = parseInt(idx)
+    let idxIntNext = idxInt + 1
+    if (idxIntNext >= searchWordList.length) {
+        return
+    }
 
- let   searchWordNext= searchWordList[idxIntNext]
-//  location.href.replace 
+    let searchWordNext = searchWordList[idxIntNext]
+    //  location.href.replace 
 
-window.location.href=`https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
-    
+    window.location.href = `https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
+
     // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
 
 }
@@ -299,7 +310,7 @@ function getNowTimeStr() {
     return nowTime
 }
 
-function initClick(){
+function initClick() {
 
 
     let searchWordInput = J_searchForm.getElementsByTagName("input")[0]
@@ -450,70 +461,346 @@ console.log(location)
 // host
 
 
-let  searchWordList=["手机","面包","泡面",
-"男装","帽子","内裤","java","python","饼干","矿泉水",
-"手表","项链","保温杯","热水器","空调","电脑","电视","洗衣机",
-"马桶","抽水马桶","士力架","脉动",
-"可乐","雪碧","芬达","联想","华为手机",
-"优衣库","连衣裙","零食","床","女套装","男士t恤","充电宝","洗面奶","iphone",
-"泡面","香肠","寿司","手撕面包","感冒药","止泻药","薯片","止疼药",
-"发烧药","防窥膜","防晒霜","手套","床垫","床单","被子","电热毯","电热水壶",
-"运动鞋","洗发水","剃须刀","即热食品","热干面","热狗","紫菜",
-"即时","凤爪","棉拖鞋","麻花","手套","酒精","巧克力","蛋糕",
-"烤鸭","烤鸡","马桶坐垫","不锈钢脸盆","洗脚盆","电饭煲","洗衣液",
+let searchWordList = ["手机", "面包", "泡面",
+    "男装", "帽子", "内裤", "java", "python", "饼干", "矿泉水",
+    "手表", "项链", "保温杯", "热水器", "空调", "电脑", "电视", "洗衣机",
+    "马桶", "抽水马桶", "士力架", "脉动",
+    "可乐", "雪碧", "芬达", "联想", "华为手机",
+    "优衣库", "连衣裙", "零食", "床", "女套装", "男士t恤", "充电宝", "洗面奶", "iphone",
+    "泡面", "香肠", "寿司", "手撕面包", "感冒药", "止泻药", "薯片", "止疼药",
+    "发烧药", "防窥膜", "防晒霜", "手套", "床垫", "床单", "被子", "电热毯", "电热水壶",
+    "运动鞋", "洗发水", "剃须刀", "即热食品", "热干面", "热狗", "紫菜",
+    "即时", "凤爪", "棉拖鞋", "麻花", "手套", "酒精", "巧克力", "蛋糕",
+    "烤鸭", "烤鸡", "马桶坐垫", "不锈钢脸盆", "洗脚盆", "电饭煲", "洗衣液",
 ]
-let fruits=['樱桃', '西瓜', '葡萄', "橘子",
-"香蕉",'水蜜桃', '芒果', '石榴', '李子', '柚子', '橄榄', '荔枝', '柠檬', 
-'龙眼', '椰子', '甘蔗', '山楂', '栗子', '柿子', '番石榴', '杏仁', ]
+let fruits = ['樱桃', '西瓜', '葡萄', "橘子",
+    "香蕉", '水蜜桃', '芒果', '石榴', '李子', '柚子', '橄榄', '荔枝', '柠檬',
+    '龙眼', '椰子', '甘蔗', '山楂', '栗子', '柿子', '番石榴', '杏仁',
+]
 
 // 零食 
-let snacks=["薯片","玉米片","坚果"," 杏仁","腰果","核桃","开心果","爆米花","牛油果酱","洋葱","番茄",
-"奶黄包","肉包","速冻饺子","肉干","猪肉干","香肠","火鸡","小熊软糖","士力架","糖豆","棒棒糖"
-,"牙膏","牙刷","蜜饯","话梅"]
-let chinese_snacks=
-['瓜子', '剝壳嗑瓜子', '鱼片干', '鱿鱼丝', '内脏', '鸭舌头', '鸭翅膀', '辣条', '海苔']
+let snacks = ["薯片", "玉米片", "坚果", " 杏仁", "腰果", "核桃", "开心果", "爆米花", "牛油果酱", "洋葱", "番茄",
+    "奶黄包", "肉包", "速冻饺子", "肉干", "猪肉干", "香肠", "火鸡", "小熊软糖", "士力架", "糖豆", "棒棒糖", "牙膏", "牙刷", "蜜饯", "话梅"
+]
+let chinese_snacks = ['瓜子', '剝壳嗑瓜子', '鱼片干', '鱿鱼丝', '内脏', '鸭舌头', '鸭翅膀', '辣条', '海苔']
 // +fruits
 // js 列表 相加 
-snacks=
-addAll(snacks,chinese_snacks)
+snacks =
+    addAll(snacks, chinese_snacks)
 
 
 
-function removeSame(arr){
+function removeSame(arr) {
 
     // var a = [1,2,3,4,5,2,3,5,5,5,5]
     let list = [...new Set(arr)]
     // console.log(list); // 输出结果 [1, 2, 3, 4, 5]
     return list
 }
-function addAll(srcList,addList){
+
+function addAll(srcList, addList) {
     for (let i = 0; i < addList.length; i++) {
         srcList.push(addList[i])
     }
     return srcList
 }
 
+function moocDownload() {
 
-searchWordList=
-addAll(searchWordList,fruits)
+
+    linksDivs = document.getElementsByClassName("j-quizBtn u-btn u-btn-default f-fr")
+    for (let i = 0; i < linksDivs.length; i++) {
+        let linkDiv = linksDivs[i]
+        // .getAttribute("id");
+        id = linkDiv.getAttribute("id")
+        id = id.replace("auto-id-", "")
+        // id= linkDiv.getAttr("id")
+
+        // console.log(linkDiv);
+        console.log(id);
+
+        // id= linkDiv.getAttr("id")
+        // console.log(id);
+    }
+
+    qaDescription = document.getElementsByClassName("qaDescription f-fl f-cb")[0];
+    //  ansDiv = document.getElementsByClassName("j-richOrText text f-f0 f-richEditorText edueditor_styleclass_29 edueditor_styleclass_31")[0];
+
+    ansDiv = document.getElementsByClassName("j-richOrText text ")[0];
+
+    commentDiv = document.getElementsByClassName("j-comment comment")[0];
+
+    title = document.getElementsByClassName('f-fl j-hwname')[0].textContent
+    try {
+        course = document.getElementsByClassName('f-fc3 courseTxt')[0].textContent.trim()
+    } catch (e) {
+        course = null
+    }
+    try {
+        teacher = document.getElementsByClassName('f-fcgreen padding-top-5')[0].innerHTML.trim()
+    } catch (e) {
+        teacher = null
+    }
+    try {
+        score = document.getElementsByClassName('score j-score')[0].textContent.trim()
+    } catch (e) {
+        score = "未评分"
+    }
+    //  score = document.getElementsByClassName('score j-score')[0].textContent.trim()
+
+    //   questionObj=
+    // {
+    //     question:qaDescription.textContent,
+    //     myAns: ansDiv.textContent,
+    // }
+
+    // questionObj=
+    // {
+    //     "question":qaDescription.textContent,
+    //     "myAns": ansDiv.textContent,
+    // }
+
+    // questionObj=
+    // {
+    //     "question":qaDescription.innerHTML,
+    //     "myAns": ansDiv.textContent,
+    // }
+
+    questionObj = {
+        "question": qaDescription.innerHTML.trim(),
+        "myAns": ansDiv.innerHTML.trim(),
+        questionText: qaDescription.textContent.trim(),
+        myAnsText: ansDiv.textContent.trim(),
+        commentText: commentDiv.textContent.trim(),
+        comment: commentDiv.innerHTML.trim(),
+        location_href: location.href.trim(),
+        title,
+        course,
+        teacher,
+        score
+
+    }
+
+    downloadTxt(`${title}_${course}.json`, JSON.stringify(questionObj))
+
+    // let idx = getQueryString("idx")
+    // console.log("idx");
+    // console.log(idx);
+    // if (!idx) {
+    //     idx = "0"
+    // }
+    // let idxInt = parseInt(idx)
+    // let idxIntNext = idxInt + 1
+    let idxIntNext = genNextIdx()
+    console.log("idxIntNext");
+    console.log(idxIntNext);
+
+    if (idxIntNext >= contentIdList.length) {
+        return
+    }
+
+    let contentIdNext = contentIdList[idxIntNext]
+    console.log("contentIdNext");
+    console.log(contentIdNext);
+
+    //  location.href.replace 
+    // 计算机网络_中国大学MOOC(慕课)
+    // window.location.href = `https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
+    // let  nextLink=`https://www.icourse163.org/learn/HIT-154005?tid=1463162470#/learn/hw?id=${contentIdNext}&idx=${idxIntNext}`
+    let nextLink = `https://www.icourse163.org/learn/HIT-154005?tid=1463162470&idx=${idxIntNext}#/learn/hw?id=${contentIdNext}`
+
+    console.log("nextLink");
+    console.log(nextLink);
+
+    setTimeout(() => {
+        window.location.href = nextLink
+    }, 3000)
+
+}
+
+function downloadJob(){
+    // title = document.getElementsByClassName('f-fl j-hwname')[0].textContent
+// let  title="欢迎访问浙大城市学院就业信息网"
+let  title="浙大城市学院就业信息网"
+
+let  jobs=document.getElementsByClassName('job')
+let  names=document.getElementsByClassName('name')
+
+let  jobsArray=Array.from(jobs)
+// Array.from(jobs)
+let  resList=[]
+for(let i=0;i<names.length;i++){
+    let  name =  names[i].textContent.trim()
+    let  job =  jobsArray[i].innerHTML.trim()
+    resList.push({
+        name,
+        job
+    })
+    // console.log(names[i].innerHTML)
+}
+
+let page = getQueryString("page")
+let idxIntNext = genNextIdx()
+console.log("idxIntNext");
+console.log(idxIntNext);
+downloadTxt(`${title}_page_${page}.json`, JSON.stringify(resList))
+
+// if (idxIntNext >= contentIdList.length) {
+//     return
+// }
+let lastPageNum=30
+if(idxIntNext>=lastPageNum){
+    return
+}
+
+// let contentIdNext = contentIdList[idxIntNext]
+// console.log("contentIdNext");
+// console.log(contentIdNext);
+
+let nextLink = `http://career.zucc.edu.cn/job/search?title=&city=&d_skill=&d_industry=&d_major=&d_education=&d_category=&d_salary=&nature=&scale=&time=&page=${idxIntNext}&idx=${idxIntNext}`
+setTimeout(() => {
+    window.location.href = nextLink
+}, 3000)
+
+}
+
+let contentIdList = ['1237071659', '1237072629', '1237068750', '1237068752', '1237070693', '1237069773', '1237072630', '1237068753', '1237067810',
+    '1237071660'
+]
+
+function genNextIdx() {
+    let idx = getQueryString("idx")
+    console.log("idx");
+    console.log(idx);
+    if (!idx) {
+        idx = "0"
+    }
+    let idxInt = parseInt(idx)
+    let idxIntNext = idxInt + 1
+    return idxIntNext
+}
+searchWordList =
+    addAll(searchWordList, fruits)
 // 水果 fruit
 
-searchWordList=addAll(searchWordList,snacks)
-searchWordList=
-removeSame(searchWordList)
+function downloadMoocCourseLinks() {
+
+    let courseObjList = []
+    //     let  courseCards=
+    // Array.from(document.getElementsByClassName('course-card-wrapper'))
+    // // document.getElementsByClassName('course-card-wrapper')
+    // // [0].style.display = 'none'
+
+    // let hrefs=courseCards.map(courseCard=>courseCard.getElementsByTagName('a')[0].href)
+    let courseCards =
+        Array.from(document.getElementsByClassName('course-card-wrapper'))
+    // document.getElementsByClassName('course-card-wrapper')
+    // [0].style.display = 'none'
+
+    let hrefs = courseCards.map(courseCard => courseCard.getElementsByTagName('a')[0].href)
+
+    console.log("hrefs");
+    console.log(hrefs);
+
+    let titleList = Array.from(
+        document.getElementsByClassName('common-info-wrapper common-info-wrapper-fix-height')
+    )
+    console.log("titleList");
+    console.log(titleList);
+    // let  title=
+    // document.getElementsByClassName('common-info-wrapper common-info-wrapper-fix-height')[0].textContent
+
+    // let  
+    let scoreList = []
+    try {
+        scoreList =
+            document.getElementsByClassName('score ')
+    } catch (e) {
+        console.log(e);
+        scoreList = []
+    }
+
+    console.log("scoreList");
+    console.log(scoreList);
+
+    // let  score=
+    // document.getElementsByClassName('score ')[0].textContent.trim().replace('\n','')
+
+    let courseStatusList = document.getElementsByClassName('course-status')
+    // let  courseStatus=
+    // document.getElementsByClassName('course-status')[0].textContent
+    console.log("courseStatusList");
+    console.log(courseStatusList);
+    for (let i = 0; i < hrefs.length; i++) {
+
+        let href =
+            hrefs[i]
+
+        let title = titleList[i].textContent
+        let score = null
+        // if(i>=scoreList.length){
+        //     let  score= scoreList[i]
+        // }
+
+        if (i < scoreList.length) {
+            score = scoreList[i].textContent.trim().replace('\n','')
+        }
+
+        let courseStatus = courseStatusList[i].textContent
+
+        let courseObj = {
+            href,
+            title,
+            score,
+            courseStatus,
+        }
+
+        courseObjList.push(courseObj)
+
+
+    }
+
+    console.log("courseObjList");
+    console.log(courseObjList);
+
+}
+
+function getUrlFileName() {
+    var path = window.location.pathname;
+    console.log("path");
+    console.log(path);
+    //     path
+    // VM2533:5 /home.htm
+
+    // down.innerHTML = path.split("/").pop();
+    let urlFileName = path.split("/").pop();
+    console.log("urlFileName");
+    console.log(urlFileName);
+
+    return urlFileName
+}
+
+let UrlFileName =
+
+    getUrlFileName()
+
+
+searchWordList = addAll(searchWordList, snacks)
+searchWordList =
+    removeSame(searchWordList)
 if (location.host == "uland.taobao.com") {
     console.log("uland.taobao.com");
 
 
 
-//  searchWordListAllDownload(searchWordList)
+    //  searchWordListAllDownload(searchWordList)
     setTimeout(() => {
         downloadPage()
         // searchWordListAllDownload(searchWordList)
-    // let  idx=     getQueryString("idx")
-    // console.log("idx");
-    // console.log(idx);
-    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
+        // let  idx=     getQueryString("idx")
+        // console.log("idx");
+        // console.log(idx);
+        // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
     }, 5000);
     // 7000
     // 11000
@@ -522,4 +809,39 @@ if (location.host == "uland.taobao.com") {
     //     downloadPage()
     // }, 4000)
 
+} else if (location.host == "www.icourse163.org") {
+    // if(UrlFileName=="learn.htm"){
+    //     console.log("www.icourse163.org");
+    //     setTimeout(() => {
+    //         moocDownload()
+    //     }, 5000);
+    //     // moocDownload()
+
+    // }else
+
+    if (UrlFileName == "home.htm") {
+        setTimeout(() => {
+            downloadMoocCourseLinks()
+
+        }, 5000);
+    } else {
+        console.log("www.icourse163.org");
+        setTimeout(() => {
+            moocDownload()
+        }, 5000);
+        // moocDownload()
+    }
+    // home.htm
+
 }
+else if (location.host == 'career.zucc.edu.cn') {
+    setTimeout(() => {
+        downloadJob()
+
+    }, 5000);
+ 
+
+}
+// www.icourse163.org'
+
+// downloadJob

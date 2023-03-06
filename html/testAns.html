@@ -1,0 +1,26 @@
+<span class="tit f-fc3">回答：</span>
+<p>1）你的浏览器解析到URL对应的IP地址的最短时间是多少？</p>
+<p><strong>RTTd</strong></p>
+<p><strong><em>就是如果本地host有这个解析文件的话，就一下子解析到了</em></strong></p>
+<p>最长时间是多少？&nbsp;</p>
+<p><strong>&nbsp;5RTTd</strong></p>
+<p>2）若浏览器没有配置并行TCP连接，则基于HTTP1.0获取URL链接Web页完整内容（包括引用的图像，下同）需要多长时间（不包括域名解析时间，下同）？</p>
+<p><em><strong>18 RTTh</strong></em></p>
+<p><strong>8个小图像 + 这个页面自己 == 9个东西</strong></p>
+<p><strong>每个东西要两个&nbsp;RTTh</strong></p>
+<p><strong>2*9=18</strong></p>
+<p><br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3) 若浏览器配置5个并行TCP连接，则基于HTTP1.0获取URL链接Web页完整内容需要多长时间？</p>
+<p><strong>拿 html 要 2&nbsp;RTTh</strong></p>
+<p><strong>他需要并行2轮， 所以是 2+2*2 ==6&nbsp;RTTh</strong></p>
+<p><br></p>
+<p><br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;4) 若浏览器没有配置并行TCP连接，则基于非流水模式的HTTP1.1获取URL链接Web页完整内容需要多长时间？</p>
+<p><strong>拿 html 要 2&nbsp;RTTh</strong></p>
+<p><strong>8个小图像 每个要2个 ，所以 2+8*2=18&nbsp;RTTh</strong></p>
+<p><br></p>
+<p>基于流水模式的HTTP1.1获取URL链接Web页完整内容需要多长时间？</p>
+<p><strong>拿 html 要 2&nbsp;RTTh</strong></p>
+<p><strong>流水模式 1&nbsp;RTTh 就行</strong></p>
+<p><strong>2+1=3&nbsp;RTTh</strong></p>
+<p><br></p>
