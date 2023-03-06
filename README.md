@@ -35,6 +35,8 @@ getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个
 3、 C) the French are fed up with the smell of freshly picked apples
 4、 D) great changes have occurred in the style of all Frenchmen
 ```
+git remote add origin https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git
+git remote add gitlab https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git
 
 update：
 
