@@ -1011,6 +1011,10 @@ function jobDetailDownload() {
 
 }
 
+function zhiPin(){
+
+}
+
 function crawlerDo() {
 
 
@@ -1103,7 +1107,8 @@ function crawlerDo() {
     }
     else if (location.host =='www.zhipin.com') {
         setTimeout(() => {
-            qianCheng()
+            // zhiPin()
+            zhiPinGetAll()
         }, 5000);
 
     }
@@ -1283,6 +1288,178 @@ function toTextList(classNameInfoMap) {
 }
 
 
+
+function zhiPinGetOne(){
+    console.log('qianCheng start');
+    let classNameInfoMap = {
+        // "job-card-left": "href",
+        // "company-name": "companyName",
+        // "job-title clearfix": "jobTitle",
+        // "salary": "salary",
+        'postName elli': "postName",
+        'compName': "compName",
+        'pay': "pay",
+        'postMsg': "postMsg",
+        'compMsg elli': "compMsg",
+        'label': "label",
+        "jname at":"jobName",
+        "sal":"salary",
+        "d at":"jobDetail",
+        "er":"companyName",
+        "job-name":'jobName',
+        'job-area':"jobArea",
+        'company-name':"companyName",
+        'salary':'salary',
+        "tag-list":"tagList",
+'info-public':"infoPublic",
+"info-desc":"infoDesc"
+    }
+
+    let classNames = [
+        'postName elli',
+        'compName', 'pay', 'postMsg', 'compMsg elli',
+        'label'
+    ]
+
+    // let resMap = {}
+
+    // for (let className in classNameInfoMap) {
+    //     let fieldName = classNameInfoMap[className]
+
+    //     // let jobs = document.getElementsByClassName(className)
+    //     resMap[fieldName] = {}
+    //     let fieldObj = resMap[fieldName]
+    //     fieldObj.doms = document.getElementsByClassName(className)
+    //     fieldParse(fieldObj)
+
+    //     // resMap[className] = {}
+    //     // resMap[className].doms = document.getElementsByClassName(className)
+    //     // fieldParse(resMap[className])
+    // }
+    let resMap = toTextList(classNameInfoMap)
+    console.log("resMap");
+    console.log(resMap);
+    let hrefList = []
+    let linkDoms = document.getElementsByClassName('list_l')
+    for (let i = 0; i < linkDoms.length; i++) {
+        let href = linkDoms[i].getElementsByTagName('a')[0].href
+        hrefList.push(href)
+    }
+    resMap["href"] = {}
+    resMap["href"].texts = hrefList
+
+
+    console.log("resMap");
+    console.log(resMap);
+    let resList = toResList(resMap)
+    console.log("resList");
+    console.log(resList);
+
+    // let hostName='zhiLian'
+    let hostName='zhiPin'
+
+    // number active
+    let pageIndex=   document.getElementsByClassName('selected')[0].textContent
+//   let pageIndex=   document.getElementsByClassName('number active')[0].textContent
+  downloadTxt(`${hostName}_page_${pageIndex}.json`, JSON.stringify(resList))
+
+
+    // let  nextBtn= document.getElementsByClassName('btn-next')[0]
+
+    let  pageAs= document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')
+    let  nextBtn=  getListLast(pageAs)
+    // .click()
+    // document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')[0].click()
+        // console.log("nextBtn");
+        // console.log(nextBtn);
+        nextBtn?.click()
+
+}
+
+
+function zhiLianGetOne(){
+    console.log('qianCheng start');
+    let classNameInfoMap = {
+        // "job-card-left": "href",
+        // "company-name": "companyName",
+        // "job-title clearfix": "jobTitle",
+        // "salary": "salary",
+        'postName elli': "postName",
+        'compName': "compName",
+        'pay': "pay",
+        'postMsg': "postMsg",
+        'compMsg elli': "compMsg",
+        'label': "label",
+        "jname at":"jobName",
+        "sal":"salary",
+        "d at":"jobDetail",
+        "er":"companyName",
+        "job-name":'jobName',
+        'job-area':"jobArea",
+        'company-name':"companyName",
+        'salary':'salary',
+        "tag-list":"tagList",
+'info-public':"infoPublic",
+"info-desc":"infoDesc"
+    }
+
+    let classNames = [
+        'postName elli',
+        'compName', 'pay', 'postMsg', 'compMsg elli',
+        'label'
+    ]
+
+    // let resMap = {}
+
+    // for (let className in classNameInfoMap) {
+    //     let fieldName = classNameInfoMap[className]
+
+    //     // let jobs = document.getElementsByClassName(className)
+    //     resMap[fieldName] = {}
+    //     let fieldObj = resMap[fieldName]
+    //     fieldObj.doms = document.getElementsByClassName(className)
+    //     fieldParse(fieldObj)
+
+    //     // resMap[className] = {}
+    //     // resMap[className].doms = document.getElementsByClassName(className)
+    //     // fieldParse(resMap[className])
+    // }
+    let resMap = toTextList(classNameInfoMap)
+    console.log("resMap");
+    console.log(resMap);
+    let hrefList = []
+    let linkDoms = document.getElementsByClassName('list_l')
+    for (let i = 0; i < linkDoms.length; i++) {
+        let href = linkDoms[i].getElementsByTagName('a')[0].href
+        hrefList.push(href)
+    }
+    resMap["href"] = {}
+    resMap["href"].texts = hrefList
+
+
+    console.log("resMap");
+    console.log(resMap);
+    let resList = toResList(resMap)
+    console.log("resList");
+    console.log(resList);
+
+    let hostName='zhiLian'
+    // number active
+  let pageIndex=   document.getElementsByClassName('number active')[0].textContent
+  downloadTxt(`${hostName}_page_${pageIndex}.json`, JSON.stringify(resList))
+
+
+    // let  nextBtn= document.getElementsByClassName('btn-next')[0]
+
+    let  pageAs= document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')
+    let  nextBtn=  getListLast(pageAs).click()
+    // document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')[0].click()
+        // console.log("nextBtn");
+        // console.log(nextBtn);
+        nextBtn.click()
+
+}
+
 function qianChengGetOne(){
     console.log('qianCheng start');
     let classNameInfoMap = {
@@ -1354,6 +1531,23 @@ function qianChengGetOne(){
         console.log(nextBtn);
         nextBtn.click()
 
+}
+
+
+function zhiPinGetAll() {
+   
+    let pageNum=111
+    for(let i=0;i<pageNum;i++){
+        setTimeout(() => {
+            zhiPinGetOne()
+          
+        }, 10000*i);
+        // 这里可以加快 我故意设置的慢点的 不知道多块 会被封
+    }
+
+    // document.getElementsByClassName('btn-next')[0].click()
+
+    // list_l
 }
 
 function qianCheng() {
