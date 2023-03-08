@@ -1300,6 +1300,20 @@ function firstLinkListGet(className){
     return hrefList
 }
 
+function firstLinkListGetFromIdx(className,fromIdx=0){
+    let hrefList = []
+    let linkDoms = document.getElementsByClassName(className)
+    console.log("linkDoms");
+    console.log(linkDoms);
+
+    for (let i = fromIdx; i < linkDoms.length; i++) {
+        let href = linkDoms[i].getElementsByTagName('a')[0].href
+        hrefList.push(href)
+    }
+    return hrefList
+}
+
+
 function getLiTextList(lis){
 
     let resList=[]
@@ -1527,6 +1541,8 @@ function zhiLianGetOne(){
 
 function qianChengGetOne(){
     console.log('qianCheng start');
+    
+    // let  keywordInput
     let classNameInfoMap = {
         // "job-card-left": "href",
         // "company-name": "companyName",
@@ -1542,6 +1558,8 @@ function qianChengGetOne(){
         "sal":"salary",
         "d at":"jobDetail",
         "er":"companyName",
+        "int at":"trade",
+        // 行业 
 
     }
 
@@ -1578,6 +1596,17 @@ function qianChengGetOne(){
     resMap["href"] = {}
     resMap["href"].texts = hrefList
 
+    let jumpLinkList = []
+    let els = document.getElementsByClassName('el')
+    for (let i = 0; i < els.length; i++) {
+        let href = els[i].href
+        jumpLinkList.push(href)
+    }
+    // firstLinkListGetFromIdx('el',0)
+    // getLiTextList
+    resMap["jumpLink"] = {}
+    resMap["jumpLink"].texts =   jumpLinkList
+    
 
     console.log("resMap");
     console.log(resMap);
@@ -1586,8 +1615,9 @@ function qianChengGetOne(){
     console.log(resList);
 
     // number active
+    let   keywordInputVal= document.getElementById('keywordInput').value
   let pageIndex=   document.getElementsByClassName('number active')[0].textContent
-  downloadTxt(`qianCheng_page_${pageIndex}.json`, JSON.stringify(resList))
+  downloadTxt(`qianCheng_page_${pageIndex}_${keywordInputVal}.json`, JSON.stringify(resList))
 
 
     let  nextBtn= document.getElementsByClassName('btn-next')[0]
@@ -1705,6 +1735,7 @@ function qianCheng() {
 
 
 function qianChengDup() {
+    // el
     let classNameInfoMap = {
         // "job-card-left": "href",
         // "company-name": "companyName",
