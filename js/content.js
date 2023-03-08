@@ -1190,8 +1190,8 @@ function fieldParse(field) {
         let text = dom.textContent.trim()
         field.texts.push(text)
     }
-    console.log("field");
-    console.log(field);
+    // console.log("field");
+    // console.log(field);
 
 
 }
@@ -1224,8 +1224,8 @@ function toResList(resMap) {
                 let obj = {}
                 // obj name == text 
                 obj[key] = text
-                console.log("obj  keyNumber == 0");
-                console.log(obj);
+                // console.log("obj  keyNumber == 0");
+                // console.log(obj);
 
                 resList.push(obj)
             } else {
@@ -1287,6 +1287,18 @@ function toTextList(classNameInfoMap) {
     return resMap
 }
 
+function firstLinkListGet(className){
+    let hrefList = []
+    let linkDoms = document.getElementsByClassName(className)
+    console.log("linkDoms");
+    console.log(linkDoms);
+
+    for (let i = 1; i < linkDoms.length; i++) {
+        let href = linkDoms[i].getElementsByTagName('a')[0].href
+        hrefList.push(href)
+    }
+    return hrefList
+}
 
 
 function zhiPinGetOne(){
@@ -1337,8 +1349,8 @@ function zhiPinGetOne(){
     //     // fieldParse(resMap[className])
     // }
     let resMap = toTextList(classNameInfoMap)
-    console.log("resMap");
-    console.log(resMap);
+    // console.log("resMap");
+    // console.log(resMap);
     let hrefList = []
     let linkDoms = document.getElementsByClassName('list_l')
     for (let i = 0; i < linkDoms.length; i++) {
@@ -1348,26 +1360,47 @@ function zhiPinGetOne(){
     resMap["href"] = {}
     resMap["href"].texts = hrefList
 
+    // company-name
+    // job-card-body clearfix
+    let linkName="linkToDetail"
+    resMap[linkName] = {}
+    // resMap[linkName].texts = firstLinkListGet('company-name')
+    resMap[linkName].texts = firstLinkListGet('job-card-body clearfix')
 
-    console.log("resMap");
-    console.log(resMap);
+    // console.log("resMap");
+    // console.log(resMap);
     let resList = toResList(resMap)
-    console.log("resList");
-    console.log(resList);
+    // console.log("resList");
+    // console.log(resList);
 
     // let hostName='zhiLian'
     let hostName='zhiPin'
+    let  query=getQueryString('query')
+    if(!query){
+        query=""
+    }
+    query= decodeURIComponent(query)
+    // js query str 转化 中文
+
+    let   location_href= location.href
+
+    let res={
+     location_href,
+     resList
+    }
 
     // number active
     let pageIndex=   document.getElementsByClassName('selected')[0].textContent
 //   let pageIndex=   document.getElementsByClassName('number active')[0].textContent
-  downloadTxt(`${hostName}_page_${pageIndex}.json`, JSON.stringify(resList))
+  downloadTxt(`${hostName}_page_${pageIndex}_${query}.json`, JSON.stringify(res))
 
 
     // let  nextBtn= document.getElementsByClassName('btn-next')[0]
 
     let  pageAs= document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')
     let  nextBtn=  getListLast(pageAs)
+    // disabled
+//   let d=   document.getElementsByClassName('disabled')
     // .click()
     // document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')[0].click()
         // console.log("nextBtn");
@@ -1536,7 +1569,8 @@ function qianChengGetOne(){
 
 function zhiPinGetAll() {
    
-    let pageNum=111
+    // let pageNum=111
+    let pageNum=10
     for(let i=0;i<pageNum;i++){
         setTimeout(() => {
             zhiPinGetOne()
