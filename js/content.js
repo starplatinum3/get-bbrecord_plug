@@ -1199,8 +1199,8 @@ function toResList(resMap) {
     let keyNumber = 0
     let  errorIndexList=[]
     for (let key in resMap) {
-        console.log("key");
-        console.log(key);
+        // console.log("key");
+        // console.log(key);
 
         let texts = resMap[key].texts
         // console.log("texts");
@@ -1213,8 +1213,8 @@ function toResList(resMap) {
             haveLook=true
             let text = texts[i]
             // console.log(object);
-            console.log("keyNumber");
-            console.log(keyNumber);
+            // console.log("keyNumber");
+            // console.log(keyNumber);
             if (keyNumber == 0) {
                 let obj = {}
                 // obj name == text 
@@ -1253,10 +1253,10 @@ function toResList(resMap) {
         //     resList.push(obj)
         // }
     }
-    console.log("errorIndexList");
-    console.log(errorIndexList);
-    console.log("resList");
-    console.log(resList);
+    // console.log("errorIndexList");
+    // console.log(errorIndexList);
+    // console.log("resList");
+    // console.log(resList);
     return resList
 }
 
@@ -1425,7 +1425,8 @@ function qianCheng() {
     //     nextBtn.click()
     // }, 2000);
   
-    for(let i=0;i<10;i++){
+    let pageNum=111
+    for(let i=0;i<pageNum;i++){
         setTimeout(() => {
             qianChengGetOne()
             // let  nextBtn= document.getElementsByClassName('btn-next')[0]
