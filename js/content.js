@@ -1539,10 +1539,25 @@ function zhiLianGetOne(){
 
 }
 
+/**
+ *    // let  keywordInput
+    // 需要爬取一个新的 网站的话 基本只要修改这里的 class 和 最后一个obj里面的key名字的map关系
+    // 因为 要存入数据库 obj的key尽量要好看一点 符合命名规范 所以写成了 小驼峰的形式
+    // 这种是每个class 就代表一个textContent 简单的方法 如果复杂 还是要写具体逻辑
+
+     // 这里就是具体逻辑 因为class 获取 textContent 的方法不够 一般是要获取a 的href ，
+    // 或者一些li 每个都是一个text 需要变成一个列表 ，于是具体写一下 放到 resMap里面 
+    // 比如 resMap["href"] = {}
+    // resMap["href"].texts = hrefList
+    // 这样最终 href 也是obj里面的一个字段了
+ */
 function qianChengGetOne(){
     console.log('qianCheng start');
     
     // let  keywordInput
+    // 需要爬取一个新的 网站的话 基本只要修改这里的 class 和 最后一个obj里面的key名字的map关系
+    // 因为 要存入数据库 obj的key尽量要好看一点 符合命名规范 所以写成了 小驼峰的形式
+    // 这种是每个class 就代表一个textContent 简单的方法 如果复杂 还是要写具体逻辑
     let classNameInfoMap = {
         // "job-card-left": "href",
         // "company-name": "companyName",
@@ -1587,6 +1602,11 @@ function qianChengGetOne(){
     let resMap = toTextList(classNameInfoMap)
     console.log("resMap");
     console.log(resMap);
+    // 这里就是具体逻辑 因为class 获取 textContent 的方法不够 一般是要获取a 的href ，
+    // 或者一些li 每个都是一个text 需要变成一个列表 ，于是具体写一下 放到 resMap里面 
+    // 比如 resMap["href"] = {}
+    // resMap["href"].texts = hrefList
+    // 这样最终 href 也是obj里面的一个字段了
     let hrefList = []
     let linkDoms = document.getElementsByClassName('list_l')
     for (let i = 0; i < linkDoms.length; i++) {
@@ -1628,7 +1648,9 @@ function qianChengGetOne(){
 
 }
 
-
+/**
+ * boss 直聘 只能10页面
+ */
 function zhiPinGetAll() {
    
     // let pageNum=111
@@ -1646,6 +1668,16 @@ function zhiPinGetAll() {
     // list_l
 }
 
+/**
+ * 前程无忧  因为他可以往后好多页数 可能可以100个，但是boss 只能10页  所以要给出搜索的关键词
+ * 每个关键词 一个连接 贴到 浏览器上 有5个连接 5个tab的话，每个tab都是在爬取一个关键词（一个职位的）的信息
+ * 这样也算是并发了。boss 不登陆也是可以爬取的，前程无忧也可以不登陆
+ * 
+这是一些连接的示例  可以 直接贴在浏览器上 或者改一下关键词
+文档：这是一些连接的示例  可以 直接贴在浏?..
+链接：http://note.youdao.com/noteshare?id=6d58716a94e2622d8e11f16af00fa976
+
+ */
 function qianCheng() {
     // console.log('qianCheng start');
     // let classNameInfoMap = {
@@ -1734,6 +1766,9 @@ function qianCheng() {
 }
 
 
+/**
+ * // 废弃的方法
+ */
 function qianChengDup() {
     // el
     let classNameInfoMap = {
