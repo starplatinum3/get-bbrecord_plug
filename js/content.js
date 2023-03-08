@@ -1300,6 +1300,17 @@ function firstLinkListGet(className){
     return hrefList
 }
 
+function getLiTextList(lis){
+
+    let resList=[]
+    for(let i=0;i<lis.length;i++){
+       
+        resList.push(
+            lis[i].textContent.trim()
+        )
+    }
+    return resList
+}
 
 function zhiPinGetOne(){
     console.log('qianCheng start');
@@ -1322,7 +1333,7 @@ function zhiPinGetOne(){
         'job-area':"jobArea",
         'company-name':"companyName",
         'salary':'salary',
-        "tag-list":"tagList",
+        // "tag-list":"tagList",
 'info-public':"infoPublic",
 "info-desc":"infoDesc"
     }
@@ -1367,6 +1378,27 @@ function zhiPinGetOne(){
     // resMap[linkName].texts = firstLinkListGet('company-name')
     resMap[linkName].texts = firstLinkListGet('job-card-body clearfix')
 
+    let tagListKey="tagListKey"
+   
+    let tagListArrTexts = []
+    let  tagTextListList=[]
+    let tagListArr = document.getElementsByClassName('tag-list')
+    for (let i = 0; i < tagListArr.length; i++) {
+        let tagList= tagListArr[i]
+        let lis= tagList.getElementsByTagName('li')
+       let tagTextList= getLiTextList(lis)
+        let href = tagListArr[i].innerHTML.trim()
+        tagListArrTexts.push(href)
+        tagTextListList.push(tagTextList)
+    }
+    // document.getElementsByClassName('tag-list')
+    // resMap[linkName].texts = firstLinkListGet('company-name')
+    resMap[tagListKey] = {}
+    resMap[tagListKey].texts = tagListArrTexts
+    resMap["tagTextListList"] = {}
+    resMap["tagTextListList"].texts = tagTextListList
+    
+    // tag-list
     // console.log("resMap");
     // console.log(resMap);
     let resList = toResList(resMap)
