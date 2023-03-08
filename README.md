@@ -44,6 +44,7 @@ update：
 
 可以在mooc平台使用；
 
+建模 
 使用bootstrap css 样式 比较好看；
 
 
