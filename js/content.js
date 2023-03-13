@@ -1323,6 +1323,12 @@ function firstLinkListGetFromIdx(className,fromIdx=0){
 }
 
 
+/**
+ * 
+ * lis  的 texts
+ * @param {} lis 
+ * @returns 
+ */
 function getLiTextList(lis){
 
     let resList=[]
@@ -1343,6 +1349,8 @@ function zhiPinGetOne(){
         // "job-title clearfix": "jobTitle",
         // "salary": "salary",
         'postName elli': "postName",
+        'company-tag-list': "companyTagList",
+        // company-tag-list
         'compName': "compName",
         'pay': "pay",
         'postMsg': "postMsg",
@@ -1414,13 +1422,52 @@ function zhiPinGetOne(){
         tagListArrTexts.push(href)
         tagTextListList.push(tagTextList)
     }
+
+    let  keyIndexMap={
+        'companyIntroduction':0
+    }
+
+    let  textsMap={
+        'companyIntroduction':[]
+    }
+
+    for(let key in keyIndexMap){
+        resMap[key] = {}
+        textsMap[key] = []
+        resMap[key].texts = tagTextListList
+    }
+
+    let companyTagListRes=[]
+    let  companyIntroductionList=[]
+    let companyTagListArr = document.getElementsByClassName('company-tag-list')
+    for (let i = 0; i < companyTagListArr.length; i++) {
+        let companyTagList= companyTagListArr[i]
+        let lis= companyTagList.getElementsByTagName('li')
+       let tagTextList= getLiTextList(lis)
+        // let href = tagListArr[i].innerHTML.trim()
+        // tagListArrTexts.push(href)
+        // tagTextListList.push(tagTextList)
+       let  companyIntroduction= tagTextList[0]?.trim()
+       let  companyNature= tagTextList[1]?.trim()
+       let  CompanySize= tagTextList[2]?.trim()
+       companyIntroductionList.push(companyIntroduction)
+        companyTagListRes.push(tagTextList)
+    }
+
+    // company-tag-list
     // document.getElementsByClassName('tag-list')
     // resMap[linkName].texts = firstLinkListGet('company-name')
     resMap[tagListKey] = {}
     resMap[tagListKey].texts = tagListArrTexts
     resMap["tagTextListList"] = {}
     resMap["tagTextListList"].texts = tagTextListList
-    
+    // resMap["tagTextListList"] = {}
+    // resMap["tagTextListList"].texts = tagTextListList
+    // companyTagListRes
+    // for(  let  tagTextListList of   resMap["tagTextListList"].texts){
+    //     tagTextListList.split('|')
+    // }
+    // 'company-tag-list': "companyTagList",
     // tag-list
     // console.log("resMap");
     // console.log(resMap);
@@ -1461,7 +1508,6 @@ function zhiPinGetOne(){
         // console.log("nextBtn");
         // console.log(nextBtn);
         nextBtn?.click()
-
 }
 
 
@@ -1548,6 +1594,7 @@ function zhiLianGetOne(){
 
 }
 
+
 /**
  *    // let  keywordInput
     // 需要爬取一个新的 网站的话 基本只要修改这里的 class 和 最后一个obj里面的key名字的map关系
@@ -1575,16 +1622,36 @@ function qianChengGetOne(){
         // companyName
         'postName elli': "postName",
         // 'compName': "compName",
-        'compName': "companyName",
-        'pay': "pay",
+        // 'compName': "companyName",
+        
+                'cname at': "companyName",
+// 'cname at'
+'dc at': "companyDesc",
+// d at
+// 'dc at': "companyName",
+// companyIndustry
+        // 'pay': "pay",
+        'pay': "monthlySalary",
+        // monthlySalary
         'postMsg': "postMsg",
-        'compMsg elli': "compMsg",
+        // companyIntroduction
+        'compMsg elli': "companyIntroduction",
+
+        // 'compMsg elli': "compMsg",
         'label': "label",
         "jname at":"jobName",
         "sal":"salary",
-        "d at":"jobDetail",
-        "er":"companyName",
-        "int at":"trade",
+        // "d at":"jobDetail",
+        "d at":"jobDescription",
+        // detailedPlaceWork
+        "d at":"detailedPlaceWorkInfo",
+
+        // jobDescription
+        // "er":"companyName",
+        // "int at":"trade",
+        "int at":"companyIndustry",
+
+        // companyIndustry
         // 行业 
         "time":'releaseDate'
 
@@ -1645,6 +1712,57 @@ function qianChengGetOne(){
     // jobLink
 // 
 
+let  detailedPlaceWorkList=[]
+// typeRecruitment
+let  typeRecruitmentList=[]
+let  minimumEducationList=[]
+for(let detailedPlaceWorkInfoObj of resMap['detailedPlaceWorkInfo'].texts){
+   let infoList= detailedPlaceWorkInfoObj.split('|')
+//   let  dd= infoList[0]
+  detailedPlaceWorkList.push(infoList[0])
+  typeRecruitmentList.push(infoList[1])
+  minimumEducationList.push(infoList[2])
+
+}
+
+resMap['detailedPlaceWork'] = {}
+resMap['detailedPlaceWork'].texts =   detailedPlaceWorkList
+
+resMap['typeRecruitment'] = {}
+resMap['typeRecruitment'].texts =   typeRecruitmentList
+
+resMap['minimumEducation'] = {}
+resMap['minimumEducation'].texts =   minimumEducationList
+
+// companyDesc
+
+let  companyNatureList=[]
+// companyNature
+// typeRecruitment
+let  CompanySizeList=[]
+// CompanySize
+// let  minimumEducationList=[]
+// companyDesc":"民营  |  1000-5000人
+for(let detailedPlaceWorkInfoObj of resMap['companyDesc'].texts){
+   let infoList= detailedPlaceWorkInfoObj.split('|')
+//   let  dd= infoList[0]
+console.log("infoList[0]");
+console.log(infoList[0]);
+console.log("infoList[1]");
+console.log(infoList[1]);
+companyNatureList.push(infoList[0]?.trim())
+CompanySizeList.push(infoList[1]?.trim())
+//   minimumEducationList.push(infoList[2])
+
+}
+
+resMap['companyNature'] = {}
+resMap['companyNature'].texts =  companyNatureList
+
+resMap['CompanySize'] = {}
+resMap['CompanySize'].texts =   CompanySizeList
+
+// detailedPlaceWorkInfo
     console.log("resMap");
     console.log(resMap);
     let resList = toResList(resMap)
@@ -1659,9 +1777,22 @@ function qianChengGetOne(){
 
     let  nextBtn= document.getElementsByClassName('btn-next')[0]
 
+    // nextBtn.bi 
+    let  disabled=nextBtn.getAttribute('disabled')
+    if(disabled=='disabled'){
+        console.log("disabled");
+        return false
+    }
+    // disabled="disabled"
         console.log("nextBtn");
         console.log(nextBtn);
         nextBtn.click()
+        // return true
+
+        setTimeout(() => {
+            qianChengGetOne()
+         
+        }, 10000);
 
 }
 
@@ -1763,19 +1894,21 @@ function qianCheng() {
     //     console.log(nextBtn);
     //     nextBtn.click()
     // }, 2000);
-  
-    let pageNum=111
-    for(let i=0;i<pageNum;i++){
-        setTimeout(() => {
-            qianChengGetOne()
-            // let  nextBtn= document.getElementsByClassName('btn-next')[0]
+    qianChengGetOne()
+
+
+    // let pageNum=111
+    // for(let i=0;i<pageNum;i++){
+    //     setTimeout(() => {
+    //         qianChengGetOne()
+    //         // let  nextBtn= document.getElementsByClassName('btn-next')[0]
     
-            // console.log("nextBtn");
-            // console.log(nextBtn);
-            // nextBtn.click()
-        }, 10000*i);
-        // 这里可以加快 我故意设置的慢点的 不知道多块 会被封
-    }
+    //         // console.log("nextBtn");
+    //         // console.log(nextBtn);
+    //         // nextBtn.click()
+    //     }, 10000*i);
+    //     // 这里可以加快 我故意设置的慢点的 不知道多块 会被封
+    // }
 
     // document.getElementsByClassName('btn-next')[0].click()
 
