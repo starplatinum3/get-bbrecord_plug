@@ -1120,6 +1120,13 @@ function crawlerDo() {
         }, 5000);
 
     }
+    else if (location.host =='www.ncss.cn') {
+        setTimeout(() => {
+            get24365School()
+        }, 5000);
+
+    }
+    // 'www.ncss.cn'
    
     // 'www.zhipin.com'
     //    'we.51job.com'
@@ -1341,6 +1348,15 @@ function getLiTextList(lis){
     return resList
 }
 
+function  listContains(lst,target){
+    for(let i=0;i<lst.length;i++){
+        if(lst[i]==target){
+            return true
+        }
+    }
+    return false
+//    return  lst.indexOf(target) != -1  
+}
 function zhiPinGetOne(){
     console.log('qianCheng start');
     let classNameInfoMap = {
@@ -1349,19 +1365,26 @@ function zhiPinGetOne(){
         // "job-title clearfix": "jobTitle",
         // "salary": "salary",
         'postName elli': "postName",
+        // companyIndustry
         'company-tag-list': "companyTagList",
         // company-tag-list
         'compName': "compName",
         'pay': "pay",
         'postMsg': "postMsg",
         'compMsg elli': "compMsg",
-        'label': "label",
+        // 'label': "label",
+        'label': "companyIndustry",
         "jname at":"jobName",
         "sal":"salary",
+        "sal":"monthlySalary",
+
         "d at":"jobDetail",
         "er":"companyName",
         "job-name":'jobName',
-        'job-area':"jobArea",
+        // 'job-area':"jobArea",
+        'job-area':"detailedPlaceWork",
+        // monthlySalary
+        // detailedPlaceWork
         'company-name':"companyName",
         'salary':'salary',
         // "tag-list":"tagList",
@@ -1369,11 +1392,11 @@ function zhiPinGetOne(){
 "info-desc":"infoDesc"
     }
 
-    let classNames = [
-        'postName elli',
-        'compName', 'pay', 'postMsg', 'compMsg elli',
-        'label'
-    ]
+    // let classNames = [
+    //     'postName elli',
+    //     'compName', 'pay', 'postMsg', 'compMsg elli',
+    //     'label'
+    // ]
 
     // let resMap = {}
 
@@ -1404,7 +1427,10 @@ function zhiPinGetOne(){
 
     // company-name
     // job-card-body clearfix
-    let linkName="linkToDetail"
+    // jobLink
+    let linkName="jobLink"
+
+    // let linkName="linkToDetail"
     resMap[linkName] = {}
     // resMap[linkName].texts = firstLinkListGet('company-name')
     resMap[linkName].texts = firstLinkListGet('job-card-body clearfix')
@@ -1424,19 +1450,23 @@ function zhiPinGetOne(){
     }
 
     let  keyIndexMap={
-        'companyIntroduction':0
+        'companyIntroduction':0,
+        'companyNature':1,
+        'CompanySize':2,
+        
     }
 
     let  textsMap={
         'companyIntroduction':[]
     }
 
+ 
     for(let key in keyIndexMap){
         resMap[key] = {}
-        textsMap[key] = []
-        resMap[key].texts = tagTextListList
+        // textsMap[key] = []
+        resMap[key].texts =[]
+        // resMap[key].texts = tagTextListList
     }
-
     let companyTagListRes=[]
     let  companyIntroductionList=[]
     let companyTagListArr = document.getElementsByClassName('company-tag-list')
@@ -1447,11 +1477,20 @@ function zhiPinGetOne(){
         // let href = tagListArr[i].innerHTML.trim()
         // tagListArrTexts.push(href)
         // tagTextListList.push(tagTextList)
-       let  companyIntroduction= tagTextList[0]?.trim()
-       let  companyNature= tagTextList[1]?.trim()
-       let  CompanySize= tagTextList[2]?.trim()
-       companyIntroductionList.push(companyIntroduction)
+    //    let  companyIntroduction= tagTextList[0]?.trim()
+    //    let  companyNature= tagTextList[1]?.trim()
+    //    let  CompanySize= tagTextList[2]?.trim()
+    //    companyIntroductionList.push(companyIntroduction)
         companyTagListRes.push(tagTextList)
+
+        for(let key in keyIndexMap){
+            // resMap[key] = {}
+            // textsMap[key] = []
+            let idx=keyIndexMap[key]
+            resMap[key].texts.push(    tagTextList[idx]?.trim())
+            // textsMap[key] .push(    tagTextList[idx]?.trim())
+            // resMap[key].texts = tagTextListList
+        }
     }
 
     // company-tag-list
@@ -1459,8 +1498,11 @@ function zhiPinGetOne(){
     // resMap[linkName].texts = firstLinkListGet('company-name')
     resMap[tagListKey] = {}
     resMap[tagListKey].texts = tagListArrTexts
-    resMap["tagTextListList"] = {}
-    resMap["tagTextListList"].texts = tagTextListList
+    let tagTextListKey="tagList"
+    resMap[tagTextListKey] = {}
+    resMap[tagTextListKey].texts = tagTextListList
+    // resMap["tagTextListList"] = {}
+    // resMap["tagTextListList"].texts = tagTextListList
     // resMap["tagTextListList"] = {}
     // resMap["tagTextListList"].texts = tagTextListList
     // companyTagListRes
@@ -1502,12 +1544,25 @@ function zhiPinGetOne(){
     let  pageAs= document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')
     let  nextBtn=  getListLast(pageAs)
     // disabled
+    // List.indexOf("str") != -1  
+//  .conta 
+    let  isDisabled= listContains(   nextBtn.classList,"disabled")
+    if(isDisabled){
+        return 
+    }
+// js 列表 contains 
+    // .classList.add("mystyle");
+    // nextBtn.getClassList
+    // disabled
 //   let d=   document.getElementsByClassName('disabled')
     // .click()
     // document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')[0].click()
         // console.log("nextBtn");
         // console.log(nextBtn);
         nextBtn?.click()
+        setTimeout(() => {
+            zhiPinGetOne()
+        }, 10000);
 }
 
 
@@ -1692,6 +1747,18 @@ function qianChengGetOne(){
         let href = linkDoms[i].getElementsByTagName('a')[0].href
         hrefList.push(href)
     }
+    let companyLinkList = []
+    let companyLinkDoms = document.getElementsByClassName('cname at')
+    for (let i = 0; i < companyLinkDoms.length; i++) {
+        let href = companyLinkDoms[i].getElementsByTagName('a')[0].href
+        companyLinkList.push(href)
+        // companyLink.push(href)
+
+        // companyLinkList
+    }
+    resMap["companyLink"] = {}
+    resMap["companyLink"].texts = companyLinkList
+    // cname at
     resMap["href"] = {}
     resMap["href"].texts = hrefList
 
@@ -1802,14 +1869,17 @@ resMap['CompanySize'].texts =   CompanySizeList
 function zhiPinGetAll() {
    
     // let pageNum=111
-    let pageNum=10
-    for(let i=0;i<pageNum;i++){
-        setTimeout(() => {
-            zhiPinGetOne()
+    zhiPinGetOne()
+
+
+    // let pageNum=10
+    // for(let i=0;i<pageNum;i++){
+    //     setTimeout(() => {
+    //         zhiPinGetOne()
           
-        }, 10000*i);
-        // 这里可以加快 我故意设置的慢点的 不知道多块 会被封
-    }
+    //     }, 10000*i);
+    //     // 这里可以加快 我故意设置的慢点的 不知道多块 会被封
+    // }
 
     // document.getElementsByClassName('btn-next')[0].click()
 
@@ -2121,6 +2191,97 @@ function get24365(){
 
 }
 
+function get24365School(){
+
+    // fl first-ul
+//    let  jobNamePart= document.getElementsByClassName('fl first-ul')[0]
+   let  jobNameParts= document.getElementsByClassName('fl first-ul')
+   let  companyUls= document.getElementsByClassName('company-ul')
+   
+   let  companyLinks= document.getElementsByClassName('company-name basic-color')
+   
+   let  mainAreaSpans= document.getElementsByClassName('main-areaspan ')
+//    main-areaspan hide
+   console.log("companyLinks.length");
+   console.log(companyLinks.length);
+   console.log("mainAreaSpans.length");
+   console.log(mainAreaSpans.length);
+
+   let  resList=[]
+
+    for(let i=0;i<jobNameParts.length;i++){
+    let jobNameDom=  jobNameParts[i]
+    console.log(companyLinks[i]);
+  let  companyLink=  companyLinks[i].href
+    // let  jobName= jobNameDom.getElementsByTagName('h5')[0].textContent.trim()
+    let companyUl=  companyUls[i]
+   let h5Dom=  jobNameDom.getElementsByTagName('h5')[0]
+   let jobLink=  h5Dom.getElementsByTagName('a')[0].href
+   let  jobTitle= h5Dom.textContent.trim()
+    // let  jobTitle= jobNameDom.getElementsByTagName('h5')[0].textContent.trim()
+    // jobName
+    let  mainAreaSpan= mainAreaSpans[i]
+    // mainAreaSpan.classList.remove('hide')
+    let mainArea="重点领域"
+    let  isHidden= listContains(mainAreaSpan.classList,'hide')
+
+    if(isHidden){
+        mainArea="非重点领域"
+    }
+  
+//    let mainArea=  mainAreaSpans[i].textContent.trim()
+   let  lis=   jobNameDom.getElementsByTagName('li')
+   let  parts= lis[0].textContent.split('|')
+   let  minimumEducation=parts[0].trim()
+   let  monthlySalary=parts[1].trim()
+   let  areaParts=  lis[1].textContent.split('|')
+   let placeWork=areaParts[0].trim()
+   let subject=areaParts[1].trim()
+ let  companyLis=  companyUl.getElementsByTagName('li')
+ let  companyNameDom= companyLis[0]
+ let companyIntroductionDom=  companyLis[1]
+//  companyName
+  let  companyName= companyNameDom.textContent.trim()
+  let companyIntroductionTextParts= companyIntroductionDom.textContent.split('|')
+  let companyNature= companyIntroductionTextParts[0].trim()
+  let CompanySize= companyIntroductionTextParts[1].trim()
+
+  let numberRecruits= companyIntroductionTextParts[2].trim()
+
+//    companyLis[0].textContent.trim()
+// let  companyLink=  companyNameDom.getElementsByTagName('h5')[0].getElementsByTagName('a')[0].href
+//    subject
+// company-ul
+   resList.push({
+    mainArea,
+    jobLink,
+    minimumEducation,
+    monthlySalary,
+    // jobName,
+    jobTitle,
+    subject,
+    placeWork,
+    companyName,
+    companyLink,
+    companyNature,
+    CompanySize,
+    numberRecruits
+   })
+
+    // li
+   }
+
+   console.log("resList");
+   console.log(resList);
+ let   pageIndex=document.getElementsByClassName('pageactive')[0].textContent.trim()
+   downloadTxt(`24265_school_page_${pageIndex}.json`, JSON.stringify(resList))
+   document.getElementsByClassName('next')[0].click()
+   setTimeout(() => {
+    get24365School()
+   }, 1000);
+
+    // document.getElementsByClassName('fl first-ul')[0].getAttribute
+}
 function get24365ByIndex(){
     let  tabGrid=document.getElementById('tabGrid')
     // card-views
@@ -2130,7 +2291,7 @@ function get24365ByIndex(){
     for(let i=0;i<cardViewsList.length;i++){
         let value=cardViewsList[i]
        
-        objList.push( value.innerHTML)
+        // objList.push( value.innerHTML)
         // let  text=value.textContent.trim()
 //         console.log(text);
 //         if(idx==0){
@@ -2182,8 +2343,12 @@ function get24365ByIndex(){
         //    let  href=  value.getElementsByTagName('a')[0].href
             obj.companyName=text
             obj.href=href
+            obj.companyLink=href
+            // companyLink
         }
    else      if(idx==1){
+    
+    obj.jobTitle=text
             obj.postName=text
         }
         else      if(idx==2){
@@ -2191,6 +2356,9 @@ function get24365ByIndex(){
             // objList.push(obj)
         }
         else      if(idx==3){
+            
+            obj.releaseDate=text
+
             obj.publishDate=text
             objList.push(obj)
         }
@@ -2203,4 +2371,14 @@ function get24365ByIndex(){
     console.log("objList");
     console.log(objList);
 
+    // downloadTxt()
+   let pageIndex= document.getElementsByClassName('page-number active')[0].textContent.trim()
+    downloadTxt(`24265_page_${pageIndex}.json`, JSON.stringify(objList))
+
+    // page-next
+    document.getElementsByClassName('page-next')[0].click()
+    setTimeout(() => {
+        get24365ByIndex()
+    },2000)
+   
 }
