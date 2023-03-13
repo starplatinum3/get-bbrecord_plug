@@ -1112,6 +1112,15 @@ function crawlerDo() {
         }, 5000);
 
     }
+    else if (location.host =='24365.zj.smartedu.cn') {
+        setTimeout(() => {
+            // get24365()
+            // ok 
+            get24365ByIndex()
+        }, 5000);
+
+    }
+   
     // 'www.zhipin.com'
     //    'we.51job.com'
     //     else if(){
@@ -1563,8 +1572,10 @@ function qianChengGetOne(){
         // "company-name": "companyName",
         // "job-title clearfix": "jobTitle",
         // "salary": "salary",
+        // companyName
         'postName elli': "postName",
-        'compName': "compName",
+        // 'compName': "compName",
+        'compName': "companyName",
         'pay': "pay",
         'postMsg': "postMsg",
         'compMsg elli': "compMsg",
@@ -1575,6 +1586,7 @@ function qianChengGetOne(){
         "er":"companyName",
         "int at":"trade",
         // 行业 
+        "time":'releaseDate'
 
     }
 
@@ -1624,9 +1636,14 @@ function qianChengGetOne(){
     }
     // firstLinkListGetFromIdx('el',0)
     // getLiTextList
+    let  jobLinkKey='jobLink'
     resMap["jumpLink"] = {}
     resMap["jumpLink"].texts =   jumpLinkList
-    
+
+    resMap[jobLinkKey] = {}
+    resMap[jobLinkKey].texts =   jumpLinkList
+    // jobLink
+// 
 
     console.log("resMap");
     console.log(resMap);
@@ -1860,5 +1877,197 @@ if (doGet) {
     // setTimeout(() => {
     //     qianCheng()
     // }, 1000);
+
+}
+
+function getLink(value){
+    let  as =value.getElementsByTagName('a')
+    if(!as){
+        return null
+    }
+    console.log("as");
+    console.log(as);
+    // "<div class="card-view"><span class="title" style="text-align: center; width: 30px; ">单位名称</span><span class="value"><a href="/jyxt-v5/sczp/zpztgl/ckZpgwList.zf?dwxxid=JG1020160" target="_blank">杭州泽佳网络科技有限公司</a></span></div><div class="card-view"><span class="title" style="text-align: center; width: 60px; ">岗位名称</span><span class="value"><span class="value">护肤品微信销售</span></span></div><div class="card-view"><span class="title" style="text-align: center; width: 10px; ">发布时间</span><span class="value">2023-03-09</span></div>"
+
+   let  href=  as[0]?.href
+   return href
+}
+
+function getCardViewsData(cardViews){
+    let   values= cardViews.getElementsByClassName('value')
+    let res=[]
+    for(let i=0;i<values.length;i++){
+        // values[i]
+        res.push(values[i].textContent.trim())
+    }
+    return res
+}
+// http://24365.zj.smartedu.cn/
+function get24365(){
+    let  tabGrid=document.getElementById('tabGrid')
+    // card-views
+    let  values=document.getElementsByClassName('value')
+    let  cardViewsList=document.getElementsByClassName('card-views')
+    let objList=[]
+    for(let i=0;i<cardViewsList.length;i++){
+        let value=cardViewsList[i]
+       
+        objList.push( value.innerHTML)
+       let  res= getCardViewsData(value)
+       console.log(res);
+    //   let   values= value.getElementsByClassName('value')
+        // value 
+        // let  text=value.textContent.trim()
+//         console.log(text);
+//         if(idx==0){
+//             obj={}
+//             console.log("value");
+//             console.log(value);
+
+//             // let  as =value.getElementsByTagName('a')
+//             // if(!as){
+                
+//             // }
+//             let  href=   getLink(value)
+//         //    let  href=  value.getElementsByTagName('a')[0].href
+//             obj.companyName=text
+//             obj.href=href
+//         }
+//    else      if(idx==1){
+//             obj.postName=text
+//         }
+//         else      if(idx==2){
+//             obj.publishDate=text
+//             objList.push(obj)
+//         }
+     
+//         // if(i%)
+//         idx++
+//         if(idx==3){
+//             idx=0;
+//         }
+    }
+    let idx=0
+    let obj={}
+    let objIdx=0
+
+//     for(let i=0;i<values.length;i++){
+//         let value=values[i]
+//         let  text=value.textContent.trim()
+//         console.log(text);
+//         if(idx==0){
+//             obj={}
+//             console.log("value");
+//             console.log(value);
+
+//             // let  as =value.getElementsByTagName('a')
+//             // if(!as){
+                
+//             // }
+//             let  href=   getLink(value)
+//         //    let  href=  value.getElementsByTagName('a')[0].href
+//             obj.companyName=text
+//             obj.href=href
+//         }
+//    else      if(idx==1){
+//             obj.postName=text
+//         }
+//         else      if(idx==2){
+//             obj.publishDate=text
+//             objList.push(obj)
+//         }
+     
+//         // if(i%)
+//         idx++
+//         if(idx==3){
+//             idx=0;
+//         }
+//     }
+    console.log("objList");
+    console.log(objList);
+
+}
+
+function get24365ByIndex(){
+    let  tabGrid=document.getElementById('tabGrid')
+    // card-views
+    let  values=document.getElementsByClassName('value')
+    let  cardViewsList=document.getElementsByClassName('card-views')
+    let objList=[]
+    for(let i=0;i<cardViewsList.length;i++){
+        let value=cardViewsList[i]
+       
+        objList.push( value.innerHTML)
+        // let  text=value.textContent.trim()
+//         console.log(text);
+//         if(idx==0){
+//             obj={}
+//             console.log("value");
+//             console.log(value);
+
+//             // let  as =value.getElementsByTagName('a')
+//             // if(!as){
+                
+//             // }
+//             let  href=   getLink(value)
+//         //    let  href=  value.getElementsByTagName('a')[0].href
+//             obj.companyName=text
+//             obj.href=href
+//         }
+//    else      if(idx==1){
+//             obj.postName=text
+//         }
+//         else      if(idx==2){
+//             obj.publishDate=text
+//             objList.push(obj)
+//         }
+     
+//         // if(i%)
+//         idx++
+//         if(idx==3){
+//             idx=0;
+//         }
+    }
+    let idx=0
+    let obj={}
+    let objIdx=0
+
+    for(let i=0;i<values.length;i++){
+        let value=values[i]
+        let  text=value.textContent.trim()
+        console.log(text);
+        if(idx==0){
+            obj={}
+            console.log("value");
+            console.log(value);
+
+            // let  as =value.getElementsByTagName('a')
+            // if(!as){
+                
+            // }
+            let  href=   getLink(value)
+        //    let  href=  value.getElementsByTagName('a')[0].href
+            obj.companyName=text
+            obj.href=href
+        }
+   else      if(idx==1){
+            obj.postName=text
+        }
+        else      if(idx==2){
+            // obj.publishDate=text
+            // objList.push(obj)
+        }
+        else      if(idx==3){
+            obj.publishDate=text
+            objList.push(obj)
+        }
+        // if(i%)
+        idx++
+        if(idx==4){
+            idx=0;
+        }
+    }
+    console.log("objList");
+    console.log(objList);
 
 }
