@@ -6,7 +6,10 @@
 
 码云地址
 https://gitee.com/starplatinum111/get-bbrecord_plug/tree/master
+"js/jobList24365Small.js",
 
+"js/jobList24365.js",
+        "js/jobList24365_200_600.js",
 
 获得bb上我们自己做过题目的我们的选择（不是可以凭空知道答案，其实截个图也是一样，只是截图不是文本，不能查找。这只是一个简单的功能），
 也标注了自己选了什么，把它们下载为一个文本文件，方便自己复习

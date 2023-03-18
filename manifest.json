@@ -13,6 +13,7 @@
     {
       "all_frames": true,
       "js": [
+        "js/jobList24365.js",
         "js/jquery.min.js",
         "js/strutil.js",
         "js/download.js",
