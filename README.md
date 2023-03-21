@@ -1,106 +1,75 @@
-# getBBRecord_plug
+# 爬虫插件
 
-#### 介绍
-获取 bb 做题记录的插件, 判断题是可以的,选择应该也行. 填空题还没怎么写
+### 图文文档
+文档：去这个网站 自动开始爬取.note
+链接：http://note.youdao.com/noteshare?id=1bf432ec48389bd3a12e7b2e69f8cd02&sub=7506552EBAFF4E098A55963DF34D1DC6
 
+插件安装
+gitlab  https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git (fetch)
+ https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git
+插件的链接
+文档：插件.note  安装的方法
+链接：http://note.youdao.com/noteshare?id=42480deaf3f5c61c3e6a5cbfdec96865&sub=6887B99401ED40FD9E42F9DE90F67399
 
-码云地址
-https://gitee.com/starplatinum111/get-bbrecord_plug/tree/master
-"js/jobList24365Small.js",
-
-"js/jobList24365.js",
-        "js/jobList24365_200_600.js",
-
-获得bb上我们自己做过题目的我们的选择（不是可以凭空知道答案，其实截个图也是一样，只是截图不是文本，不能查找。这只是一个简单的功能），
-也标注了自己选了什么，把它们下载为一个文本文件，方便自己复习
-
-还有就是不要觉得这个是无中生有  这个是你做了题目 然后把你做的记录下来 不是直接获得答案奥  这点我觉得我要说清楚
-
-## 如何使用
-这是一个插件,载入浏览器,按照按钮使用就好了
-
-安装插件的方法，并非此插件，装插件方法都类似，供参考
-
-文档：插件.note
-链接：http://note.youdao.com/noteshare?id=&sub=6887B99401ED40FD9E42F9DE90F67399
+去这个网站 自动开始爬取
+职位信息-国家大学生就业服务平台 (ncss.cn)
+下面的 页数可以点击
 
 
-getBBScore 是在做完题之后的获得成绩用的，可以直接下载一个有题目有成绩的txt下来
-形式大概如此
+最多好像一下子只能点到 3k左右，后面其实还有，但是他是从3k开始，慢慢的点击往后的箭头，去拿到，不能直接拿到4k页面的数据
 
-```
-题号: 2
-分数: 得 1 分，满分 1 分
-问题: 2.The passage suggests that __________.
-你的答案:
-1、 A) it’s now unlikely to see a Frenchman taking a walk by the river
-2、 B) in pursuing material gains the French are suffering losses elsewhere    :你选择了他
-3、 C) the French are fed up with the smell of freshly picked apples
-4、 D) great changes have occurred in the style of all Frenchmen
-```
-git remote add origin https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git
-git remote add gitlab https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git
-
-update：
-
-2021年8月23日11:50:54
-
-可以在mooc平台使用；
-
-建模 
-使用bootstrap css 样式 比较好看；
+def get_jobLinkLst_all_write():
+获取所有的 jobLink 写入json  （ 这步操作是手动的，因为我觉得也没有把他自动化的必要，因为爬取职业平台需要好多时间，这里手动一下用到时间和爬虫时间相比是很少的，而且每爬取一个平台都要相应的换一个数据，所以自动化难做，且成本高，而且效果不好）
+这个json 的列表，写出一个js文件，放在插件代码里
 
 
-个人认为重大更新
-```
-putAns 
-  // 2021年4月8日  增加了.trim() 这样可以去掉回车什么的
-        // 大部分情况下 可以相等了
-        if (questionsFromObj[i].queText.trim() === queText.trim()) {
-            return i;
-        }
-```
 
-```
-putAns  大概率可以使用，还没有多次测试，只测试了一次。
-按逻辑来说，题目顺序不一样，答案顺序不一样的，已经可以填上了。但是还没做过很多测试
-方法就是把json文件拖到那个插件上，然后按putans按钮
-```
-
-这是另外一个项目的介绍 ,因为我插件还没写好,这个项目是放了一些代码,复制了可以直接贴到console来用
-文档：bb自己选的答案记录.note
-链接：http://note.youdao.com/noteshare?id=f8ed257a7787703d7c4b443fd18e6ec8&sub=B947A523FB974CCAA15C9F7B34EB126E
+D:\proj\js\get-bbrecord_plug\manifest.json
+让他在前面加载，防止这个列表没有被content.js 读到
 
 
-#### 软件架构
-软件架构说明
+重新加载一下插件，最好是关掉浏览器重启
+
+D:\proj\python\my_util_py_pub\small_job.py
+去拿到joblink的第一个， 假设是
+https://www.ncss.cn/student/jobs/neCaD32ZjMwD4WgMi344p/detail.html?idx=0
+
+贴在浏览器上，就自动开始爬虫了，由于浏览器本身就是多进程，可以多进程爬取
+可以用这个获取一个后面一点的链接，比如
+D:\proj\python\my_util_py_pub\small_job.py
+https://www.ncss.cn/student/jobs/neCaD32ZjMwD4WgMi344p/detail.html?idx=50000
+这是第  5w个，根据idx可以知道，把这个链接也贴到浏览器上，这两个就一起在爬虫了
+根据电脑的配置，可以尝试多个爬虫，我的电脑基本跑2-3个就有点卡了。我用实验室的电脑同时跑5-6应该没问题，也没被封锁ip，不过最好是少点，安全点。浏览器基本可以放在后台运行，只是有时候可能会跳出来，点击最小化，跳出来的可能性会降低
+如果开个多个链接一起爬虫，有可能后开的那些在爬虫，前面开的那些爬到一半不爬了，我的电脑好像只能同时有2-3个一起爬
+
+D:\proj\python\my_util_py_pub\list24-2.py
+def get_detail_max_values():
+    """
+    用这个函数查看24 detail爬取的过程，爬取到哪里了
+    {'6000-8000': 7206, '14000-16000': 15999, '16000-18000': 17700, '24000-26000': 25999,
+     '26000-28000': 26702, '28000-30000': 28140, '34000-36000': 35999, '36000-38000': 37999, '38000-40000': 38879, '40000-42000': 41999, '42000-44000': 43956, 
+     '44000-46000': 45999, '46000-48000': 47999, '48000-50000': 49999, '50000-52000': 51999, '52000-54000': 53734, '60000-62000': 61098, '64000-66000': 65999, 
+     '66000-68000': 67999, '68000-70000': 69050}、
+
+比如这个列表，说明他到9295了，因为这里可以配置每多少个来计算一个区间的最大值，比如每2000个，
+[9295, 19290, 29974, 51999, 53999, 55324, 61795, 65999, 67999, 69999]
+     比如0- 2k的最大是1k5，说明0-2k的进度是1k5，因为之前的detail爬虫配置是多个进程一起爬的
+     那么2k-4k也是一个爬虫，他的进度比如是3k6，
+     如果之前我们设置的两个爬虫进程之间的距离太大，比如是1w，现在看进度，假设是
+     0-1w 是3k，1w-2w，1w4k。而且进程数可以考虑增多，那么就可以开个5k开始的新进程
+     用 D:\proj\python\my_util_py_pub\small_job.py  找到5k的链接，贴到浏览器上
+     not_end_index_list
 
 
-#### 安装教程
+"""
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+D:\proj\python\my_util_py_pub\jobLinkJoin.py
+detail_lst=get_detail_lst(detail_dir=rf"D:\proj\job\download")，这里的detail的那些json的路径需要配置
+用这个把detail 和 之前列表的信息结合起来
+生成一个大的json，他的路径是在代码里配置的
+out_file_name=rf"D:\proj\job\res_list_24_all_{now_time_str}.json"
+还会输出没有找到的link，因为可能detail还没有爬取完全
+out_file_name_not_found_list=rf"D:\proj\job\not_found_list_{now_time_str}.json"
 
-#### 使用说明
+生成的大json可以导入
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
