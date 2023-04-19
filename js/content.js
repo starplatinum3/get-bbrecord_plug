@@ -530,19 +530,19 @@ function moocDownload() {
 
     commentDiv = document.getElementsByClassName("j-comment comment")[0];
 
-    title = document.getElementsByClassName('f-fl j-hwname')[0].textContent
+    title = document.getElementsByClassName('f-fl j-hwname')[0]?.textContent
     try {
-        course = document.getElementsByClassName('f-fc3 courseTxt')[0].textContent.trim()
+        course = document.getElementsByClassName('f-fc3 courseTxt')[0]?.textContent?.trim()
     } catch (e) {
         course = null
     }
     try {
-        teacher = document.getElementsByClassName('f-fcgreen padding-top-5')[0].innerHTML.trim()
+        teacher = document.getElementsByClassName('f-fcgreen padding-top-5')[0]?.innerHTML?.trim()
     } catch (e) {
         teacher = null
     }
     try {
-        score = document.getElementsByClassName('score j-score')[0].textContent.trim()
+        score = document.getElementsByClassName('score j-score')[0]?.textContent?.trim()
     } catch (e) {
         score = "未评分"
     }
@@ -1821,6 +1821,14 @@ function crawlerDo() {
         // home.htm
 
     }
+    else if (location_href.startsWith('https://www.nowcoder.com/exam/test')) {
+        // 牛客网 - 找工作神器|笔试题库|面试经验|实习招聘内推，求职就业一站解决_牛客网
+        // https://www.nowcoder.com/exam/test/67762537/detail?pid=48310220&examPageSource=Company&testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91
+        let waitMs = 500
+        setTimeout(() => {
+            nowCoderGet()
+        }, waitMs);
+    } 
     // location_href
     else if (location_href.startsWith('http://career.zucc.edu.cn/job/view/id')) {
         // location. 
@@ -1856,6 +1864,8 @@ function crawlerDo() {
 
         }, waitMs);
     } 
+  
+    // nowCoderGet
     // 'https://jobs.51job.com/yancheng/141706707.html?s=sou_sou_soulb&t=0_1&req=c1191f782f43fd1ac6100723441a8d73&timestamp__1258=mq0x2DnDRWi%3DqGNDQiq0K0%3De6WfDu7iiYD&alichlgref=https%3A%2F%2Fwe.51job.com%2F'
     else if (location_href.startsWith('https://jobs.51job.com')) {
    
@@ -1876,6 +1886,61 @@ else if (location_href =='https://www.ncss.cn/student/jobs/index.html') {
     }, 5000);
 
 }
+else if (location_href.startsWith('https://www.kanzhun.com/search/') ) {
+    setTimeout(() => {
+        getKanZhunCompanyLink()
+    }, 5000);
+}
+// https://www.onetonline.org/find/result?s=software+engineer
+else if (location_href.startsWith('https://www.onetonline.org/find/result') ) {
+    setTimeout(() => {
+       OccupationKeywordSearch()
+    }, 5000);
+}
+else if (location_href.startsWith('https://huggingface.co/') ) {
+    // setTimeout(() => {
+    //     hugDown()
+    // }, 5000);
+}
+else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
+    setTimeout(() => {
+        kaoBianLinkGet()
+    }, 5000);
+}
+// http://zjks.rlsbt.zj.gov.cn/col
+// hugDown
+// 15-1243.00 - Database Architects
+// https://www.onetonline.org/link/summary/15-1243.00
+else if (location_href.startsWith('https://www.onetonline.org/link/summary') ) {
+    setTimeout(() => {
+        onetonlineGet()
+    }, 3000);
+}
+// 'https://chat.openai.com/chat'
+else if (location_href.startsWith('https://chat.openai.com/chat') ) {
+    // setTimeout(() => {
+    //     // questionListQuery()
+    //     questionListQueryAll()
+    // }, 6000);
+}
+// questionListQuery
+// onetonlineGet
+// 'https://www.onetonline.org/find/result?s=software+engineer'
+// 'https://www.kanzhun.com/firm/wage/0Xx-29m_.html?ka=com-salary-module-expose'
+// 'https://www.kanzhun.com/firm/wage'
+
+
+else if (location_href.startsWith('https://www.kanzhun.com/firm') ) {
+    // 防止爬虫 10个就不行了 
+    // 10000 100 被封锁 
+    // setTimeout(() => {
+    //     kanZhunSalary()
+    // }, 30000);
+}
+
+
+// kanZhunSalary
+// 'https://www.kanzhun.com/search/?query=%E5%9F%8E%E4%BA%91%E7%A7%91%E6%8A%80(%E4%B8%AD%E5%9B%BD)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&type=0'
 // 'search.gitee.com'
 else if (location.host =='search.gitee.com') {
     setTimeout(() => {
@@ -2470,6 +2535,7 @@ function zhiLianGetOne(){
  */
 function qianChengGetOne(){
     console.log('qianCheng start');
+    
     
     // let  keywordInput
     // 需要爬取一个新的 网站的话 基本只要修改这里的 class 和 最后一个obj里面的key名字的map关系
@@ -3277,3 +3343,798 @@ for(let ignoreLink of ignoreList){
 }
 return false
 }
+
+// document.getElementsByClassName('middle')[0].
+
+let  companys_doc=`
+杭州浦联分公司杭州固恒能源科技有限公司
+杭州微秦科技有限公司
+华数传媒控股股份有限公司
+浙江安澜工程技术有限公司
+杭州超义实业有限公司
+杭州哲达科技股份有限有限公司
+东方通信股份有限公司
+杭州志卓科技股份有限公司
+杭州华海信息科技有限公司
+杭州国电电力科技发展有限公司
+杭州恒朴电子科技有限公司
+浙江网新恒天软件有限公司
+杭州大和热磁电子有限公司
+杭州原创软件有限公司
+浙江海拓环境技术有限公司
+杭州万高科技股份有限公司
+浙江诺益科技有限公司
+浙江泰林生物技术股份有限公司
+杭州智算科技有限公司
+浙江环兴机械有限公司
+高新兴创联科技有限公司
+杭州宇树科技有限公司
+杭州中谱科技有限公司
+杭州玖欣物联科技有限公司
+杭州联图科技有限公司
+杭州旭展会展有限公司
+杭州思太极工程咨询有限公司
+浙江成功软件开发有限公司
+杭州中立房地产土地评估规划咨询有限公司
+杭州艾迪康医学检验中心有限公司
+杭州诺辉健康科技有限公司
+杭州一建保科技有限公司
+杭州泽天春来科技有限公司
+浙江安联检测技术服务有限公司
+杭州艾诺半导体有限公司
+苏州智康信息科技股份有限公司
+杭州分公司浙江深大智能科技有限公司
+杭州毫厘科技有限公司
+杭州励德生物科技有限公司
+浙江国正安全技术有限公司
+杭州分公司中国空分工程有限公司
+浙江省第一水电建设集团股份有限公司
+浙江歌山品悦大酒店杭州咏柳科技有限公司
+杭州佰邦房地产代理有限公司
+杭州高谱成像技术有限公司
+浙江科聪控制技术有限公司
+杭州中赢生物医疗科技有限公司
+浙江新博源生物科技有限公司
+乙未 (杭州) 信息技术有限公司
+7儿7T70号反实石月绿城农科检测技术有限公司
+杭州先艺品牌管理有限公司
+杭州滨江银泰喜来登大酒店杭州卓软科技有限公司
+杭州梅清数码科技有限公司
+杭州三个壹网络科技有限公司
+杭州遇博科技有限公司
+联碳新材料技术(杭州) 有限公司
+智渡诺商业管理(杭州) 有限公司
+科邦特化工(杭州)有限公司
+杭州臣工医用空气净化技术有限公司
+中天美好生活服务集团有限公司
+杭州龙禧硅谷酒店有限公司
+福朋喜来登酒店杭州滨江开元名都大酒店纳德世家股份公司
+润泽园酒店广州天力物业发展有限公司
+杭州分公司纳德世家股份公司浙江全通汽车维修有限公司
+杭州日月电器股份有限公司
+杭州宝盛道谷酒店有限公司
+杭州灵山风情小镇旅游投资有限公司
+杭州尚马智汇科技有限公司
+杭州诺达国际旅行社有限公司
+金碧物业有限公司杭州分公司
+杭州冠寓投资管理有限公司
+杭州万匠软件科技有限公司
+杭州白马湖建国饭店杭州博物文化传播有限公司
+杭州聚秀科技有限公司
+杭州齐圣科技有限公司
+杭州未来甄选生态农业开发有限公司
+曙光信息产业股份有限公司
+浙江融象数字科技有限公司
+杭州和众科技管理有限公司
+杰华特微电子股份有限公司
+浙江哈尔斯真空器皿股份有限公司
+浙江浙大网新图灵信息科技有限公司
+杭州建设工程造价咨询有限公司
+上海隧道工程有限公司
+浙江分公司浙江汉林建筑设计有限公司
+浙江喻利建筑工程有限公司
+普蕊斯 (上海)医药科技开发股份有限公司
+杭州柏嘉生物技术有限公司
+杭州明仕医用技术有限公司
+杭州月帆诗歌文化传播有限公司
+杭州爱彼教育咨询有限公司
+杭州拱墅区新航道专修学校杭州讲究文化创意有限公司
+杭州焦点互联信息科技有限公司
+杭州陆遥科技有限公司
+杭州玛丽英语专修学校杭州她她文化创意有限公司
+杭州下城区朗阁培训中心杭州优灿科技有限公司
+浙江新东方培训学校有限公司
+绿城物业服务集团有限公司
+杭州第一分公司淘宝天下传媒有限公司
+浙商食品集团有限公司
+上海野舍酒店管理有限公司
+杭州象外文旅发展有限公司
+浙江游侠客国际旅行社有限公司
+杭州友好饭店有限公司
+君亭酒店集团股份有限公司
+浙江皓石教育科技有限公司
+康养旅千岛湖有限公司
+逍遥洲际度假酒店北京安理(杭州) 律师事务所杭州橙愿文化策划有限公司
+浙江六律律师事务所浙江浙商至樽酒业有限公司
+浙江诚如律师事务所
+国联证券股份有限公司
+浙江分公司浙江建旅远成会展传媒有限公司
+杭州翔天供应链管理有限公司
+杭州问为广告有限公司
+杭州艺景院文化创意有限公司
+欧普照明股份有限公司
+IFS Design杭州市邸璞装饰设计有限公司
+浙江法易科技有限公司
+小鹿会利士专限公司杭州圣域公关策划有限公司
+杭州翎聚出海信息科技有限公司
+杭州杭邸钟表有限公司
+宁波银行股份有限公司
+温州分行杭州益云益瞳教育科技有限公司
+杭州亿恒科技有限公司
+日华化学(中国)有限公司
+绍兴柯桥最佑纺织品有限公司
+良渚君澜度假酒店分公司
+上海鹏龙兴元汽车销售服务有限公司
+杭州分公司
+西子电梯科技有限公司
+杭州雅恩健康管理有限公司
+杭州昱行暖通设备有限公司
+杭州元尔艺术培训有限公司
+京东方艺云科技有限公司
+埃梯梯智慧水务科技有限公司
+杭州汽轮铸锻有限公司
+上海中电电子科技系统股份有限公司
+浙江正大空分设备有限公司
+杭州全盛机电科技有限公司
+杭州华会通科技股份有限公司
+浙江百诺数智环境科技股份有限公司
+大华会计师事务所(特殊普通合伙) 浙江分所杭州市勘测设计研究院有限公司
+航天科工广信智能技术有限公司
+信雅达(杭州)计算机服务有限公司
+杭州漫禾动漫有限公司
+浙江方大通信有限公司
+杭州市水务集团有限公司
+杭州东忠科技股份有限公司
+杭州松下马达有限公司
+杭州中电安科现代科技有限公司
+杭州全速网络技术有限公司
+杭州万事利丝绸文化股份有限公司
+杭州佑本动物疫苗有限公司
+杭州金鱼电器集团有限公司
+杭州联华华商集团有限公司
+月ZDU/X_NTNI2浙江东南网架股份有限公司
+耀华建设管理有限公司
+浙江天煌科技实业有限公司
+杭州博拓生物科技股份有限公司
+立信会计师事务所(特殊普通合伙) 浙江分所南华期货股份有限公司
+浙江同富特美刻家居用品股份有限公司
+杭州得诚电力科技股份有限公司
+杭州永磁集团有限公司
+浙江爱生药业有限公司
+浙江昌能规划设计有限公司
+杭州吉网通信技术有限公司
+浙江南方建筑设计有限公司
+浙江江南工程管理股份有限公司
+浙江手心制药有限公司
+杭州智顺科技有限公司
+杭州在信科技有限公司
+宇航交通建设集团有限公司
+杭州诗迈医药科技有限公司
+浙江东南绿建集成科技有限公司
+浙江绿能清洁能源有限公司
+杭州嘉声视听科技有限公司
+杭州市上城区大家艺术培训学校奥展实业股份有限公司
+杭州新坐标科技股份有限公司
+杭州长乔旅游投资集团股份有限公司
+杭州西溪湿地运营管理有限公司
+上海外服 (集团)有限公司
+浙江分公司杭州文一教育发展有限公司
+杭州市萧山区残疾人综合服务中心杭州小码教育科技有限公司
+杭州上意文化艺术有限公司
+杭州钱江养老服务中心杭州市中国旅行社集团有限公司
+杭州龙砺智能科技有限公司
+浙江华夏工程管理有限公司
+浙江天平会计师事务所(特殊普通合伙)浙江奥通汽车有限公司
+杭州广安汽车电器有限公司
+滨江兄弟信息技术(杭州) 有限公司
+招商局物业管理有限公司
+杭州分公司浙江东风南方汽车销售服务有限公司
+浙江之信汽车有限公司
+杭州黄龙饭店有限公司
+老百姓大药房连锁(浙江) 有限公司
+杭州国电大力机电工程有限公司
+浙江易时科技股份有限公司
+杭州视芯科技股份有限公司
+杭州中软安人网络通信股份有限公司
+浙江吉利控股集团有限公司
+杭州中恒电气股份有限公司
+杭州奇书文化科技有限公司
+浙江中控信息产业股份有限公司
+浙江施强集团有限公司
+银江技术股份有限公司
+浙江甲骨文超级码科技股份有限公司
+杭州精工技研有限公司
+杭州宇称电子技术有限公司
+中国联合工程有限公司
+杭州迦智科技有限公司
+杭州德同生物技术有限公司
+贝因美股份有限公司
+杭州朗迅科技股份有限公司
+杭州五星网信息服务有限公司
+浙江中南建设集团有限公司
+税友软件集团股份有限公司
+杭州山科智能科技股份有限公司
+矽力杰半导体技术(杭州) 有限公司
+广脉科技股份有限公司
+明康汇生态农业集团有限公司
+谦寻(杭州)文化传媒有限公司
+浙江中控技术股份有限公司
+杭州安恒信息技术股份有限公司
+浙江明通科技有限公司
+杭州紫驰网络科技有限公司
+杭州慧智人工智能有限公司
+正衡资产评估(杭州) 有限公司
+杭州协能科技股份有限公司
+金程科技有限公司
+杭州易泰达科技有限公司
+大化技术股份有限公司
+浙中化蓝天集团有限公司
+杭州和合医学检验实验室有限公司
+杭州希科检测技术有限公司`
+
+
+function to_lines(string,split_by='\n'){
+
+    // string.strip()
+    lines=string.trim().split(split_by)
+    let resList=[]
+    for(let o of lines){
+        resList.push(o.trim())
+    }
+    // lines=[line.strip() for line in lines]
+    resList=remove_none(resList)
+    return resList
+
+}
+
+
+// # python 判断字符串是 空，空格
+// # https://www.itranslater.com/qa/details/2127291587607659520
+function remove_none(lst){
+  
+    ret_lst = []
+    // js  判断一个 是空 字符串
+    for (item of lst){
+    
+        if(!item||item==""){
+            continue
+        }
+ 
+        ret_lst.push(item)
+  
+    }
+       
+    return ret_lst
+
+}
+   
+let
+companyList=
+to_lines(companys_doc)
+companys_doc.split('\n')
+
+function getTextContent(dom){
+  return  dom?.textContent?.trim()
+}
+
+// function getTextContentByClassName(className){
+//     let dom= document.getElementsByClassName(className)[0]
+
+//     return  dom?.textContent?.trim()
+//   }
+  
+  function getTextContentByClassName(className,fatherDom=document){
+    let dom= fatherDom.getElementsByClassName(className)[0]
+
+    return  dom?.textContent?.trim()
+  }
+  
+
+  let kanZhunLinks=["https://www.kanzhun.com/firm/info/03R83N0~.html", "https://www.kanzhun.com/firm/info/1n172tu4E1E~.html", "https://www.kanzhun.com/firm/info/0XRz2tW1Fg~~.html", "https://www.kanzhun.com/firm/info/1XNz2Ny8GFdV.html", "https://www.kanzhun.com/firm/info/1nF52N8~.html", "https://www.kanzhun.com/firm/info/1nd63tm-.html", "https://www.kanzhun.com/firm/info/1nZz3dS8E1I~.html", "https://www.kanzhun.com/firm/info/1Xx52921E1NY.html", "https://www.kanzhun.com/firm/info/1nZz3dS6EFBQ.html", "https://www.kanzhun.com/firm/info/33V609i5.html", "https://www.kanzhun.com/firm/info/0XN43dm-Eg~~.html", "https://www.kanzhun.com/firm/info/1HR93d27FQ~~.html", "https://www.kanzhun.com/firm/info/1Xd639y-F1Q~.html", "https://www.kanzhun.com/firm/info/1nBy3Nk~.html", "https://www.kanzhun.com/firm/info/1nB609W7.html", "https://www.kanzhun.com/firm/info/0X193N24Fg~~.html", "https://www.kanzhun.com/firm/info/1Xx42d-4Elo~.html", "https://www.kanzhun.com/firm/info/1XZ62N6_.html", "https://www.kanzhun.com/firm/info/0HV539q8EA~~.html", "https://www.kanzhun.com/firm/info/1X1829W8Fw~~.html", "https://www.kanzhun.com/firm/info/0Xd83t67Ew~~.html", "https://www.kanzhun.com/firm/info/0n182d-_FlY~.html", "https://www.kanzhun.com/firm/info/1nN509g~.html", "https://www.kanzhun.com/firm/info/1nV529q6EVA~.html", "https://www.kanzhun.com/firm/info/1nR52Nm4FQ~~.html", "https://www.kanzhun.com/firm/info/0HJz2Nq6Fg~~.html", "https://www.kanzhun.com/firm/info/1nV62Nq_F1M~.html", "https://www.kanzhun.com/firm/info/03By0tq6FlQ~.html", "https://www.kanzhun.com/firm/info/1nx_3tu0GA~~.html", "https://www.kanzhun.com/firm/info/3nd52dm-.html", "https://www.kanzhun.com/firm/info/33B53d8~.html", "https://www.kanzhun.com/firm/info/33180tS9E1I~.html", "https://www.kanzhun.com/firm/info/1n1z2dW1GQ~~.html", "https://www.kanzhun.com/firm/info/1XJ8096_F1E~.html", "https://www.kanzhun.com/firm/info/1nx-3t-5GFY~.html", "https://www.kanzhun.com/firm/info/0HF42N0~.html", "https://www.kanzhun.com/firm/info/1nR83Ni4GA~~.html", "https://www.kanzhun.com/firm/info/0X1z3dy5GQ~~.html", "https://www.kanzhun.com/firm/info/1nB82dS0ElI~.html", "https://www.kanzhun.com/firm/info/1HR52dS6EFE~.html", "https://www.kanzhun.com/firm/info/1n170t65Eg~~.html", "https://www.kanzhun.com/firm/info/33x92tu9.html", "https://www.kanzhun.com/firm/info/0XR629u_.html", "https://www.kanzhun.com/firm/info/1XZ82tW5EFc~.html", "https://www.kanzhun.com/firm/info/0nJ729W8EQ~~.html", "https://www.kanzhun.com/firm/info/1XFy39W5E1A~.html", "https://www.kanzhun.com/firm/info/1HV-3tu6EQ~~.html", "https://www.kanzhun.com/firm/info/0HJ_2d-5GA~~.html", "https://www.kanzhun.com/firm/info/1nV-39i4GA~~.html", "https://www.kanzhun.com/firm/info/1nJ529m1EQ~~.html", "https://www.kanzhun.com/firm/info/1nF72di8EQ~~.html", "https://www.kanzhun.com/firm/info/0HN92Ni_.html", "https://www.kanzhun.com/firm/info/0HB_39m_EQ~~.html", "https://www.kanzhun.com/firm/info/0n1_2t-7GQ~~.html", "https://www.kanzhun.com/firm/info/1nV-3tm4GVdY.html", "https://www.kanzhun.com/firm/info/03R80tm0.html", "https://www.kanzhun.com/firm/info/0nJ70tS0.html", "https://www.kanzhun.com/firm/info/33Z83NS5.html", "https://www.kanzhun.com/firm/info/1Hdy3Nq5FA~~.html", "https://www.kanzhun.com/firm/info/1nR42d-4Eg~~.html", "https://www.kanzhun.com/firm/info/1nRy3tm7Fw~~.html", "https://www.kanzhun.com/firm/info/0HZ53tW0.html", "https://www.kanzhun.com/firm/info/1nR63Nm-FVNT.html", "https://www.kanzhun.com/firm/info/1XR-2920Elo~.html", "https://www.kanzhun.com/firm/info/1XZ_39u7ElQ~.html", "https://www.kanzhun.com/firm/info/33V53d69.html", "https://www.kanzhun.com/firm/info/0XB-3t20FQ~~.html", "https://www.kanzhun.com/firm/info/1nFy3tq-FFFW.html", "https://www.kanzhun.com/firm/info/0n1_2ti6FQ~~.html", "https://www.kanzhun.com/firm/info/1nJz2d-8FQ~~.html", "https://www.kanzhun.com/firm/info/1nJ-2tW7FA~~.html", "https://www.kanzhun.com/firm/info/1nx-3dq5Ew~~.html", "https://www.kanzhun.com/firm/info/1nN509u0EQ~~.html", "https://www.kanzhun.com/firm/info/0HB_0t27FA~~.html", "https://www.kanzhun.com/firm/info/1nx82dm6EQ~~.html", "https://www.kanzhun.com/firm/info/0Xx92d20.html", "https://www.kanzhun.com/firm/info/1Xd_2di7EVM~.html", "https://www.kanzhun.com/firm/info/0HB509u7GA~~.html", "https://www.kanzhun.com/firm/info/33Z42dS6.html", "https://www.kanzhun.com/firm/info/1XF42dS6.html", "https://www.kanzhun.com/firm/info/1XJz29y0FFE~.html", "https://www.kanzhun.com/firm/info/0Hd90tm_.html", "https://www.kanzhun.com/firm/info/0nJ43N4~.html", "https://www.kanzhun.com/firm/info/1nZ82t20GFo~.html", "https://www.kanzhun.com/firm/info/1nx-2t-4E1E~.html", "https://www.kanzhun.com/firm/info/1XZ-2Nm8ElU~.html", "https://www.kanzhun.com/firm/info/1n1729y0GVs~.html", "https://www.kanzhun.com/firm/info/1XNy0tS7FFpW.html", "https://www.kanzhun.com/firm/info/1X160t-_EFRQ.html", "https://www.kanzhun.com/firm/info/1nd42tm9GVVU.html", "https://www.kanzhun.com/firm/info/03F63No~.html", "https://www.kanzhun.com/firm/info/33B92dS5GFY~.html", "https://www.kanzhun.com/firm/info/1n1639W8Eg~~.html", "https://www.kanzhun.com/firm/info/1XF_3d-7F1VT.html", "https://www.kanzhun.com/firm/info/0nFy09u6.html", "https://www.kanzhun.com/firm/info/1nZ53du_GFc~.html", "https://www.kanzhun.com/firm/info/1nxy3tm6F1s~.html", "https://www.kanzhun.com/firm/info/03190tm_F1I~.html", "https://www.kanzhun.com/firm/info/1Xd_39y-FVE~.html", "https://www.kanzhun.com/firm/info/1nR929q0FlRX.html", "https://www.kanzhun.com/firm/info/1nR83d-0FlQ~.html", "https://www.kanzhun.com/firm/info/0HJ83dm5Fg~~.html", "https://www.kanzhun.com/firm/info/0nN53tW_.html", "https://www.kanzhun.com/firm/info/1nZ82dm1Fg~~.html", "https://www.kanzhun.com/firm/info/1nx43dS4EFo~.html", "https://www.kanzhun.com/firm/info/0XN-3Ny4Ew~~.html", "https://www.kanzhun.com/firm/info/0X183dg~.html", "https://www.kanzhun.com/firm/info/1nJ42t68Ew~~.html", "https://www.kanzhun.com/firm/info/0XJy3d69Eg~~.html", "https://www.kanzhun.com/firm/info/1nF43Nm5F1I~.html", "https://www.kanzhun.com/firm/info/1nV62ty7FFE~.html", "https://www.kanzhun.com/firm/info/0Hdz09m0ElU~.html", "https://www.kanzhun.com/firm/info/331-2dk~.html", "https://www.kanzhun.com/firm/info/1Xx73N6_EVpR.html", "https://www.kanzhun.com/firm/info/1Xd83tW6F1VY.html", "https://www.kanzhun.com/firm/info/1nV-2ti0EQ~~.html", "https://www.kanzhun.com/firm/info/0Xd_2N24Eg~~.html", "https://www.kanzhun.com/firm/info/1nJ-29i5FFo~.html", "https://www.kanzhun.com/firm/info/1XF529S7ElZV.html", "https://www.kanzhun.com/firm/info/1n1z09y8GA~~.html", "https://www.kanzhun.com/firm/info/1nJ42ti0Flc~.html", "https://www.kanzhun.com/firm/info/1XNz2tS6ElJZ.html", "https://www.kanzhun.com/firm/info/1XZ63Q~~.html", "https://www.kanzhun.com/firm/info/0Xx73dm6Fg~~.html", "https://www.kanzhun.com/firm/info/0Xx73dm6Fg~~.html", "https://www.kanzhun.com/firm/info/0nJz2d27FA~~.html", "https://www.kanzhun.com/firm/info/1nV72t-8FlNW.html", "https://www.kanzhun.com/firm/info/33x-09q7Eg~~.html", "https://www.kanzhun.com/firm/info/0nxz2Nu4FVA~.html", "https://www.kanzhun.com/firm/info/1XNz2dS7Eg~~.html", "https://www.kanzhun.com/firm/info/0X1_0t-_Fg~~.html", "https://www.kanzhun.com/firm/info/1XF72t68EVs~.html", "https://www.kanzhun.com/firm/info/1HV-3dq_Fw~~.html", "https://www.kanzhun.com/firm/info/1nVz09m4ElpU.html", "https://www.kanzhun.com/firm/info/1XJ5390~.html", "https://www.kanzhun.com/firm/info/1XR43tS4ElI~.html", "https://www.kanzhun.com/firm/info/1nd43NS4EVE~.html", "https://www.kanzhun.com/firm/info/1ndy0tu9E1s~.html", "https://www.kanzhun.com/firm/info/1nFz0g~~.html", "https://www.kanzhun.com/firm/info/1nJ50ti-.html", "https://www.kanzhun.com/firm/info/0XJ_2Nw~.html", "https://www.kanzhun.com/firm/info/0nJy2Ni-.html", "https://www.kanzhun.com/firm/info/1nB-39-9Ew~~.html", "https://www.kanzhun.com/firm/info/33R-0tW1.html", "https://www.kanzhun.com/firm/info/33J-29m9.html", "https://www.kanzhun.com/firm/info/0HF40ti6FA~~.html", "https://www.kanzhun.com/firm/info/3nZ-2tw~.html", "https://www.kanzhun.com/firm/info/1nB83Ni_GFtX.html", "https://www.kanzhun.com/firm/info/0n1y29q0Fg~~.html", "https://www.kanzhun.com/firm/info/1nR72N6_.html", "https://www.kanzhun.com/firm/info/1XVy2N61GFFS.html", "https://www.kanzhun.com/firm/info/0HJ809y8Eg~~.html", "https://www.kanzhun.com/firm/info/0Xd82NU~.html", "https://www.kanzhun.com/firm/info/1nBz39S_FQ~~.html", "https://www.kanzhun.com/firm/info/3n162du5EVs~.html", "https://www.kanzhun.com/firm/info/1nR50tW4ElJT.html", "https://www.kanzhun.com/firm/info/0nN939m5.html", "https://www.kanzhun.com/firm/info/1nV53Nu9FQ~~.html", "https://www.kanzhun.com/firm/info/3nZ939S8Ew~~.html", "https://www.kanzhun.com/firm/info/3nd62t8~.html", "https://www.kanzhun.com/firm/info/0HN-09i9.html", "https://www.kanzhun.com/firm/info/1Xdy3tu4F1E~.html", "https://www.kanzhun.com/firm/info/1nV92du-.html", "https://www.kanzhun.com/firm/info/33V539i5Elc~.html", "https://www.kanzhun.com/firm/info/1nV93d-_.html", "https://www.kanzhun.com/firm/info/1nV-3N67.html", "https://www.kanzhun.com/firm/info/33x82Ni7.html", "https://www.kanzhun.com/firm/info/1nx609m_Fw~~.html", "https://www.kanzhun.com/firm/info/1nx83tS0FQ~~.html", "https://www.kanzhun.com/firm/info/0Hd63d67GA~~.html", "https://www.kanzhun.com/firm/info/0nJy3tS6Fw~~.html", "https://www.kanzhun.com/firm/info/1n1-39q4EFc~.html", "https://www.kanzhun.com/firm/info/0HFz2du1Eg~~.html", "https://www.kanzhun.com/firm/info/1nR63Nu6Eg~~.html", "https://www.kanzhun.com/firm/info/1nR-3dy5FVFR.html", "https://www.kanzhun.com/firm/info/1XFz09-5E1U~.html", "https://www.kanzhun.com/firm/info/0nx6390~.html", "https://www.kanzhun.com/firm/info/1n152tu-GVpU.html", "https://www.kanzhun.com/firm/info/1nJ52dy4EVZT.html", "https://www.kanzhun.com/firm/info/1XB_2d65GVc~.html", "https://www.kanzhun.com/firm/info/1nJ-29S7FQ~~.html", "https://www.kanzhun.com/firm/info/0HV-2du8.html", "https://www.kanzhun.com/firm/info/1XV62N-4EFY~.html", "https://www.kanzhun.com/firm/info/1XV829u5FVE~.html", "https://www.kanzhun.com/firm/info/0XR83Q~~.html", "https://www.kanzhun.com/firm/info/33N93dg~.html", "https://www.kanzhun.com/firm/info/0HBy2dy6Eg~~.html", "https://www.kanzhun.com/firm/info/1XJ83960EQ~~.html", "https://www.kanzhun.com/firm/info/1nd639m4EFBY.html", "https://www.kanzhun.com/firm/info/0Hd52d66Ew~~.html", "https://www.kanzhun.com/firm/info/1Xx42tS0EVU~.html", "https://www.kanzhun.com/firm/info/1nJ43Ny8FQ~~.html", "https://www.kanzhun.com/firm/info/0Xd82d67FQ~~.html", "https://www.kanzhun.com/firm/info/0Xd60tq8EFI~.html", "https://www.kanzhun.com/firm/info/1n1y3d0~.html", "https://www.kanzhun.com/firm/info/3nZ_09m7FQ~~.html", "https://www.kanzhun.com/firm/info/0X163du-Eg~~.html", "https://www.kanzhun.com/firm/info/0nB-29y5.html", "https://www.kanzhun.com/firm/info/0HFz3tu1EQ~~.html"]
+
+function getKanZhunCompanyLink(){
+// toli 
+
+let  href=
+document.getElementsByClassName('title')[0]?.href
+
+// let titleDom= document.getElementsByClassName('title')[0]
+// let   dd= titleDom?.textContent?.trim()
+let   title=  getTextContentByClassName('title')
+let   success=  getTextContentByClassName('tag success')
+let   company_tags=  getTextContentByClassName('company-tags_1XW28')
+let   business_info=  getTextContentByClassName('business-info')
+let   bottom_item=  getTextContentByClassName('bottom-item')
+// let   bottom_item=  getTextContentByClassName('right-block')
+let  right_blocks=document.getElementsByClassName('right-block')
+
+let  desc=getTextContentByClassName('desc')
+
+// for(let i=0;i<right_blocks.length;i++){
+//     // right_blocks[0]
+// }
+// right_blocks[0]?. 
+let mianShiExperience=
+getTextContent(right_blocks[0])
+let salarySay=
+getTextContent(right_blocks[1])
+let danger=
+getTextContent(right_blocks[2])
+
+// getTextContent()
+console.log(href);
+let nowIdx=
+getNowIdx()
+if(companyList.length<=nowIdx
+    ){
+        return
+    }
+
+   let  companyName= companyList[nowIdx]
+   let res={
+    desc,
+    href,
+    companyName,
+    title,
+    success,
+    company_tags,
+    business_info,
+    bottom_item,
+    mianShiExperience,
+    salarySay,
+    danger
+   }
+   console.log("res KanZhunCompanyLink_ companyName");
+   console.log(res);
+
+  
+
+    downloadTxt(`KanZhunCompanyLink_${companyName}.json`, JSON.stringify(res))
+  
+
+// setTimeout(() => {
+//     location.href=`https://www.kanzhun.com/search/?query=${companyList[nowIdx+1]}&type=0&idx=${nowIdx+1}`
+//     // getKanZhunCompanyLink()
+// }, 4000);
+// "https://www.kanzhun.com/firm/info/1nV-3N67.html"
+location.href=`https://www.kanzhun.com/search/?query=${companyList[nowIdx+1]}&type=0&idx=${nowIdx+1}`
+}
+
+function question_select_list_get(question_select_dom){
+    // question_select_dom
+    if(!question_select_dom){
+        return []
+    }
+   let   question_select_dom_list= question_select_dom?.getElementsByClassName('content')
+   let res_list=[]
+   for(let i=0;i<question_select_dom_list.length;i++){
+    // question_select_dom_list[i] 
+   
+    res_list.push(
+        getTextContent(question_select_dom_list[i] )
+    )
+   }
+   return res_list
+}
+
+function getLi(fileName){
+    let parts=location.href.split('/')
+let  brach=parts[parts.length-1]
+// let fileName=`pytorch_model.bin`
+ let repoName= `${parts[2]}/${parts[3]}`
+ let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
+
+}
+
+function kaoBianLinkGet(){
+    
+
+let  default_pgContainer= document.getElementsByClassName('default_pgContainer')[0]
+
+// default_pgContainer.getElementsByTagName('li')
+let  aList=default_pgContainer.getElementsByTagName('a')
+
+// let location
+let location_href=
+location.href
+
+// default_pgContainer.length()
+let  href_list=[]
+for(let i=0;i<aList.length;i++){
+    // default_pgContainer
+
+    let  aDom=
+    aList[i]
+ let  href=   aDom.href
+ console.log(href);
+ href_list.push(href)
+}
+
+console.log(href_list);
+
+let  default_pgCurrentPage=
+document.getElementsByClassName('default_pgCurrentPage')[0]?.value
+let res={
+    href_list,
+    location_href
+}
+downloadTxt(`kaoBianLinkGet_${default_pgCurrentPage}.json`, JSON.stringify(res))
+
+// default_pgBtn default_pgNext ariaskiptheme
+
+document.getElementsByClassName('default_pgBtn default_pgNext ariaskiptheme')[0]?.click()
+
+
+setTimeout(() => {
+    kaoBianLinkGet()
+}, 3000);
+// downloadTxt(`kaoBianLinkGet_${default_pgCurrentPage}.json`, JSON.stringify(href_list))
+}
+
+
+function hugDown(){
+    
+let  names= document.getElementsByClassName('group flex items-center truncate')
+let parts=location.href.split('/')
+let  brach=parts[parts.length-1]
+let  mdCmd=`md /${parts[3]}/${parts[4]}`
+console.log(mdCmd);
+let allCmd=` ${mdCmd}\n`
+
+// "D:\software\wget-1.21.3-win64\wget.exe"
+let  wgetSh=String.raw`D:\software\wget-1.21.3-win64\wget.exe`
+
+// let  wgetSh="D:\software\wget-1.21.3-win64\wget.exe"
+for(let i=0;i<names.length;i++){
+    let  name= names[i]?.textContent.trim()
+    console.log(name);
+    // get
+    // let fileName=`pytorch_model.bin`
+    fileName=name
+ let repoName= `${parts[2]}/${parts[3]}`
+ let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
+ let downFilePath=`d:/download/${fileName}`
+ let mvCmd=`mv ${downFilePath} /${parts[3]}/${parts[4]}/${fileName}`
+//  let downloadCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
+let downloadCmd=`${wgetSh} ${link}  -P /${parts[3]}/${parts[4]}`
+
+//  let downloadCmd=`wget ${link}  -P /${parts[3]}/${parts[4]}`
+
+ console.log(downloadCmd);
+ allCmd+=downloadCmd+"\n"
+}
+
+// downloadTxt(`hugDown_${parts[3]}_${parts[4]}.bat`, allCmd)
+downloadTxt(`hugDown_${parts[3]}_${parts[4]}.txt`, allCmd)
+
+
+// let allCmd=`wget ${link} -O /${parts[3]}/${parts[4]} && ${mvCmd}`
+// let allCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
+
+
+
+// # 'https://huggingface.co/facebook/opt-1.3b/resolve/main/pytorch_model.bin'
+
+// 把 
+// 'https://huggingface.co/facebook/opt-1.3b/tree/main'
+// 转化成 
+// `https://huggingface.co/facebook/opt-1.3b/resolve/${brach}/pytorch_model.bin`
+// 用
+// let parts=location.href.split('/')
+// let  brach=parts[parts.length-1]
+// let fileName=`pytorch_model.bin`
+//  let repoName= `${parts[2]}/${parts[3]}`
+//  let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
+
+//  console.log(link);
+// parts[parts.length-1]=`resolve/main/${fileName}`
+
+
+}
+function  nowCoderGet(){
+
+// commonPaperHtml 
+let  commonPaperHtmls=
+document.getElementsByClassName('commonPaperHtml')
+
+let  question_select_dom_list=
+document.getElementsByClassName('question-select')
+let question_list=[]
+let coding_question_list=[]
+let  coding_question_dom_list=
+document.getElementsByClassName('coding-question')
+
+for(let i=0;i<commonPaperHtmls.length;i++){
+    // commonPaperHtmls
+  let  question_title=   getTextContent( commonPaperHtmls[i])
+  let  question_select_text=   getTextContent(   question_select_dom_list[i])
+let  question_select_list= question_select_list_get(
+    question_select_dom_list[i]
+  )
+
+
+  
+//   content
+  console.log(question_title);
+  question_list.push({
+    question_select_text,
+    question_title,
+    question_select_list
+  })
+
+}
+
+
+for(let i=0;i<coding_question_dom_list.length;i++){
+    let  coding_question=   getTextContent(  
+        coding_question_dom_list[i]
+      )
+//   content
+  coding_question_list.push(coding_question)
+
+
+}
+
+
+
+let  href=
+location.href
+let res={
+    href,
+    question_list,
+    coding_question_list
+}
+console.log("res nowcode questions ");
+console.log(res);
+
+downloadTxt(`questionList_${href}.json`, JSON.stringify(res))
+
+
+
+}
+
+let questionList=['Java\xa0IO体系中，read方法从输入流中顺序读取源中的单个字节数据，如果到达源的末尾，该方法返回', '下面哪项不属于java的包装类', 'Java\xa0IO体系中，通常情况下以下哪一个类可用来读取文件且产生的系统调用可能是最少的', '为使对象可以保存到磁盘上或在网络上传输，需要首先经过如下什么操作(\xa0)将对象转换成字节数组', '使用Java\xa0IO流实现对文本文件的读写过程中，需要处理下列(\xa0)异常', '在Java的IO操作中，(\xa0)方法可以直接将缓冲中的数据立即发送到网络中', '下面代码的输出结果是?\xa0public\xa0void\xa0main(String[]\xa0args)\xa0{\n\n\tInteger\xa0num1\xa0=\xa0200;\xa0Integer\xa0num2\xa0=\xa0200;\xa0if\xa0(num1\xa0!=\xa0num2)\xa0{\n\n\tSystem.out.print(1);\xa0}\xa0else\xa0{\n\n\tSystem.out.print(2);\xa0}\n\n\tif\xa0(!num1.equals(num2))\xa0{\xa0System.out.print(3);\n\n\t}\xa0else\xa0{\xa0System.out.print(4);\n\n\t}\xa0}', '请指出下面程序的运行结果()\xa01.5分\xa0public\xa0class\xa0TryDemo\xa0{\n\n\tpublic\xa0static\xa0void\xa0main(String[]\xa0args)\xa0{\xa0System.out.println(test());\n\n\t}\n\n\tpublic\xa0static\xa0int\xa0test()\xa0{\xa0try\xa0{\n\n\treturn\xa01;\n\n\t}\xa0catch\xa0(Exception\xa0e)\xa0{\n\n\treturn\xa02;\xa0}\xa0finally\xa0{\n\n\tSystem.out.print("3");\xa0}\n\n\t}\xa0}', '整型分为:byte、short、int、long，整型常数默认为什么类型', 'char类型占(\xa0)个字节', '下列代码输出结果是()\xa0int\xa0i\xa0=\xa020;\n\n\twhile\xa0(\xa0i\xa0>\xa00\xa0){\xa0i++;\n\n\tif(i==21){\xa0break;\n\n\t}\xa0}', 'Java中允许使用转义字符(\xa0)，来将其 后的字符转变为其他含义', '以下关于HashMap的说法正确的是()', '以下初始化的方法错误的是', '以下哪个方法用于定义线程的执行 体?', '下列哪些对象的访问属于线程安全的', '下面这段程序的输出结果(\xa0)\xa0\xa0public\xa0static\xa0void\xa0main(String[]\xa0args)\xa0{\n\n\tString\xa0a\xa0="999";\n\n\tint\xa0b\xa0=1;\xa0System.out.println(a+b);\n\n\t}', '以下说法正确的是', 'Java\xa0new对象实例通常存在于以下哪个内存区域?', 'java中，下面关于this()和super()说法正确的是?', '哪种异常是需要显式捕获或者声明的', '在Java中，我们所讲的本地接口书写程序或者本地方法接口指的是', '以下代码运行输出是(\xa0)\xa01.5分\xa0public\xa0class\xa0Student{\n\n\tprivate\xa0String\xa0name="LiLei";\n\n\tint\xa0age=0;\xa0}\n\n\tpublic\xa0class\xa0StudentPlus\xa0extends\xa0Student{\xa0public\xa0String\xa0age;\n\n\tpublic\xa0static\xa0void\xa0main(String[]\xa0args){\xa0Student\xa0p\xa0=\xa0new\xa0StudentPlus();\xa0System.out.println(p.name);\n\n\t}\n\n\t}', '在interface定义中以下哪条是正确的?', '以下语句中关于Java构造方法的说法错误的是', '下面哪个不是Object类中所定义的public\xa0method?', '分析如下Java程序的代码所示，则编译运行后的输出结果是(\xa0)\xa0public\xa0class\xa0Test\xa0{\n\n\tint\xa0count=9;\n\n\tpublic\xa0void\xa0count1(){\n\n\tcount=10;\n\n\tSystem.out.print("count1="+count\xa0+\xa0";");\xa0}\n\n\tpublic\xa0void\xa0count2(){\xa0System.out.print("count2="+count);\n\n\t}\n\n\tpublic\xa0static\xa0void\xa0main(String[\xa0]\xa0args)\xa0{\n\n\tTest\xa0t=new\xa0Test();\xa0t.count1();\xa0t.count2();\n\n\t}\xa0}', '下列代码输出为(\xa0)\xa0\xa0public\xa0class\xa0ReferencesTest\n\n\t{\n\n\tstatic\xa0class\xa0Student\xa0{\n\n\tprivate\xa0String\xa0name;\xa0}\n\n\tpublic\xa0static\xa0void\xa0main(String[]\xa0args)\xa0{\n\n\tStudent\xa0studentA\xa0=\xa0new\xa0Student();\n\n\tstudentA.name\xa0=\xa0"aaa";\n\n\tStudent\xa0studentB\xa0=\xa0new\xa0Student();\n\n\tstudentB.name\xa0=\xa0"bbb";\n\n\tsetName(studentA.name,\xa0"ccc");\n\n\tsetName(studentB,\xa0"ccc");\xa0System.out.println(studentA.name\xa0+\xa0",\xa0"\xa0+\xa0studentB.name);\n\n\t}\n\n\tprivate\xa0static\xa0void\xa0setName(String\xa0name,\xa0String\xa0newName)\xa0{\n\n\tname\xa0=\xa0newName;\xa0}\n\n\tprivate\xa0static\xa0void\xa0setName(Student\xa0student,\xa0String\xa0newName)\xa0{\n\n\tstudent.name\xa0=\xa0newName;\xa0}\n\n\t}', ' 如下程序运行结果为:\xa0\xa0public\xa0class\xa0Test\xa0{\n\n\tpublic\xa0static\xa0void\xa0main(String\xa0[]\xa0args)\xa0{\xa0String\xa0projectA\xa0=\xa0"1122";\n\n\tString\xa0subProject1\xa0=\xa0"11";\n\n\tString\xa0subProject2\xa0=\xa0"22";\n\n\tString\xa0projectB\xa0=\xa0"11"\xa0+\xa0"22";\n\n\tString\xa0projectC\xa0=\xa0String.valueOf(1122);\n\n\tString\xa0projectD\xa0=\xa0subProject1\xa0+\xa0subProject2;\xa0System.out.println(projectA\xa0==\xa0projectB);\xa0System.out.println(projectB\xa0==\xa0projectC);\xa0System.out.println(projectC\xa0==\xa0projectD);\xa0System.out.println(projectC.equals(projectA));\n\n\t}\xa0}', '类定义源码如下:\xa0\xa0package\xa0com.lenovo.school.recruitment.project\n\n\tpublic\xa0class\xa0ClassFinder\xa0{\n\n\tpublic\xa0static\xa0void\xa0main(String[]\xa0args)\xa0{\n\n\tSystem.out.println("class\xa0finder");\xa0}\n\n\t}\n\n\t假设工程目录为\xa0D:\\\\workspace\\\\dome1\xa0，最有可能正确运行并输出"class\xa0finder"的是', 'Java系统的标准输出分别是标准输出(\xa0)和标准错误输出(\xa0)', '关于集合类的说法正确的是', '关于线程同步synchronized的说法 正确的是', '与Java访问权限有关并且具有包可访问的关键字是:', '关于线程同步synchronized的说法正确的是', '与Java访问权限有 关并且具有包可访问的关键字是:', '根据下面的代码\xa0String\xa0s\xa0=\xa0null;\n\n\t会抛出NullPointerException异常的有()', '标识符的声明需要遵循哪些规则', '以下哪些属于Java线程池的关注要素?', 'Java数据类型分为哪两大类?', '@SpringBootApplication注释包含了以下哪些注释', '以下选项中关于Java跨平台原理的说法正确的是', 'wait()\xa0和\xa0sleep()\xa0方法说法正确的是', '以下Java运算符中优先级别最低的两个选项是', '以下哪些关键字与Java面向对象的概念相关', 'Java\xa0静态变量和成员变量的区别', '下列选项中关于Java中类方法的说法错误的是', '问题描述:\n\n\tPlease implement KMP(Knuth-Morris-Pratt) pattern search algorithm using Java. The implementation should:\n\n\n\t\n\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\tRead haystack from a file.\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\tRead pattern string from standard input\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\tPrint the LPS array like “[1,3,5,...], separated with “, ”(comma with a suffix space).\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\tPrint each position of pattern starting from position 0 for every comparison, until the first match is encountered\nsearching ends with no match, one index number per line.\n\t\t\t\t\t\nPrint the starting index of the match if found as “Found at {n}”, {n} should be the index, e.g. "Found at 12".\nPrint “Not found” if no match.\n\t\t\t\t\n\t\t\t\n\t\t\n\t\n\n输入描述:\nread 2 lines from stdin, line 1 is pattern, line 2 is haystack.\n输出描述:\nprint LPS array;\nprint pattern position for each comparison;\nprint result, "Found at: N" if pattern found or "Not found" if no matches found.\n输入样例:\nalbania alb1albanialbaalbaniarfgh\n输出样例:\n[0, 0, 0, 1, 0, 0, 1] 0\n1\n2\n0\n0\n1\n2\n3\n4\n5\n6\nFound at: 4']
+
+// document.getElementById('txtArea').dispatchEvent(new Event('input', { bubbles: true }));
+function setNativeValue(element, value) {
+    const valueSetter = Object.getOwnPropertyDescriptor(element, 'value').set;
+    const prototype = Object.getPrototypeOf(element);
+    const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+    
+    if (valueSetter && valueSetter !== prototypeValueSetter) {
+        prototypeValueSetter.call(element, value);
+    } else {
+      valueSetter.call(element, value);
+    }
+  }
+
+  function questionListQueryAll(){
+    for( let i=0;i<questionList.length;i++){
+        setTimeout(() => {
+            questionListQuery(i)
+        }, 40000*i);
+    }
+  }
+// questionList
+function questionListQuery(NowIdx){
+    if(
+        questionList.length<=NowIdx
+    ){
+        return
+    }
+
+    let textArea=
+    document.getElementsByClassName('m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent pl-2 md:pl-0')[0]
+ 
+    // setNativeValue(textArea, questionList[0])
+    // let 
+    // NowIdx=getNowIdx()
+   
+
+
+    textArea.value=questionList[NowIdx]
+    textArea.dispatchEvent(new Event('input', { bubbles: true }));
+
+
+    let sendBtn= document.getElementsByClassName('absolute p-1 rounded-md text-gray-500 bottom-1.5 md:bottom-2.5 hover:bg-gray-100 enabled:dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent right-1 md:right-2 disabled:opacity-40')[0]
+    sendBtn.click()
+    if(
+        questionList.length<=NowIdx
+    ){
+        return
+    }
+
+
+    // let  wageLink=kanZhunLinks[NowIdx+1].replace('info','wage')
+    // // location.href=`${wageLink}?ka=com-salary-module-expose#company-tab-fast&idx=${NowIdx+1}`
+    // location.href=`${wageLink}?idx=${NowIdx+1}`
+    
+}
+function onetonlineGet(){
+
+// let  clickItems=    document.getElementsByClassName('page-item')
+
+// for(let i=0;i<clickItems.length;i++){
+//     setTimeout(() => {
+//         clickItems[i].click()
+//     }, 1000*i);
+   
+// }
+
+
+  let  jobTitle=  getTextContentByClassName('main')
+  let  id=  getTextContentByClassName('flex-grow-1')
+//   let  id=  getTextContentByClassName('flex-grow-1')
+let ps= document.getElementsByTagName('p')
+// ps[0] 
+
+let  para0=
+getTextContent(ps[0])
+let  href=
+location.href
+
+let res={
+    jobTitle,
+    id,
+    para0,
+    href
+}
+
+
+console.log("res onetonlineGet");
+console.log(res);
+
+   downloadTxt(`onetonlineGet_${href}.json`, JSON.stringify(res))
+
+
+}
+function OccupationKeywordSearch(){
+    // occ-all occ-featured
+//     Occupation Keyword Search
+// https://www.onetonline.org/find/result?s=software+engineer
+   let  jobRows= document.getElementsByClassName('occ-all occ-featured')
+   let jobs=[]
+   for(let i=0;i<jobRows.length;i++){
+   let    jobRow= jobRows[i]
+//    let  jobLinkDom= jobRow.getElementsByTagName('a')[0]
+   let  jobLinkDom= jobRow.getElementsByTagName('a')[1]
+
+//    jobLinkDom
+   let  jobName= getTextContent(jobLinkDom)
+   let  jobLink= jobLinkDom?.href
+   jobs.push({
+    jobLink,
+    jobName
+   })
+   }
+   let href=
+   location.href
+   let res={
+    href,
+    jobs
+   }
+
+   downloadTxt(`OccupationKeywordSearch_${href}.json`, JSON.stringify(res))
+}
+
+function kanZhunSalary(){
+// https://www.kanzhun.com/firm/wage/1nFy3tq-FFFW.html?ka=com-salary-module-expose#company-tab-fast
+
+let  href=
+location.href
+let  salary_item_content_dom_list=
+document.getElementsByClassName('salary-item-content')
+// base-title
+
+let  salary_list=[]
+for(let i=0;i<salary_item_content_dom_list.length;i++){
+  let   salary_item_content_dom=  salary_item_content_dom_list[i]
+//   salary_item_content_dom.getElementsByClassName('')
+//   name
+ let  job_name=getTextContentByClassName('name',salary_item_content_dom)
+ let  contribution_quantity=getTextContentByClassName('extra',salary_item_content_dom)
+//  贡献数量  contribution_quantity
+ let  avg_salary=getTextContentByClassName('number',salary_item_content_dom)
+ 
+ let  compare=getTextContentByClassName('compare',salary_item_content_dom)
+ 
+ let  tootip=getTextContentByClassName('tootip',salary_item_content_dom)
+//  在同行的 什么水平 
+let  titleDom= salary_item_content_dom.getElementsByClassName('title')[0]
+//  title
+let  spans=titleDom.getElementsByTagName('span')
+// spans[0]
+  let  lowest_salary= getTextContent(spans[0])
+  let  highest_salary= getTextContent(spans[1])
+
+  salary_list.push({
+    job_name,
+    contribution_quantity,
+    avg_salary,
+    compare,
+    tootip,
+    lowest_salary,
+    highest_salary,
+    // href
+  })
+}
+
+let title= getTextContentByClassName('base-title')
+
+let desc= getTextContentByClassName('desc')
+let company_tags= getTextContentByClassName('company-tags_1XW28')
+let business_container= getTextContentByClassName('business-container')
+let score_num= getTextContentByClassName('hlight')
+let score= getTextContentByClassName('score')
+// desc
+// let desc= getTextContentByClassName('desc')
+
+let  scorePart=
+document.getElementsByClassName('bala-content')[0]
+ let  great_than= getTextContentByClassName('desc',scorePart)
+ let difficulty= getTextContentByClassName('item-content')
+//  let difficulty= getTextContentByClassName('item-content')
+
+ let company_tab=
+ document.getElementById('company-tab')
+
+let res={
+    company_tags,
+    desc,
+    business_container,
+    great_than,
+    difficulty,
+    score,
+    score_num,
+    title,
+    href,
+    salary_list
+}
+
+// kanZhunLinks
+
+
+downloadTxt(`kanZhunSalary_${href}.json`, JSON.stringify(res))
+// let  job_name_dom_list=
+// document.getElementsByClassName('job-name')
+
+
+let 
+NowIdx=getNowIdx()
+// let  kanZhunLink=
+// kanZhunLinks[NowIdx]
+if(
+    kanZhunLinks.length<=NowIdx
+){
+    return
+}
+
+// let  job_name_list=
+// document.getElementsByClassName('job-name')
+// https://www.kanzhun.com/firm/wage/1n172tu4E1E~.html?ka=com-salary-module-expose
+// "https://www.kanzhun.com/firm/info/1nV-3N67.html"
+let  wageLink=kanZhunLinks[NowIdx+1].replace('info','wage')
+// location.href=`${wageLink}?ka=com-salary-module-expose#company-tab-fast&idx=${NowIdx+1}`
+location.href=`${wageLink}?idx=${NowIdx+1}`
+
+// location.href=`${kanZhunLinks[NowIdx+1]}?ka=com-salary-module-expose&idx=${NowIdx+1}#company-tab-fast`
+// location.href=`${kanZhunLinks[NowIdx+1]}?ka=com-salary-module-expose&idx=${NowIdx+1}#company-tab-fast`
+
+// setTimeout(() => {
+//     location.href=`https://www.kanzhun.com/search/?query=${companyList[nowIdx+1]}&type=0&idx=${nowIdx+1}`
+//     // getKanZhunCompanyLink()
+// }, 4000);
+
+}
+// 看准网-查工资|聊面试|评公司|搜职位|中国领先的职场信息平台
+// https://www.kanzhun.com/search/?query=%E4%B8%89%E6%9B%BF%E9%9B%86%E5%9B%A2%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&type=0
