@@ -427,6 +427,21 @@ print('This is func')
 }
 // createPage()
 
+const d=(newDom)=>{
+    // 创建一个新的 <div> 元素
+var newDiv = document.createElement("div");
+
+// 设置新元素的属性
+newDiv.id = "myNewDiv";
+newDiv.className = "new-div";
+
+// 获取要插入的节点元素
+var existingElem = document.getElementById("existing-elem");
+
+// 将新元素添加到现有节点的末尾
+existingElem.appendChild(newDiv);
+
+}
 //拖拽
 function drag(ele) {
     let oldX, oldY, newX, newY
@@ -1897,10 +1912,24 @@ else if (location_href.startsWith('https://www.onetonline.org/find/result') ) {
        OccupationKeywordSearch()
     }, 5000);
 }
-else if (location_href.startsWith('https://huggingface.co/') ) {
-    // setTimeout(() => {
-    //     hugDown()
-    // }, 5000);
+else if (location_href.startsWith('https://huggingface.co/')
+&&
+strIsIn('tree/',location_href) ) {
+    
+    let   btnsBar= document.getElementsByClassName('container relative ')[0]
+    // new Dom 
+    // 插入一个新的 button js 
+    // var button = "<a role='button' id="+jinfo[i].id+" onclick='function(this.id)'><i class='icon-edit'></i></a>";
+    var button =  `<button onclick='hugDown()'> hugDown </button>`
+    btnsBar.innerHTML += button;
+// MyDiv.innerHTML += button;
+    // btnsBar.appendChild()
+    // document.getElementsByClassName('container relative ')[0].style.position = 'relative'
+    // container relative 
+    // document.getElementByClassNam()
+    setTimeout(() => {
+        hugDown()
+    }, 5000);
 }
 else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
     setTimeout(() => {
@@ -1923,6 +1952,13 @@ else if (location_href.startsWith('https://chat.openai.com/chat') ) {
     //     questionListQueryAll()
     // }, 6000);
 }
+else if (location_href.startsWith('https://gitee.com')) {
+    setTimeout(() => {
+        giteeGithubLinkGet()
+    }, 1000);
+
+}
+// btn-sync-from-github
 // questionListQuery
 // onetonlineGet
 // 'https://www.onetonline.org/find/result?s=software+engineer'
@@ -1948,6 +1984,7 @@ else if (location.host =='search.gitee.com') {
     }, 1000);
 
 }
+
 // giteeLinkIgnore
     // 'https://www.ncss.cn/student/jobs/F6641B14AFD40166E0530A010016B4F5/detail.html'
     // qianChengDetailDownload
@@ -3293,6 +3330,38 @@ function get24365ByIndex(){
    
 }
 
+const giteeGithubLinkGet=()=>{
+    // btn-sync-from-github
+   let  btnSyncGithub= document.getElementById('btn-sync-from-github')
+    // .click()
+    let title= btnSyncGithub.getAttribute('title')
+    console.log("title");
+    console.log(title);
+
+        // 创建一个新的 <div> 元素
+var newDiv = document.createElement("div");
+
+// 设置新元素的属性
+newDiv.id = "myNewDiv";
+newDiv.className = "new-div";
+newDiv.innerHTML=title;
+let recommendSelfDom=
+document.getElementsByClassName('iconfont icon-recommend recommend-icon')[0]
+let projTitleBar=
+document.getElementsByClassName('git-project-title mt-0 mb-0')[0]
+
+let parentDom=projTitleBar
+
+
+// 获取要插入的节点元素
+// var existingElem = document.getElementById("existing-elem");
+
+// 将新元素添加到现有节点的末尾
+// recommendSelfDom.appendChild(newDiv);
+parentDom.appendChild(newDiv);
+
+}
+
 function giteeLinkIgnore(){
     let  ignoreList=['https://gitee.com/elegant-code-ge/ssm-xie-tong-filter-food-recommand?_from=gitee_search'
 ,"https://gitee.com/elegant-code-ge/ssm-food-recommendation-system-xietongguolv?_from=gitee_search"]
@@ -3787,12 +3856,17 @@ function hugDown(){
 let  names= document.getElementsByClassName('group flex items-center truncate')
 let parts=location.href.split('/')
 let  brach=parts[parts.length-1]
-let  mdCmd=`md /${parts[3]}/${parts[4]}`
+// let  mdCmd=`md /${parts[3]}/${parts[4]}`
+let modelDir=`/j05025/model/${parts[3]}/${parts[4]}`
+// let  mdCmd=`mkdir -p /j05025/model/${parts[3]}/${parts[4]}`
+let  mdCmd=`mkdir -p ${modelDir}`
+
 console.log(mdCmd);
 let allCmd=` ${mdCmd}\n`
 
 // "D:\software\wget-1.21.3-win64\wget.exe"
-let  wgetSh=String.raw`D:\software\wget-1.21.3-win64\wget.exe`
+// let  wgetSh=String.raw`D:\software\wget-1.21.3-win64\wget.exe`
+let  wgetSh=String.raw`wget`
 
 // let  wgetSh="D:\software\wget-1.21.3-win64\wget.exe"
 for(let i=0;i<names.length;i++){
@@ -3804,9 +3878,10 @@ for(let i=0;i<names.length;i++){
  let repoName= `${parts[2]}/${parts[3]}`
  let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
  let downFilePath=`d:/download/${fileName}`
- let mvCmd=`mv ${downFilePath} /${parts[3]}/${parts[4]}/${fileName}`
+//  let mvCmd=`mv ${downFilePath} /${parts[3]}/${parts[4]}/${fileName}`
 //  let downloadCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
-let downloadCmd=`${wgetSh} ${link}  -P /${parts[3]}/${parts[4]}`
+// let downloadCmd=`${wgetSh} ${link}  -P /${parts[3]}/${parts[4]}`
+let downloadCmd=`${wgetSh} ${link}  -P ${modelDir}  &`
 
 //  let downloadCmd=`wget ${link}  -P /${parts[3]}/${parts[4]}`
 
