@@ -39,6 +39,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             }
 
             break;
+        // case "downloadPage":
+        //     console.log("downloadPage");
+
+        //     try {
+        //         downloadPage();
+        //         sendResponse('download good');
+        //     } catch (e) {
+        //         sendResponse('download not  good');
+        //         console.log(e);
+        //     }
+
+        //     break;
 
     }
     // if (request.action === "putAns") {
@@ -986,6 +998,7 @@ async function postData(url = "", data = {}) {
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
+
 // function 
 // D:\proj\python\my_util_py_pub>python "d:\proj\python\my_util_py_pub\read_job.py"
 let detailLinkList = ['http://career.zucc.edu.cn/job/view/id/1195408', 'http://career.zucc.edu.cn/job/view/id/1195407', 'http://career.zucc.edu.cn/job/view/id/1195406', 'http://career.zucc.edu.cn/job/view/id/1195405', 'http://career.zucc.edu.cn/job/view/id/1195404', 'http://career.zucc.edu.cn/job/view/id/1195403', 'http://career.zucc.edu.cn/job/view/id/1195401', 'http://career.zucc.edu.cn/job/view/id/1195400', 'http://career.zucc.edu.cn/job/view/id/1195399', 'http://career.zucc.edu.cn/job/view/id/1195398', 'http://career.zucc.edu.cn/job/view/id/1195397', 'http://career.zucc.edu.cn/job/view/id/1195396', 'http://career.zucc.edu.cn/job/view/id/1195395', 'http://career.zucc.edu.cn/job/view/id/1195394', 'http://career.zucc.edu.cn/job/view/id/1195392', 'http://career.zucc.edu.cn/job/view/id/1195390', 'http://career.zucc.edu.cn/job/view/id/1195389', 'http://career.zucc.edu.cn/job/view/id/1195388', 'http://career.zucc.edu.cn/job/view/id/1195387', 'http://career.zucc.edu.cn/job/view/id/1195386', 'http://career.zucc.edu.cn/job/view/id/1195384', 'http://career.zucc.edu.cn/job/view/id/1195383', 'http://career.zucc.edu.cn/job/view/id/1195382', 'http://career.zucc.edu.cn/job/view/id/1195380', 'http://career.zucc.edu.cn/job/view/id/1195378', 'http://career.zucc.edu.cn/job/view/id/1195377', 'http://career.zucc.edu.cn/job/view/id/1195374', 'http://career.zucc.edu.cn/job/view/id/1195372', 'http://career.zucc.edu.cn/job/view/id/1195371', 'http://career.zucc.edu.cn/job/view/id/1195360', 'http://career.zucc.edu.cn/job/view/id/1195359', 'http://career.zucc.edu.cn/job/view/id/1195358', 'http://career.zucc.edu.cn/job/view/id/1195357', 'http://career.zucc.edu.cn/job/view/id/1195356', 'http://career.zucc.edu.cn/job/view/id/1195349', 'http://career.zucc.edu.cn/job/view/id/1195347', 'http://career.zucc.edu.cn/job/view/id/1195346', 'http://career.zucc.edu.cn/job/view/id/1195345', 'http://career.zucc.edu.cn/job/view/id/1195344', 'http://career.zucc.edu.cn/job/view/id/1195343', 'http://career.zucc.edu.cn/job/view/id/1195342', 'http://career.zucc.edu.cn/job/view/id/1195334', 'http://career.zucc.edu.cn/job/view/id/1195326', 'http://career.zucc.edu.cn/job/view/id/1195317', 'http://career.zucc.edu.cn/job/view/id/1195316', 'http://career.zucc.edu.cn/job/view/id/1195315', 'http://career.zucc.edu.cn/job/view/id/1195314', 'http://career.zucc.edu.cn/job/view/id/1195313', 'http://career.zucc.edu.cn/job/view/id/1195311', 'http://career.zucc.edu.cn/job/view/id/1195312', 'http://career.zucc.edu.cn/job/view/id/1195310', 'http://career.zucc.edu.cn/job/view/id/1195309', 'http://career.zucc.edu.cn/job/view/id/1195307', 'http://career.zucc.edu.cn/job/view/id/1195306', 'http://career.zucc.edu.cn/job/view/id/1195305', 'http://career.zucc.edu.cn/job/view/id/1195304', 'http://career.zucc.edu.cn/job/view/id/1195303', 'http://career.zucc.edu.cn/job/view/id/1195302', 'http://career.zucc.edu.cn/job/view/id/1195301', 'http://career.zucc.edu.cn/job/view/id/1195300', 'http://career.zucc.edu.cn/job/view/id/1195299', 'http://career.zucc.edu.cn/job/view/id/1195294', 'http://career.zucc.edu.cn/job/view/id/1195293', 'http://career.zucc.edu.cn/job/view/id/1195292', 'http://career.zucc.edu.cn/job/view/id/1195290', 'http://career.zucc.edu.cn/job/view/id/1195288', 'http://career.zucc.edu.cn/job/view/id/1195284', 'http://career.zucc.edu.cn/job/view/id/1195282', 'http://career.zucc.edu.cn/job/view/id/1195281', 'http://career.zucc.edu.cn/job/view/id/1195280', 'http://career.zucc.edu.cn/job/view/id/1195279', 'http://career.zucc.edu.cn/job/view/id/1195278', 'http://career.zucc.edu.cn/job/view/id/1195277', 'http://career.zucc.edu.cn/job/view/id/1195296', 'http://career.zucc.edu.cn/job/view/id/1195297', 'http://career.zucc.edu.cn/job/view/id/1195271', 'http://career.zucc.edu.cn/job/view/id/1195270', 'http://career.zucc.edu.cn/job/view/id/1195269', 'http://career.zucc.edu.cn/job/view/id/1195268', 'http://career.zucc.edu.cn/job/view/id/1195267', 'http://career.zucc.edu.cn/job/view/id/1195266', 'http://career.zucc.edu.cn/job/view/id/1195265', 'http://career.zucc.edu.cn/job/view/id/1195264', 'http://career.zucc.edu.cn/job/view/id/1195263', 'http://career.zucc.edu.cn/job/view/id/1195262', 'http://career.zucc.edu.cn/job/view/id/1195261', 'http://career.zucc.edu.cn/job/view/id/1195260', 'http://career.zucc.edu.cn/job/view/id/1195259', 'http://career.zucc.edu.cn/job/view/id/1195258', 'http://career.zucc.edu.cn/job/view/id/1195257', 'http://career.zucc.edu.cn/job/view/id/1195256', 'http://career.zucc.edu.cn/job/view/id/1195255', 'http://career.zucc.edu.cn/job/view/id/1195254', 'http://career.zucc.edu.cn/job/view/id/1195253', 'http://career.zucc.edu.cn/job/view/id/1195252', 'http://career.zucc.edu.cn/job/view/id/1195251', 'http://career.zucc.edu.cn/job/view/id/1195250', 'http://career.zucc.edu.cn/job/view/id/1195249', 'http://career.zucc.edu.cn/job/view/id/1195248', 'http://career.zucc.edu.cn/job/view/id/1195247', 'http://career.zucc.edu.cn/job/view/id/1195246', 'http://career.zucc.edu.cn/job/view/id/1195245', 'http://career.zucc.edu.cn/job/view/id/1195244', 'http://career.zucc.edu.cn/job/view/id/1195243', 'http://career.zucc.edu.cn/job/view/id/1195242', 'http://career.zucc.edu.cn/job/view/id/1195241', 'http://career.zucc.edu.cn/job/view/id/1195239', 'http://career.zucc.edu.cn/job/view/id/1195238', 'http://career.zucc.edu.cn/job/view/id/1195237', 'http://career.zucc.edu.cn/job/view/id/1195234', 'http://career.zucc.edu.cn/job/view/id/1195225', 'http://career.zucc.edu.cn/job/view/id/1195224', 'http://career.zucc.edu.cn/job/view/id/1195232', 'http://career.zucc.edu.cn/job/view/id/1195233', 'http://career.zucc.edu.cn/job/view/id/1195236', 'http://career.zucc.edu.cn/job/view/id/1195223', 'http://career.zucc.edu.cn/job/view/id/1195222', 'http://career.zucc.edu.cn/job/view/id/1195221', 'http://career.zucc.edu.cn/job/view/id/1195219', 'http://career.zucc.edu.cn/job/view/id/1195218', 'http://career.zucc.edu.cn/job/view/id/1195214', 'http://career.zucc.edu.cn/job/view/id/1195213', 'http://career.zucc.edu.cn/job/view/id/1195212', 'http://career.zucc.edu.cn/job/view/id/1195209', 'http://career.zucc.edu.cn/job/view/id/1195208', 'http://career.zucc.edu.cn/job/view/id/1195202', 'http://career.zucc.edu.cn/job/view/id/1195201', 'http://career.zucc.edu.cn/job/view/id/1195197', 'http://career.zucc.edu.cn/job/view/id/1195196', 'http://career.zucc.edu.cn/job/view/id/1195195', 'http://career.zucc.edu.cn/job/view/id/1195194', 'http://career.zucc.edu.cn/job/view/id/1195193', 'http://career.zucc.edu.cn/job/view/id/1195191', 'http://career.zucc.edu.cn/job/view/id/1195190', 'http://career.zucc.edu.cn/job/view/id/1195183', 'http://career.zucc.edu.cn/job/view/id/1195173', 'http://career.zucc.edu.cn/job/view/id/1195170', 'http://career.zucc.edu.cn/job/view/id/1195169', 'http://career.zucc.edu.cn/job/view/id/1195168', 'http://career.zucc.edu.cn/job/view/id/1195167', 'http://career.zucc.edu.cn/job/view/id/1195166', 'http://career.zucc.edu.cn/job/view/id/1195165', 'http://career.zucc.edu.cn/job/view/id/1195164', 'http://career.zucc.edu.cn/job/view/id/1195162', 'http://career.zucc.edu.cn/job/view/id/1195150', 'http://career.zucc.edu.cn/job/view/id/1195149', 'http://career.zucc.edu.cn/job/view/id/1195147', 'http://career.zucc.edu.cn/job/view/id/1195145', 'http://career.zucc.edu.cn/job/view/id/1195138', 'http://career.zucc.edu.cn/job/view/id/1195137', 'http://career.zucc.edu.cn/job/view/id/1195136', 'http://career.zucc.edu.cn/job/view/id/1195135', 'http://career.zucc.edu.cn/job/view/id/1195134', 'http://career.zucc.edu.cn/job/view/id/1195133', 'http://career.zucc.edu.cn/job/view/id/1195132', 'http://career.zucc.edu.cn/job/view/id/1195131', 'http://career.zucc.edu.cn/job/view/id/1195130', 'http://career.zucc.edu.cn/job/view/id/1195129', 'http://career.zucc.edu.cn/job/view/id/1195128', 'http://career.zucc.edu.cn/job/view/id/1195127', 'http://career.zucc.edu.cn/job/view/id/1195125', 'http://career.zucc.edu.cn/job/view/id/1195111', 'http://career.zucc.edu.cn/job/view/id/1195110', 'http://career.zucc.edu.cn/job/view/id/1195109', 'http://career.zucc.edu.cn/job/view/id/1195108', 'http://career.zucc.edu.cn/job/view/id/1195107', 'http://career.zucc.edu.cn/job/view/id/1195106', 'http://career.zucc.edu.cn/job/view/id/1195105', 'http://career.zucc.edu.cn/job/view/id/1195104', 'http://career.zucc.edu.cn/job/view/id/1195103', 'http://career.zucc.edu.cn/job/view/id/1195102', 'http://career.zucc.edu.cn/job/view/id/1195100', 'http://career.zucc.edu.cn/job/view/id/1195099', 'http://career.zucc.edu.cn/job/view/id/1195098', 'http://career.zucc.edu.cn/job/view/id/1195095', 'http://career.zucc.edu.cn/job/view/id/1195094', 'http://career.zucc.edu.cn/job/view/id/1195093', 'http://career.zucc.edu.cn/job/view/id/1195091', 'http://career.zucc.edu.cn/job/view/id/1195090', 'http://career.zucc.edu.cn/job/view/id/1195089', 'http://career.zucc.edu.cn/job/view/id/1195088', 'http://career.zucc.edu.cn/job/view/id/1195087', 'http://career.zucc.edu.cn/job/view/id/1195086', 'http://career.zucc.edu.cn/job/view/id/1195085', 'http://career.zucc.edu.cn/job/view/id/1195083', 'http://career.zucc.edu.cn/job/view/id/1195082', 'http://career.zucc.edu.cn/job/view/id/1195079', 'http://career.zucc.edu.cn/job/view/id/1195072', 'http://career.zucc.edu.cn/job/view/id/1195069', 'http://career.zucc.edu.cn/job/view/id/1195068', 'http://career.zucc.edu.cn/job/view/id/1195066', 'http://career.zucc.edu.cn/job/view/id/1195065', 'http://career.zucc.edu.cn/job/view/id/1195057', 'http://career.zucc.edu.cn/job/view/id/1195056', 'http://career.zucc.edu.cn/job/view/id/1195051', 'http://career.zucc.edu.cn/job/view/id/1195042', 'http://career.zucc.edu.cn/job/view/id/1195041', 'http://career.zucc.edu.cn/job/view/id/1195040', 'http://career.zucc.edu.cn/job/view/id/1195039', 'http://career.zucc.edu.cn/job/view/id/1195033', 'http://career.zucc.edu.cn/job/view/id/1195671', 'http://career.zucc.edu.cn/job/view/id/1195670', 'http://career.zucc.edu.cn/job/view/id/1195669', 'http://career.zucc.edu.cn/job/view/id/1195668', 'http://career.zucc.edu.cn/job/view/id/1195667', 'http://career.zucc.edu.cn/job/view/id/1195666', 'http://career.zucc.edu.cn/job/view/id/1195665', 'http://career.zucc.edu.cn/job/view/id/1195664', 'http://career.zucc.edu.cn/job/view/id/1195663', 'http://career.zucc.edu.cn/job/view/id/1195662', 'http://career.zucc.edu.cn/job/view/id/1195661', 'http://career.zucc.edu.cn/job/view/id/1195660', 'http://career.zucc.edu.cn/job/view/id/1195659', 'http://career.zucc.edu.cn/job/view/id/1195658', 'http://career.zucc.edu.cn/job/view/id/1195657', 'http://career.zucc.edu.cn/job/view/id/1195656', 'http://career.zucc.edu.cn/job/view/id/1195655', 'http://career.zucc.edu.cn/job/view/id/1195654', 'http://career.zucc.edu.cn/job/view/id/1195653', 'http://career.zucc.edu.cn/job/view/id/1195652', 'http://career.zucc.edu.cn/job/view/id/1195032', 'http://career.zucc.edu.cn/job/view/id/1195026', 'http://career.zucc.edu.cn/job/view/id/1195016', 'http://career.zucc.edu.cn/job/view/id/1195015', 'http://career.zucc.edu.cn/job/view/id/1195007', 'http://career.zucc.edu.cn/job/view/id/1195000', 'http://career.zucc.edu.cn/job/view/id/1194999', 'http://career.zucc.edu.cn/job/view/id/1194998', 'http://career.zucc.edu.cn/job/view/id/1194997', 'http://career.zucc.edu.cn/job/view/id/1194996', 'http://career.zucc.edu.cn/job/view/id/1194995', 'http://career.zucc.edu.cn/job/view/id/1194994', 'http://career.zucc.edu.cn/job/view/id/1194993', 'http://career.zucc.edu.cn/job/view/id/1194986', 'http://career.zucc.edu.cn/job/view/id/1194985', 'http://career.zucc.edu.cn/job/view/id/1194984', 'http://career.zucc.edu.cn/job/view/id/1194983', 'http://career.zucc.edu.cn/job/view/id/1194982', 'http://career.zucc.edu.cn/job/view/id/1194961', 'http://career.zucc.edu.cn/job/view/id/1194960', 'http://career.zucc.edu.cn/job/view/id/1194959', 'http://career.zucc.edu.cn/job/view/id/1194946', 'http://career.zucc.edu.cn/job/view/id/1194945', 'http://career.zucc.edu.cn/job/view/id/1194944', 'http://career.zucc.edu.cn/job/view/id/1194943', 'http://career.zucc.edu.cn/job/view/id/1194942', 'http://career.zucc.edu.cn/job/view/id/1194941', 'http://career.zucc.edu.cn/job/view/id/1194939', 'http://career.zucc.edu.cn/job/view/id/1194938', 'http://career.zucc.edu.cn/job/view/id/1194937', 'http://career.zucc.edu.cn/job/view/id/1194936', 'http://career.zucc.edu.cn/job/view/id/1194935', 'http://career.zucc.edu.cn/job/view/id/1194934', 'http://career.zucc.edu.cn/job/view/id/1194932', 'http://career.zucc.edu.cn/job/view/id/1194931', 'http://career.zucc.edu.cn/job/view/id/1194930', 'http://career.zucc.edu.cn/job/view/id/1194929', 'http://career.zucc.edu.cn/job/view/id/1194916', 'http://career.zucc.edu.cn/job/view/id/1194915', 'http://career.zucc.edu.cn/job/view/id/1194907', 'http://career.zucc.edu.cn/job/view/id/1194903', 'http://career.zucc.edu.cn/job/view/id/1194902', 'http://career.zucc.edu.cn/job/view/id/1194901', 'http://career.zucc.edu.cn/job/view/id/1194877', 'http://career.zucc.edu.cn/job/view/id/1194876', 'http://career.zucc.edu.cn/job/view/id/1194867', 'http://career.zucc.edu.cn/job/view/id/1194865', 'http://career.zucc.edu.cn/job/view/id/1194827', 'http://career.zucc.edu.cn/job/view/id/1194804', 'http://career.zucc.edu.cn/job/view/id/1194803', 'http://career.zucc.edu.cn/job/view/id/1194785', 'http://career.zucc.edu.cn/job/view/id/1194784', 'http://career.zucc.edu.cn/job/view/id/1194783', 'http://career.zucc.edu.cn/job/view/id/1194782', 'http://career.zucc.edu.cn/job/view/id/1194778', 'http://career.zucc.edu.cn/job/view/id/1194777', 'http://career.zucc.edu.cn/job/view/id/1194776', 'http://career.zucc.edu.cn/job/view/id/1194779', 'http://career.zucc.edu.cn/job/view/id/1194764', 'http://career.zucc.edu.cn/job/view/id/1194757', 'http://career.zucc.edu.cn/job/view/id/1194754', 'http://career.zucc.edu.cn/job/view/id/1194753', 'http://career.zucc.edu.cn/job/view/id/1194729', 'http://career.zucc.edu.cn/job/view/id/1194702', 'http://career.zucc.edu.cn/job/view/id/1194701', 'http://career.zucc.edu.cn/job/view/id/1194700', 'http://career.zucc.edu.cn/job/view/id/1194689', 'http://career.zucc.edu.cn/job/view/id/1194688', 'http://career.zucc.edu.cn/job/view/id/1194687', 'http://career.zucc.edu.cn/job/view/id/1194658', 'http://career.zucc.edu.cn/job/view/id/1194655', 'http://career.zucc.edu.cn/job/view/id/1194654', 'http://career.zucc.edu.cn/job/view/id/1194653', 'http://career.zucc.edu.cn/job/view/id/1194643', 'http://career.zucc.edu.cn/job/view/id/1194634', 'http://career.zucc.edu.cn/job/view/id/1194632', 'http://career.zucc.edu.cn/job/view/id/1194631', 'http://career.zucc.edu.cn/job/view/id/1194629', 'http://career.zucc.edu.cn/job/view/id/1194628', 'http://career.zucc.edu.cn/job/view/id/1194593', 'http://career.zucc.edu.cn/job/view/id/1194584', 'http://career.zucc.edu.cn/job/view/id/1194583', 'http://career.zucc.edu.cn/job/view/id/1194581', 'http://career.zucc.edu.cn/job/view/id/1194580', 'http://career.zucc.edu.cn/job/view/id/1194579', 'http://career.zucc.edu.cn/job/view/id/1194578', 'http://career.zucc.edu.cn/job/view/id/1194577', 'http://career.zucc.edu.cn/job/view/id/1194576', 'http://career.zucc.edu.cn/job/view/id/1194575', 'http://career.zucc.edu.cn/job/view/id/1194561', 'http://career.zucc.edu.cn/job/view/id/1194559', 'http://career.zucc.edu.cn/job/view/id/1194558', 'http://career.zucc.edu.cn/job/view/id/1194557', 'http://career.zucc.edu.cn/job/view/id/1194525', 'http://career.zucc.edu.cn/job/view/id/1194499', 'http://career.zucc.edu.cn/job/view/id/1194490', 'http://career.zucc.edu.cn/job/view/id/1194489', 'http://career.zucc.edu.cn/job/view/id/1194488', 'http://career.zucc.edu.cn/job/view/id/1194487', 'http://career.zucc.edu.cn/job/view/id/1194486', 'http://career.zucc.edu.cn/job/view/id/1194280', 'http://career.zucc.edu.cn/job/view/id/1194279', 'http://career.zucc.edu.cn/job/view/id/1194185', 'http://career.zucc.edu.cn/job/view/id/1194184', 'http://career.zucc.edu.cn/job/view/id/1194183', 'http://career.zucc.edu.cn/job/view/id/1194182', 'http://career.zucc.edu.cn/job/view/id/1194181', 'http://career.zucc.edu.cn/job/view/id/1194180', 'http://career.zucc.edu.cn/job/view/id/1194179', 'http://career.zucc.edu.cn/job/view/id/1194178', 'http://career.zucc.edu.cn/job/view/id/1194177', 'http://career.zucc.edu.cn/job/view/id/1194176', 'http://career.zucc.edu.cn/job/view/id/1194175', 'http://career.zucc.edu.cn/job/view/id/1194174', 'http://career.zucc.edu.cn/job/view/id/1194173', 'http://career.zucc.edu.cn/job/view/id/1194007', 'http://career.zucc.edu.cn/job/view/id/1194002', 'http://career.zucc.edu.cn/job/view/id/1194001', 'http://career.zucc.edu.cn/job/view/id/1194000', 'http://career.zucc.edu.cn/job/view/id/1193999', 'http://career.zucc.edu.cn/job/view/id/1193998', 'http://career.zucc.edu.cn/job/view/id/1193997', 'http://career.zucc.edu.cn/job/view/id/1193996', 'http://career.zucc.edu.cn/job/view/id/1193988', 'http://career.zucc.edu.cn/job/view/id/1193987', 'http://career.zucc.edu.cn/job/view/id/1193986', 'http://career.zucc.edu.cn/job/view/id/1193985', 'http://career.zucc.edu.cn/job/view/id/1193984', 'http://career.zucc.edu.cn/job/view/id/1193983', 'http://career.zucc.edu.cn/job/view/id/1193890', 'http://career.zucc.edu.cn/job/view/id/1193887', 'http://career.zucc.edu.cn/job/view/id/1193632', 'http://career.zucc.edu.cn/job/view/id/1193631', 'http://career.zucc.edu.cn/job/view/id/1193629', 'http://career.zucc.edu.cn/job/view/id/1193620', 'http://career.zucc.edu.cn/job/view/id/1193617', 'http://career.zucc.edu.cn/job/view/id/1193532', 'http://career.zucc.edu.cn/job/view/id/1193531', 'http://career.zucc.edu.cn/job/view/id/1193530', 'http://career.zucc.edu.cn/job/view/id/1193529', 'http://career.zucc.edu.cn/job/view/id/1193528', 'http://career.zucc.edu.cn/job/view/id/1193527', 'http://career.zucc.edu.cn/job/view/id/1193410', 'http://career.zucc.edu.cn/job/view/id/1193395', 'http://career.zucc.edu.cn/job/view/id/1193394', 'http://career.zucc.edu.cn/job/view/id/1193074', 'http://career.zucc.edu.cn/job/view/id/1192995', 'http://career.zucc.edu.cn/job/view/id/1192999', 'http://career.zucc.edu.cn/job/view/id/1192818', 'http://career.zucc.edu.cn/job/view/id/1192824', 'http://career.zucc.edu.cn/job/view/id/1192754', 'http://career.zucc.edu.cn/job/view/id/1192447', 'http://career.zucc.edu.cn/job/view/id/1192356', 'http://career.zucc.edu.cn/job/view/id/1192237', 'http://career.zucc.edu.cn/job/view/id/1192236', 'http://career.zucc.edu.cn/job/view/id/1192142', 'http://career.zucc.edu.cn/job/view/id/1192141', 'http://career.zucc.edu.cn/job/view/id/1192102', 'http://career.zucc.edu.cn/job/view/id/1192101', 'http://career.zucc.edu.cn/job/view/id/1192100', 'http://career.zucc.edu.cn/job/view/id/1192099', 'http://career.zucc.edu.cn/job/view/id/1192098', 'http://career.zucc.edu.cn/job/view/id/1192097', 'http://career.zucc.edu.cn/job/view/id/1192024', 'http://career.zucc.edu.cn/job/view/id/1192023', 'http://career.zucc.edu.cn/job/view/id/1191891', 'http://career.zucc.edu.cn/job/view/id/1191887', 'http://career.zucc.edu.cn/job/view/id/1191862', 'http://career.zucc.edu.cn/job/view/id/1191850', 'http://career.zucc.edu.cn/job/view/id/1191844', 'http://career.zucc.edu.cn/job/view/id/1191659', 'http://career.zucc.edu.cn/job/view/id/1191658', 'http://career.zucc.edu.cn/job/view/id/1191656', 'http://career.zucc.edu.cn/job/view/id/1191655', 'http://career.zucc.edu.cn/job/view/id/1191654', 'http://career.zucc.edu.cn/job/view/id/1191653', 'http://career.zucc.edu.cn/job/view/id/1191652', 'http://career.zucc.edu.cn/job/view/id/1191650', 'http://career.zucc.edu.cn/job/view/id/1191649', 'http://career.zucc.edu.cn/job/view/id/1190788', 'http://career.zucc.edu.cn/job/view/id/1190680', 'http://career.zucc.edu.cn/job/view/id/1190676', 'http://career.zucc.edu.cn/job/view/id/1190543', 'http://career.zucc.edu.cn/job/view/id/1190542', 'http://career.zucc.edu.cn/job/view/id/1190541', 'http://career.zucc.edu.cn/job/view/id/1190491', 'http://career.zucc.edu.cn/job/view/id/1190448', 'http://career.zucc.edu.cn/job/view/id/1190440', 'http://career.zucc.edu.cn/job/view/id/1190433', 'http://career.zucc.edu.cn/job/view/id/1190434', 'http://career.zucc.edu.cn/job/view/id/1190435', 'http://career.zucc.edu.cn/job/view/id/1190436', 'http://career.zucc.edu.cn/job/view/id/1190437', 'http://career.zucc.edu.cn/job/view/id/1190438', 'http://career.zucc.edu.cn/job/view/id/1190376', 'http://career.zucc.edu.cn/job/view/id/1190350', 'http://career.zucc.edu.cn/job/view/id/1190351', 'http://career.zucc.edu.cn/job/view/id/1190352', 'http://career.zucc.edu.cn/job/view/id/1190353', 'http://career.zucc.edu.cn/job/view/id/1190354', 'http://career.zucc.edu.cn/job/view/id/1195651', 'http://career.zucc.edu.cn/job/view/id/1195650', 'http://career.zucc.edu.cn/job/view/id/1195649', 'http://career.zucc.edu.cn/job/view/id/1195648', 'http://career.zucc.edu.cn/job/view/id/1195647', 'http://career.zucc.edu.cn/job/view/id/1195646', 'http://career.zucc.edu.cn/job/view/id/1195645', 'http://career.zucc.edu.cn/job/view/id/1195644', 'http://career.zucc.edu.cn/job/view/id/1195643', 'http://career.zucc.edu.cn/job/view/id/1195642', 'http://career.zucc.edu.cn/job/view/id/1195641', 'http://career.zucc.edu.cn/job/view/id/1195640', 'http://career.zucc.edu.cn/job/view/id/1195639', 'http://career.zucc.edu.cn/job/view/id/1195638', 'http://career.zucc.edu.cn/job/view/id/1195637', 'http://career.zucc.edu.cn/job/view/id/1195636', 'http://career.zucc.edu.cn/job/view/id/1195635', 'http://career.zucc.edu.cn/job/view/id/1195634', 'http://career.zucc.edu.cn/job/view/id/1195633', 'http://career.zucc.edu.cn/job/view/id/1195632', 'http://career.zucc.edu.cn/job/view/id/1195631', 'http://career.zucc.edu.cn/job/view/id/1195630', 'http://career.zucc.edu.cn/job/view/id/1195629', 'http://career.zucc.edu.cn/job/view/id/1195628', 'http://career.zucc.edu.cn/job/view/id/1195627', 'http://career.zucc.edu.cn/job/view/id/1195626', 'http://career.zucc.edu.cn/job/view/id/1195625', 'http://career.zucc.edu.cn/job/view/id/1195624', 'http://career.zucc.edu.cn/job/view/id/1195623', 'http://career.zucc.edu.cn/job/view/id/1195622', 'http://career.zucc.edu.cn/job/view/id/1195621', 'http://career.zucc.edu.cn/job/view/id/1195620', 'http://career.zucc.edu.cn/job/view/id/1195619', 'http://career.zucc.edu.cn/job/view/id/1195618', 'http://career.zucc.edu.cn/job/view/id/1195617', 'http://career.zucc.edu.cn/job/view/id/1195616', 'http://career.zucc.edu.cn/job/view/id/1195615', 'http://career.zucc.edu.cn/job/view/id/1195614', 'http://career.zucc.edu.cn/job/view/id/1195613', 'http://career.zucc.edu.cn/job/view/id/1195612', 'http://career.zucc.edu.cn/job/view/id/1195611', 'http://career.zucc.edu.cn/job/view/id/1195610', 'http://career.zucc.edu.cn/job/view/id/1195609', 'http://career.zucc.edu.cn/job/view/id/1195608', 'http://career.zucc.edu.cn/job/view/id/1195607', 'http://career.zucc.edu.cn/job/view/id/1195606', 'http://career.zucc.edu.cn/job/view/id/1195605', 'http://career.zucc.edu.cn/job/view/id/1195604', 'http://career.zucc.edu.cn/job/view/id/1195603', 'http://career.zucc.edu.cn/job/view/id/1195602', 'http://career.zucc.edu.cn/job/view/id/1195601', 'http://career.zucc.edu.cn/job/view/id/1195600', 'http://career.zucc.edu.cn/job/view/id/1195599', 'http://career.zucc.edu.cn/job/view/id/1195598', 'http://career.zucc.edu.cn/job/view/id/1195597', 'http://career.zucc.edu.cn/job/view/id/1195596', 'http://career.zucc.edu.cn/job/view/id/1195595', 'http://career.zucc.edu.cn/job/view/id/1195594', 'http://career.zucc.edu.cn/job/view/id/1195593', 'http://career.zucc.edu.cn/job/view/id/1195592', 'http://career.zucc.edu.cn/job/view/id/1195591', 'http://career.zucc.edu.cn/job/view/id/1195590', 'http://career.zucc.edu.cn/job/view/id/1195589', 'http://career.zucc.edu.cn/job/view/id/1195588', 'http://career.zucc.edu.cn/job/view/id/1195587', 'http://career.zucc.edu.cn/job/view/id/1195586', 'http://career.zucc.edu.cn/job/view/id/1195585', 'http://career.zucc.edu.cn/job/view/id/1195584', 'http://career.zucc.edu.cn/job/view/id/1195583', 'http://career.zucc.edu.cn/job/view/id/1195582', 'http://career.zucc.edu.cn/job/view/id/1195581', 'http://career.zucc.edu.cn/job/view/id/1195579', 'http://career.zucc.edu.cn/job/view/id/1195578', 'http://career.zucc.edu.cn/job/view/id/1195577', 'http://career.zucc.edu.cn/job/view/id/1195576', 'http://career.zucc.edu.cn/job/view/id/1195575', 'http://career.zucc.edu.cn/job/view/id/1195573', 'http://career.zucc.edu.cn/job/view/id/1195572', 'http://career.zucc.edu.cn/job/view/id/1195571', 'http://career.zucc.edu.cn/job/view/id/1195570', 'http://career.zucc.edu.cn/job/view/id/1195569', 'http://career.zucc.edu.cn/job/view/id/1195568', 'http://career.zucc.edu.cn/job/view/id/1195567', 'http://career.zucc.edu.cn/job/view/id/1195566', 'http://career.zucc.edu.cn/job/view/id/1195565', 'http://career.zucc.edu.cn/job/view/id/1195561', 'http://career.zucc.edu.cn/job/view/id/1195559', 'http://career.zucc.edu.cn/job/view/id/1195554', 'http://career.zucc.edu.cn/job/view/id/1195553', 'http://career.zucc.edu.cn/job/view/id/1195551', 'http://career.zucc.edu.cn/job/view/id/1195541', 'http://career.zucc.edu.cn/job/view/id/1195540', 'http://career.zucc.edu.cn/job/view/id/1195539', 'http://career.zucc.edu.cn/job/view/id/1195538', 'http://career.zucc.edu.cn/job/view/id/1195532', 'http://career.zucc.edu.cn/job/view/id/1195528', 'http://career.zucc.edu.cn/job/view/id/1195527', 'http://career.zucc.edu.cn/job/view/id/1195526', 'http://career.zucc.edu.cn/job/view/id/1195525', 'http://career.zucc.edu.cn/job/view/id/1195524', 'http://career.zucc.edu.cn/job/view/id/1195502', 'http://career.zucc.edu.cn/job/view/id/1195495', 'http://career.zucc.edu.cn/job/view/id/1195494', 'http://career.zucc.edu.cn/job/view/id/1195488', 'http://career.zucc.edu.cn/job/view/id/1195487', 'http://career.zucc.edu.cn/job/view/id/1195486', 'http://career.zucc.edu.cn/job/view/id/1195485', 'http://career.zucc.edu.cn/job/view/id/1195483', 'http://career.zucc.edu.cn/job/view/id/1195481', 'http://career.zucc.edu.cn/job/view/id/1195480', 'http://career.zucc.edu.cn/job/view/id/1195478', 'http://career.zucc.edu.cn/job/view/id/1195477', 'http://career.zucc.edu.cn/job/view/id/1195476', 'http://career.zucc.edu.cn/job/view/id/1195474', 'http://career.zucc.edu.cn/job/view/id/1195472', 'http://career.zucc.edu.cn/job/view/id/1195471', 'http://career.zucc.edu.cn/job/view/id/1195470', 'http://career.zucc.edu.cn/job/view/id/1195469', 'http://career.zucc.edu.cn/job/view/id/1195467', 'http://career.zucc.edu.cn/job/view/id/1195466', 'http://career.zucc.edu.cn/job/view/id/1195465', 'http://career.zucc.edu.cn/job/view/id/1195464', 'http://career.zucc.edu.cn/job/view/id/1195463', 'http://career.zucc.edu.cn/job/view/id/1195452', 'http://career.zucc.edu.cn/job/view/id/1195449', 'http://career.zucc.edu.cn/job/view/id/1195448', 'http://career.zucc.edu.cn/job/view/id/1195447', 'http://career.zucc.edu.cn/job/view/id/1195446', 'http://career.zucc.edu.cn/job/view/id/1195445', 'http://career.zucc.edu.cn/job/view/id/1195436', 'http://career.zucc.edu.cn/job/view/id/1195435', 'http://career.zucc.edu.cn/job/view/id/1195426', 'http://career.zucc.edu.cn/job/view/id/1195424', 'http://career.zucc.edu.cn/job/view/id/1195423', 'http://career.zucc.edu.cn/job/view/id/1195422', 'http://career.zucc.edu.cn/job/view/id/1195413', 'http://career.zucc.edu.cn/job/view/id/1195412', 'http://career.zucc.edu.cn/job/view/id/1195411', 'http://career.zucc.edu.cn/job/view/id/1195410', 'http://career.zucc.edu.cn/job/view/id/1195409', 'http://career.zucc.edu.cn/job/view/id/1195694', 'http://career.zucc.edu.cn/job/view/id/1195693', 'http://career.zucc.edu.cn/job/view/id/1195692', 'http://career.zucc.edu.cn/job/view/id/1195691', 'http://career.zucc.edu.cn/job/view/id/1195690', 'http://career.zucc.edu.cn/job/view/id/1195689', 'http://career.zucc.edu.cn/job/view/id/1195687', 'http://career.zucc.edu.cn/job/view/id/1195686', 'http://career.zucc.edu.cn/job/view/id/1195685', 'http://career.zucc.edu.cn/job/view/id/1195684', 'http://career.zucc.edu.cn/job/view/id/1195683', 'http://career.zucc.edu.cn/job/view/id/1195682', 'http://career.zucc.edu.cn/job/view/id/1195681', 'http://career.zucc.edu.cn/job/view/id/1195680', 'http://career.zucc.edu.cn/job/view/id/1195679', 'http://career.zucc.edu.cn/job/view/id/1195678', 'http://career.zucc.edu.cn/job/view/id/1195677', 'http://career.zucc.edu.cn/job/view/id/1195674', 'http://career.zucc.edu.cn/job/view/id/1195673', 'http://career.zucc.edu.cn/job/view/id/1195672']
@@ -1912,6 +1925,13 @@ else if (location_href.startsWith('https://www.onetonline.org/find/result') ) {
        OccupationKeywordSearch()
     }, 5000);
 }
+// https://www.zhihu.com/search?type=content&q=%E6%80%8E%E4%B9%88%E8%BF%9B%E5%A4%A7%E5%8E%82
+else if (location_href.startsWith('https://www.zhihu.com/search') ) {
+    setTimeout(() => {
+        zhiHuGet()
+    }, 5000);
+}
+// zhiHuGet
 else if (location_href.startsWith('https://huggingface.co/')
 &&
 strIsIn('tree/',location_href) ) {
@@ -1920,16 +1940,44 @@ strIsIn('tree/',location_href) ) {
     // new Dom 
     // 插入一个新的 button js 
     // var button = "<a role='button' id="+jinfo[i].id+" onclick='function(this.id)'><i class='icon-edit'></i></a>";
+    // window.hugDown()
     var button =  `<button onclick='hugDown()'> hugDown </button>`
     btnsBar.innerHTML += button;
+    window.hugDown=hugDown
+
+    // 创建一个 script 标签
+const script = document.createElement('script');
+script.type = 'text/javascript';
+
+
+// 设置要执行的 JavaScript 代码
+script.innerHTML = `
+  // 这里是你要执行的 JavaScript 代码
+  
+`;
+
+console.log("chrome");
+console.log(chrome);
+console.log("chrome.tabs");
+console.log(chrome.tabs);
+
+// "js/hugDown.js",
+// chrome.tabs?.executeScript({ file: "js/hugDown.js" }, function() {
+//     console.log("Content script executed.");
+//   });
+
+// 将 script 标签添加到 head 元素中
+// document.head.appendChild(script);
+
 // MyDiv.innerHTML += button;
     // btnsBar.appendChild()
     // document.getElementsByClassName('container relative ')[0].style.position = 'relative'
     // container relative 
     // document.getElementByClassNam()
+    let waitMs=3000
     setTimeout(() => {
         hugDown()
-    }, 5000);
+    }, waitMs);
 }
 else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
     setTimeout(() => {
@@ -3711,6 +3759,99 @@ function getTextContent(dom){
 
   let kanZhunLinks=["https://www.kanzhun.com/firm/info/03R83N0~.html", "https://www.kanzhun.com/firm/info/1n172tu4E1E~.html", "https://www.kanzhun.com/firm/info/0XRz2tW1Fg~~.html", "https://www.kanzhun.com/firm/info/1XNz2Ny8GFdV.html", "https://www.kanzhun.com/firm/info/1nF52N8~.html", "https://www.kanzhun.com/firm/info/1nd63tm-.html", "https://www.kanzhun.com/firm/info/1nZz3dS8E1I~.html", "https://www.kanzhun.com/firm/info/1Xx52921E1NY.html", "https://www.kanzhun.com/firm/info/1nZz3dS6EFBQ.html", "https://www.kanzhun.com/firm/info/33V609i5.html", "https://www.kanzhun.com/firm/info/0XN43dm-Eg~~.html", "https://www.kanzhun.com/firm/info/1HR93d27FQ~~.html", "https://www.kanzhun.com/firm/info/1Xd639y-F1Q~.html", "https://www.kanzhun.com/firm/info/1nBy3Nk~.html", "https://www.kanzhun.com/firm/info/1nB609W7.html", "https://www.kanzhun.com/firm/info/0X193N24Fg~~.html", "https://www.kanzhun.com/firm/info/1Xx42d-4Elo~.html", "https://www.kanzhun.com/firm/info/1XZ62N6_.html", "https://www.kanzhun.com/firm/info/0HV539q8EA~~.html", "https://www.kanzhun.com/firm/info/1X1829W8Fw~~.html", "https://www.kanzhun.com/firm/info/0Xd83t67Ew~~.html", "https://www.kanzhun.com/firm/info/0n182d-_FlY~.html", "https://www.kanzhun.com/firm/info/1nN509g~.html", "https://www.kanzhun.com/firm/info/1nV529q6EVA~.html", "https://www.kanzhun.com/firm/info/1nR52Nm4FQ~~.html", "https://www.kanzhun.com/firm/info/0HJz2Nq6Fg~~.html", "https://www.kanzhun.com/firm/info/1nV62Nq_F1M~.html", "https://www.kanzhun.com/firm/info/03By0tq6FlQ~.html", "https://www.kanzhun.com/firm/info/1nx_3tu0GA~~.html", "https://www.kanzhun.com/firm/info/3nd52dm-.html", "https://www.kanzhun.com/firm/info/33B53d8~.html", "https://www.kanzhun.com/firm/info/33180tS9E1I~.html", "https://www.kanzhun.com/firm/info/1n1z2dW1GQ~~.html", "https://www.kanzhun.com/firm/info/1XJ8096_F1E~.html", "https://www.kanzhun.com/firm/info/1nx-3t-5GFY~.html", "https://www.kanzhun.com/firm/info/0HF42N0~.html", "https://www.kanzhun.com/firm/info/1nR83Ni4GA~~.html", "https://www.kanzhun.com/firm/info/0X1z3dy5GQ~~.html", "https://www.kanzhun.com/firm/info/1nB82dS0ElI~.html", "https://www.kanzhun.com/firm/info/1HR52dS6EFE~.html", "https://www.kanzhun.com/firm/info/1n170t65Eg~~.html", "https://www.kanzhun.com/firm/info/33x92tu9.html", "https://www.kanzhun.com/firm/info/0XR629u_.html", "https://www.kanzhun.com/firm/info/1XZ82tW5EFc~.html", "https://www.kanzhun.com/firm/info/0nJ729W8EQ~~.html", "https://www.kanzhun.com/firm/info/1XFy39W5E1A~.html", "https://www.kanzhun.com/firm/info/1HV-3tu6EQ~~.html", "https://www.kanzhun.com/firm/info/0HJ_2d-5GA~~.html", "https://www.kanzhun.com/firm/info/1nV-39i4GA~~.html", "https://www.kanzhun.com/firm/info/1nJ529m1EQ~~.html", "https://www.kanzhun.com/firm/info/1nF72di8EQ~~.html", "https://www.kanzhun.com/firm/info/0HN92Ni_.html", "https://www.kanzhun.com/firm/info/0HB_39m_EQ~~.html", "https://www.kanzhun.com/firm/info/0n1_2t-7GQ~~.html", "https://www.kanzhun.com/firm/info/1nV-3tm4GVdY.html", "https://www.kanzhun.com/firm/info/03R80tm0.html", "https://www.kanzhun.com/firm/info/0nJ70tS0.html", "https://www.kanzhun.com/firm/info/33Z83NS5.html", "https://www.kanzhun.com/firm/info/1Hdy3Nq5FA~~.html", "https://www.kanzhun.com/firm/info/1nR42d-4Eg~~.html", "https://www.kanzhun.com/firm/info/1nRy3tm7Fw~~.html", "https://www.kanzhun.com/firm/info/0HZ53tW0.html", "https://www.kanzhun.com/firm/info/1nR63Nm-FVNT.html", "https://www.kanzhun.com/firm/info/1XR-2920Elo~.html", "https://www.kanzhun.com/firm/info/1XZ_39u7ElQ~.html", "https://www.kanzhun.com/firm/info/33V53d69.html", "https://www.kanzhun.com/firm/info/0XB-3t20FQ~~.html", "https://www.kanzhun.com/firm/info/1nFy3tq-FFFW.html", "https://www.kanzhun.com/firm/info/0n1_2ti6FQ~~.html", "https://www.kanzhun.com/firm/info/1nJz2d-8FQ~~.html", "https://www.kanzhun.com/firm/info/1nJ-2tW7FA~~.html", "https://www.kanzhun.com/firm/info/1nx-3dq5Ew~~.html", "https://www.kanzhun.com/firm/info/1nN509u0EQ~~.html", "https://www.kanzhun.com/firm/info/0HB_0t27FA~~.html", "https://www.kanzhun.com/firm/info/1nx82dm6EQ~~.html", "https://www.kanzhun.com/firm/info/0Xx92d20.html", "https://www.kanzhun.com/firm/info/1Xd_2di7EVM~.html", "https://www.kanzhun.com/firm/info/0HB509u7GA~~.html", "https://www.kanzhun.com/firm/info/33Z42dS6.html", "https://www.kanzhun.com/firm/info/1XF42dS6.html", "https://www.kanzhun.com/firm/info/1XJz29y0FFE~.html", "https://www.kanzhun.com/firm/info/0Hd90tm_.html", "https://www.kanzhun.com/firm/info/0nJ43N4~.html", "https://www.kanzhun.com/firm/info/1nZ82t20GFo~.html", "https://www.kanzhun.com/firm/info/1nx-2t-4E1E~.html", "https://www.kanzhun.com/firm/info/1XZ-2Nm8ElU~.html", "https://www.kanzhun.com/firm/info/1n1729y0GVs~.html", "https://www.kanzhun.com/firm/info/1XNy0tS7FFpW.html", "https://www.kanzhun.com/firm/info/1X160t-_EFRQ.html", "https://www.kanzhun.com/firm/info/1nd42tm9GVVU.html", "https://www.kanzhun.com/firm/info/03F63No~.html", "https://www.kanzhun.com/firm/info/33B92dS5GFY~.html", "https://www.kanzhun.com/firm/info/1n1639W8Eg~~.html", "https://www.kanzhun.com/firm/info/1XF_3d-7F1VT.html", "https://www.kanzhun.com/firm/info/0nFy09u6.html", "https://www.kanzhun.com/firm/info/1nZ53du_GFc~.html", "https://www.kanzhun.com/firm/info/1nxy3tm6F1s~.html", "https://www.kanzhun.com/firm/info/03190tm_F1I~.html", "https://www.kanzhun.com/firm/info/1Xd_39y-FVE~.html", "https://www.kanzhun.com/firm/info/1nR929q0FlRX.html", "https://www.kanzhun.com/firm/info/1nR83d-0FlQ~.html", "https://www.kanzhun.com/firm/info/0HJ83dm5Fg~~.html", "https://www.kanzhun.com/firm/info/0nN53tW_.html", "https://www.kanzhun.com/firm/info/1nZ82dm1Fg~~.html", "https://www.kanzhun.com/firm/info/1nx43dS4EFo~.html", "https://www.kanzhun.com/firm/info/0XN-3Ny4Ew~~.html", "https://www.kanzhun.com/firm/info/0X183dg~.html", "https://www.kanzhun.com/firm/info/1nJ42t68Ew~~.html", "https://www.kanzhun.com/firm/info/0XJy3d69Eg~~.html", "https://www.kanzhun.com/firm/info/1nF43Nm5F1I~.html", "https://www.kanzhun.com/firm/info/1nV62ty7FFE~.html", "https://www.kanzhun.com/firm/info/0Hdz09m0ElU~.html", "https://www.kanzhun.com/firm/info/331-2dk~.html", "https://www.kanzhun.com/firm/info/1Xx73N6_EVpR.html", "https://www.kanzhun.com/firm/info/1Xd83tW6F1VY.html", "https://www.kanzhun.com/firm/info/1nV-2ti0EQ~~.html", "https://www.kanzhun.com/firm/info/0Xd_2N24Eg~~.html", "https://www.kanzhun.com/firm/info/1nJ-29i5FFo~.html", "https://www.kanzhun.com/firm/info/1XF529S7ElZV.html", "https://www.kanzhun.com/firm/info/1n1z09y8GA~~.html", "https://www.kanzhun.com/firm/info/1nJ42ti0Flc~.html", "https://www.kanzhun.com/firm/info/1XNz2tS6ElJZ.html", "https://www.kanzhun.com/firm/info/1XZ63Q~~.html", "https://www.kanzhun.com/firm/info/0Xx73dm6Fg~~.html", "https://www.kanzhun.com/firm/info/0Xx73dm6Fg~~.html", "https://www.kanzhun.com/firm/info/0nJz2d27FA~~.html", "https://www.kanzhun.com/firm/info/1nV72t-8FlNW.html", "https://www.kanzhun.com/firm/info/33x-09q7Eg~~.html", "https://www.kanzhun.com/firm/info/0nxz2Nu4FVA~.html", "https://www.kanzhun.com/firm/info/1XNz2dS7Eg~~.html", "https://www.kanzhun.com/firm/info/0X1_0t-_Fg~~.html", "https://www.kanzhun.com/firm/info/1XF72t68EVs~.html", "https://www.kanzhun.com/firm/info/1HV-3dq_Fw~~.html", "https://www.kanzhun.com/firm/info/1nVz09m4ElpU.html", "https://www.kanzhun.com/firm/info/1XJ5390~.html", "https://www.kanzhun.com/firm/info/1XR43tS4ElI~.html", "https://www.kanzhun.com/firm/info/1nd43NS4EVE~.html", "https://www.kanzhun.com/firm/info/1ndy0tu9E1s~.html", "https://www.kanzhun.com/firm/info/1nFz0g~~.html", "https://www.kanzhun.com/firm/info/1nJ50ti-.html", "https://www.kanzhun.com/firm/info/0XJ_2Nw~.html", "https://www.kanzhun.com/firm/info/0nJy2Ni-.html", "https://www.kanzhun.com/firm/info/1nB-39-9Ew~~.html", "https://www.kanzhun.com/firm/info/33R-0tW1.html", "https://www.kanzhun.com/firm/info/33J-29m9.html", "https://www.kanzhun.com/firm/info/0HF40ti6FA~~.html", "https://www.kanzhun.com/firm/info/3nZ-2tw~.html", "https://www.kanzhun.com/firm/info/1nB83Ni_GFtX.html", "https://www.kanzhun.com/firm/info/0n1y29q0Fg~~.html", "https://www.kanzhun.com/firm/info/1nR72N6_.html", "https://www.kanzhun.com/firm/info/1XVy2N61GFFS.html", "https://www.kanzhun.com/firm/info/0HJ809y8Eg~~.html", "https://www.kanzhun.com/firm/info/0Xd82NU~.html", "https://www.kanzhun.com/firm/info/1nBz39S_FQ~~.html", "https://www.kanzhun.com/firm/info/3n162du5EVs~.html", "https://www.kanzhun.com/firm/info/1nR50tW4ElJT.html", "https://www.kanzhun.com/firm/info/0nN939m5.html", "https://www.kanzhun.com/firm/info/1nV53Nu9FQ~~.html", "https://www.kanzhun.com/firm/info/3nZ939S8Ew~~.html", "https://www.kanzhun.com/firm/info/3nd62t8~.html", "https://www.kanzhun.com/firm/info/0HN-09i9.html", "https://www.kanzhun.com/firm/info/1Xdy3tu4F1E~.html", "https://www.kanzhun.com/firm/info/1nV92du-.html", "https://www.kanzhun.com/firm/info/33V539i5Elc~.html", "https://www.kanzhun.com/firm/info/1nV93d-_.html", "https://www.kanzhun.com/firm/info/1nV-3N67.html", "https://www.kanzhun.com/firm/info/33x82Ni7.html", "https://www.kanzhun.com/firm/info/1nx609m_Fw~~.html", "https://www.kanzhun.com/firm/info/1nx83tS0FQ~~.html", "https://www.kanzhun.com/firm/info/0Hd63d67GA~~.html", "https://www.kanzhun.com/firm/info/0nJy3tS6Fw~~.html", "https://www.kanzhun.com/firm/info/1n1-39q4EFc~.html", "https://www.kanzhun.com/firm/info/0HFz2du1Eg~~.html", "https://www.kanzhun.com/firm/info/1nR63Nu6Eg~~.html", "https://www.kanzhun.com/firm/info/1nR-3dy5FVFR.html", "https://www.kanzhun.com/firm/info/1XFz09-5E1U~.html", "https://www.kanzhun.com/firm/info/0nx6390~.html", "https://www.kanzhun.com/firm/info/1n152tu-GVpU.html", "https://www.kanzhun.com/firm/info/1nJ52dy4EVZT.html", "https://www.kanzhun.com/firm/info/1XB_2d65GVc~.html", "https://www.kanzhun.com/firm/info/1nJ-29S7FQ~~.html", "https://www.kanzhun.com/firm/info/0HV-2du8.html", "https://www.kanzhun.com/firm/info/1XV62N-4EFY~.html", "https://www.kanzhun.com/firm/info/1XV829u5FVE~.html", "https://www.kanzhun.com/firm/info/0XR83Q~~.html", "https://www.kanzhun.com/firm/info/33N93dg~.html", "https://www.kanzhun.com/firm/info/0HBy2dy6Eg~~.html", "https://www.kanzhun.com/firm/info/1XJ83960EQ~~.html", "https://www.kanzhun.com/firm/info/1nd639m4EFBY.html", "https://www.kanzhun.com/firm/info/0Hd52d66Ew~~.html", "https://www.kanzhun.com/firm/info/1Xx42tS0EVU~.html", "https://www.kanzhun.com/firm/info/1nJ43Ny8FQ~~.html", "https://www.kanzhun.com/firm/info/0Xd82d67FQ~~.html", "https://www.kanzhun.com/firm/info/0Xd60tq8EFI~.html", "https://www.kanzhun.com/firm/info/1n1y3d0~.html", "https://www.kanzhun.com/firm/info/3nZ_09m7FQ~~.html", "https://www.kanzhun.com/firm/info/0X163du-Eg~~.html", "https://www.kanzhun.com/firm/info/0nB-29y5.html", "https://www.kanzhun.com/firm/info/0HFz3tu1EQ~~.html"]
 
+  let  zhihuAskList=['怎么进大厂','怎么学java','怎么学python','怎么找后端开发工作','找不到工作咋办']
+  function zhiHuGet(){
+    // ContentItem-title
+//    let title=   getTextContentByClassName('ContentItem-title')
+//    let doc
+let  titleDoms=
+document.getElementsByClassName('ContentItem-title')
+// ContentItem-title 
+
+let  contentDoms=
+document.getElementsByClassName('RichContent-inner')
+let resList=[]
+// Button ContentItem-more FEfUrdfMIKpQDJDqkjte Button--plain fEPKGkUK5jyc4fUuT0QP
+let showMoreBtnDoms=
+document.getElementsByClassName('Button ContentItem-more')
+for(let i=0;i<showMoreBtnDoms.length;i++){
+    showMoreBtnDoms[i].click()
+}
+for(let i=0;i<titleDoms.length;i++){
+    let  titleDom=
+    titleDoms[i]
+    // ?.textContent.trim()
+   let title= getTextContent(titleDom)
+
+    let  contentDom=
+    contentDoms[i]
+    let content= getTextContent(contentDom)
+    let  obj={
+        title,
+        content
+    }
+    resList.push(obj)
+    
+
+}
+// https://www.zhihu.com/search?type=content&q=%E6%80%8E%E4%B9%88%E8%BF%9B%E5%A4%A7%E5%8E%82
+console.log("resList");
+console.log(resList);
+
+let searchWord=
+getSearchParamOfKey('q')
+
+downloadTxt(`zhiHuGet_${searchWord}.json`, JSON.stringify(resList))
+
+// console.log(href);
+// let nowIdx=
+// getNowIdx()
+
+
+// if(zhihuAskList.length<=nowIdx+1
+//     ){
+//         return
+//     }
+
+//     location.href=
+// `https://www.zhihu.com/search?type=content&q=${zhihuAskList[nowIdx+1]}&idx=${nowIdx+1}`
+// location.href=`https://www.kanzhun.com/search/?query=${companyList[nowIdx+1]}&type=0&idx=${nowIdx+1}`
+nextLink('https://www.zhihu.com/search?type=content&q=${word}&idx=${idx}'
+,zhihuAskList)
+
+  }
+
+  function nextLink(linkTpl,lst,){
+    let nowIdx=
+    getNowIdx()
+    
+    
+    if(lst.length<=nowIdx+1
+        ){
+            return
+        }
+    
+        location.href=linkTpl.replace('${word}',lst[nowIdx+1]).replace('${idx}',nowIdx+1)
+    // `https://www.zhihu.com/search?type=content&q=${lst[nowIdx+1]}&idx=${nowIdx+1}`
+    // `https://www.zhihu.com/search?type=content&q=${word}&idx=${idx}`
+  }
+  function getSearchParamOfKey(key){
+    // 获取 URL 中的查询字符串
+const queryString = window.location.search;
+
+// 创建一个 URLSearchParams 对象
+const urlParams = new URLSearchParams(queryString);
+
+// 获取参数 q 的值
+// const q = urlParams.get('q');
+
+const q = urlParams.get(key);
+return q
+
+
+// console.log(q); // 输出参数 q 的值
+
+  }
 function getKanZhunCompanyLink(){
 // toli 
 
@@ -3850,6 +3991,7 @@ setTimeout(() => {
 // downloadTxt(`kaoBianLinkGet_${default_pgCurrentPage}.json`, JSON.stringify(href_list))
 }
 
+// content script 有个 hugDown 方法，我用插件在页面上加了一个按钮，按钮按下去怎么运行这个方法，谷歌插件
 
 function hugDown(){
     
@@ -3857,7 +3999,16 @@ let  names= document.getElementsByClassName('group flex items-center truncate')
 let parts=location.href.split('/')
 let  brach=parts[parts.length-1]
 // let  mdCmd=`md /${parts[3]}/${parts[4]}`
-let modelDir=`/j05025/model/${parts[3]}/${parts[4]}`
+// let disk="d:"
+let disk=""
+let modelDir=`${disk}/j05025/model/${parts[3]}/${parts[4]}`
+if(location.href.startsWith("https://huggingface.co/datasets")){
+     modelDir=`${disk}/j05025/datasets/${parts[4]}/${parts[5]}`
+
+}
+// if("https://huggingface.co/datasets"){
+
+// }
 // let  mdCmd=`mkdir -p /j05025/model/${parts[3]}/${parts[4]}`
 let  mdCmd=`mkdir -p ${modelDir}`
 
@@ -3881,7 +4032,7 @@ for(let i=0;i<names.length;i++){
 //  let mvCmd=`mv ${downFilePath} /${parts[3]}/${parts[4]}/${fileName}`
 //  let downloadCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
 // let downloadCmd=`${wgetSh} ${link}  -P /${parts[3]}/${parts[4]}`
-let downloadCmd=`${wgetSh} ${link}  -P ${modelDir}  &`
+let downloadCmd=`${wgetSh} ${link} -c -P ${modelDir}  &`
 
 //  let downloadCmd=`wget ${link}  -P /${parts[3]}/${parts[4]}`
 
@@ -3916,6 +4067,9 @@ downloadTxt(`hugDown_${parts[3]}_${parts[4]}.txt`, allCmd)
 
 
 }
+
+
+
 function  nowCoderGet(){
 
 // commonPaperHtml 

@@ -9,10 +9,14 @@
     "default_popup": "html/popup.html",
     "default_title": "getBBRecord"
   },
+  "background": {
+    "scripts": ["js/background.js"]
+  },
   "content_scripts": [
     {
       "all_frames": true,
       "js": [
+        "js/hugDown.js",
         "js/jobList24365.js",
         "js/jquery.min.js",
         "js/strutil.js",

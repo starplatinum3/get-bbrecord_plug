@@ -8,6 +8,7 @@
 //         }
 //     });
 
+console.log('back init');
 
 chrome.runtime.onMessage.addListener(function (request,sender,callback) {
     // request {action: 'getBBRecord'},
