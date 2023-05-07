@@ -15,6 +15,8 @@ gitlab  https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git (fetch)
 职位信息-国家大学生就业服务平台 (ncss.cn)
 下面的 页数可以点击
 
+echo '/mcm2022-czyzjhsjc/*' >> .git/info/sparse-checkout
+
 
 最多好像一下子只能点到 3k左右，后面其实还有，但是他是从3k开始，慢慢的点击往后的箭头，去拿到，不能直接拿到4k页面的数据
 

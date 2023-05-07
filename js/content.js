@@ -1192,6 +1192,7 @@ function giteeFileDown(){
     let outCmdStr=""
 let fileLinkDoms=
 document.getElementsByClassName('five wide column tree-item-file-name tree-list-item')
+// https://gitee.com/De_arning/study-on-the-optimization-strategy-of-forest-harvesting-management-under-the-background-of-carbon-neutrality/raw/master/mcm2022-czyzjhsjc/2022_MCM_ICM_Problems/2022_ICM_Problem_D.pdf
 // https://gitee.com/De_arning/study-on-the-optimization-strategy-of-forest-harvesting-management-under-the-background-of-carbon-neutrality/raw/master/mcm2022-czyzjhsjc/2022_MCM_ICM_Problems/2022_MCM_Problem_B.pdf
 for(let i=0;i<fileLinkDoms.length;i++){
     let  fileLinkDom=
@@ -1214,6 +1215,10 @@ for(let i=0;i<fileLinkDoms.length;i++){
     // console.log(cmd);
     outCmdStr+=cmd+"\n"
 }
+if(outCmdStr.length<=0){
+return
+}
+// outCmdStr.length()>0
 downloadTxt(`wget_${location.href}.sh`,outCmdStr)
 }
 function  randomNum(from,to){
