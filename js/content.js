@@ -1180,6 +1180,41 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
 
 }
 
+function giteeFileDown(){
+    
+    let  branchNameDoms= document.getElementsByClassName('item git-project-branch-item')
+    if(!branchNameDoms){
+        return
+    }
+    // let  branchName= document.getElementsByClassName("branch-name")[0]?.textContent?.trim()
+   
+    // location.href
+    let outCmdStr=""
+let fileLinkDoms=
+document.getElementsByClassName('five wide column tree-item-file-name tree-list-item')
+// https://gitee.com/De_arning/study-on-the-optimization-strategy-of-forest-harvesting-management-under-the-background-of-carbon-neutrality/raw/master/mcm2022-czyzjhsjc/2022_MCM_ICM_Problems/2022_MCM_Problem_B.pdf
+for(let i=0;i<fileLinkDoms.length;i++){
+    let  fileLinkDom=
+    fileLinkDoms[i]
+    let  linkDom=
+    fileLinkDom.getElementsByTagName('a')[0]
+    let  link=
+    linkDom.href
+    // console.log(link);
+    // /raw/
+    // link.replace('/raw/','/blob/')
+    let  rawLink=
+    link.replace('/blob/','/raw/')
+    console.log(rawLink);
+
+    // wget 
+    let wgetSh=String.raw`D:\software\wget-1.21.3-win64`
+    let cmd=`${wgetSh} ${rawLink} -O ${link.split('/').pop()}`
+    // console.log(cmd);
+    outCmdStr+=cmd+"\n"
+}
+downloadTxt(`wget_${location.href}.sh`,outCmdStr)
+}
 function  randomNum(from,to){
     // 生成 [ n, m ) 范围内的随机数（大于等于n，小于m）
    return  Math.random()*(to-from)+from
@@ -1937,6 +1972,7 @@ if(CurBrowser!="Chrome"){
         zhiHuGet()
     }, waitMs);
 }
+
 // zhiHuGet
 else if (location_href.startsWith('https://huggingface.co/')
 &&
@@ -1984,6 +2020,12 @@ console.log(chrome.tabs);
     setTimeout(() => {
         hugDown()
     }, waitMs);
+}
+// giteeFileDown
+else if (location_href.startsWith('https://gitee.com/') ) {
+    setTimeout(() => {
+        giteeFileDown()
+    }, 2000);
 }
 else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
     setTimeout(() => {
