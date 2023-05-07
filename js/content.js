@@ -1208,7 +1208,8 @@ for(let i=0;i<fileLinkDoms.length;i++){
     console.log(rawLink);
 
     // wget 
-    let wgetSh=String.raw`D:\software\wget-1.21.3-win64`
+    let wgetSh=String.raw`D:\software\wget-1.21.3-win64/wget.exe`
+    // "D:\software\wget-1.21.3-win64\wget.exe"
     let cmd=`${wgetSh} ${rawLink} -O ${link.split('/').pop()}`
     // console.log(cmd);
     outCmdStr+=cmd+"\n"
