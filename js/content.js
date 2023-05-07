@@ -1180,6 +1180,32 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
 
 }
 
+function zhihu_ans_download(){
+    // QuestionHeader-title
+    // getElementsByClassName("QuestionHeader-title")
+    let title=
+    getTextContentByClassName('QuestionHeader-title')
+    let  titleLittle=
+    getTextContentByClassName('QuestionRichText')
+    let  ansDoms=
+    document.
+    getElementsByClassName('RichContent-inner')
+    let ansList=[]
+    for(let i=0;i<ansDoms.length;i++) {
+        let ansDom=
+        ansDoms[i]
+        let  ans=
+        getTextContent(ansDom)
+        ansList.push(ans)
+    }
+    let res={
+        title,
+        titleLittle,
+        ansList
+    }
+    downloadTxt(`zhihu_ans_${title}.json`, JSON.stringify(res))
+}
+
 function giteeFileDown(){
     
     let  branchNameDoms= document.getElementsByClassName('item git-project-branch-item')
@@ -1978,7 +2004,19 @@ if(CurBrowser!="Chrome"){
         zhiHuGet()
     }, waitMs);
 }
+else if (location_href.startsWith('https://www.zhihu.com/question') ) {
+    // https://www.zhihu.com/question/23671661/answer/2872873481
+// let CurBrowser=getCurBrowser()
+// if(CurBrowser!="Chrome"){
+//     return
+// }
 
+    let waitMs=3000
+    setTimeout(() => {
+        zhihu_ans_download()
+    }, waitMs);
+}
+// zhihu_ans_download
 // zhiHuGet
 else if (location_href.startsWith('https://huggingface.co/')
 &&
