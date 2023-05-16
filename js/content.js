@@ -499,6 +499,31 @@ let searchWordList = ["手机", "面包", "泡面",
     "运动鞋", "洗发水", "剃须刀", "即热食品", "热干面", "热狗", "紫菜",
     "即时", "凤爪", "棉拖鞋", "麻花", "手套", "酒精", "巧克力", "蛋糕",
     "烤鸭", "烤鸡", "马桶坐垫", "不锈钢脸盆", "洗脚盆", "电饭煲", "洗衣液",
+    "小米 mi 9pro","小米","oppo","华为","vivo","u盘","内存","固态硬盘","显卡",
+    "cpu","主板","电源","机箱","显示器","键盘","鼠标","耳机","音箱","路由器","无线网卡","移动硬盘","移动ssd",
+  
+    "苹果 iPhone 12",
+    "苹果 iPhone 11",
+    "三星 Galaxy S21",
+    "三星 Galaxy S20",
+    "华为 Mate 40 Pro",
+    "华为 P40 Pro",
+    "小米 Redmi Note 9",
+    "小米 Mi Band 6",
+    "索尼 PlayStation 5",
+    "任天堂 Switch",
+    "惠普 笔记本电脑",
+    "戴尔 台式电脑",
+    "联想 ThinkPad",
+    "华硕 游戏显示器",
+    "罗技 无线鼠标",
+    "微软 Xbox Series X",
+    "Bose 无线耳机",
+    "JBL 蓝牙音箱",
+    "D-Link 路由器",
+    "西部数据 移动硬盘",
+    "金士顿 内存条",
+    "海盗船 机械键盘"
 ]
 let fruits = ['樱桃', '西瓜', '葡萄', "橘子",
     "香蕉", '水蜜桃', '芒果', '石榴', '李子', '柚子', '橄榄', '荔枝', '柠檬',
@@ -1998,10 +2023,18 @@ if(CurBrowser!="Chrome"){
     return
 }
 
+const explorer = navigator.userAgent;
+console.log("explorer");
+console.log(explorer);
+
+if(explorer.indexOf("Edg") >= 0){
+    return
+}
+
     let waitMs=3000
    
     setTimeout(() => {
-        zhiHuGet()
+        // zhiHuGet()
     }, waitMs);
 }
 else if (location_href.startsWith('https://www.zhihu.com/question') ) {
@@ -2065,12 +2098,7 @@ console.log(chrome.tabs);
         hugDown()
     }, waitMs);
 }
-// giteeFileDown
-else if (location_href.startsWith('https://gitee.com/') ) {
-    setTimeout(() => {
-        giteeFileDown()
-    }, 2000);
-}
+
 else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
     setTimeout(() => {
         kaoBianLinkGet()
@@ -2095,9 +2123,24 @@ else if (location_href.startsWith('https://chat.openai.com/chat') ) {
 else if (location_href.startsWith('https://gitee.com')) {
     setTimeout(() => {
         giteeGithubLinkGet()
-    }, 1000);
+        // giteeFileDown()
+    }, 1000); 
+    
+    setTimeout(() => {
+        giteeFileDown()
+    }, 2000);
 
 }
+else if (location_href.startsWith('https://www.nowcoder.com/search/all')) {
+    setTimeout(() => {
+        nowCoderCrawler()
+    }, 1000); 
+}
+// nowCoderCrawler
+// giteeFileDown
+// else if (location_href.startsWith('https://gitee.com/') ) {
+   
+// }
 // btn-sync-from-github
 // questionListQuery
 // onetonlineGet
@@ -3470,6 +3513,59 @@ function get24365ByIndex(){
    
 }
 
+// tw-cursor-pointer
+const nowCoderCrawler=()=>{
+
+    // 'tw-cursor-pointer'
+  let  className_titleDoms='tw-overflow-hidden hover:tw-text-gray-700 tw-overflow-ellipsis tw-whitespace-nowrap tw-font-bold tw-text-lg tw-text-gray-800'
+    let  titleDoms=
+    document.getElementsByClassName(className_titleDoms)
+    let resList=[]
+    // vue-ellipsis-js feed-text-ellipsis tw-w-full
+    // 'vue-ellipsis-js feed-text-ellipsis tw-w-full'
+    let  contentDoms=
+    document.getElementsByClassName('vue-ellipsis-js feed-text-ellipsis tw-w-full')
+    for(let i=0;i<titleDoms.length;i++){
+        let  titleDom=
+        titleDoms[i]
+        let title= getTextContent(titleDoms[i])
+        console.log(title);
+        let  linkDom=
+        titleDom.getElementsByTagName('a')[0]
+        let  contentLik=
+        linkDom.href
+        // let  
+        // contentDoms[i]
+        let content= getTextContent(contentDoms[i])
+        resList.push({
+            title,
+            contentLik,
+            content,
+        })
+    }
+
+    // location.href
+    console.log(resList);
+    // downloadTxt(`nowcoder_${location.href}.json`, JSON.stringify(resList))
+
+    downloadTxt(`nowcoder.json`, JSON.stringify(resList))
+    let btnNext= document.getElementsByClassName('btn-prev')[1]
+    // disabled
+    let disabled=
+    btnNext.getAttribute('disabled')
+    if(disabled=='disabled'){
+        return
+    }
+    console.log("btnNext");
+    console.log(btnNext);
+
+    btnNext.click()
+    // disabled
+    setTimeout(() => {
+        nowCoderCrawler()
+    }, 2000);
+ 
+}
 const giteeGithubLinkGet=()=>{
     // btn-sync-from-github
    let  btnSyncGithub= document.getElementById('btn-sync-from-github')
