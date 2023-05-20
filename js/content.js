@@ -746,12 +746,14 @@ let contentIdList = ['1237071659', '1237072629', '1237068750', '1237068752', '12
 
 function getNowIdx() {
     let idx = getQueryString("idx")
-    console.log("idx");
-    console.log(idx);
+    // console.log("idx");
+    // console.log(idx);
     if (!idx) {
         idx = "0"
     }
     let idxInt = parseInt(idx)
+    console.log("idxInt");
+    console.log(idxInt);
     return idxInt
     // let idxIntNext = idxInt + 1
     // return idxIntNext
@@ -2136,6 +2138,13 @@ else if (location_href.startsWith('https://www.nowcoder.com/search/all')) {
         nowCoderCrawler()
     }, 1000); 
 }
+else if (location_href.startsWith('https://www.nowcoder.com/discuss')
+||location_href.startsWith('https://www.nowcoder.com/feed/main/detail')) {
+    setTimeout(() => {
+        nowCoderAnsCrawler()
+    }, 1000); 
+}
+// nowCoderAnsCrawler
 // nowCoderCrawler
 // giteeFileDown
 // else if (location_href.startsWith('https://gitee.com/') ) {
@@ -3513,6 +3522,51 @@ function get24365ByIndex(){
    
 }
 
+// nowcoderLinkList
+const nowCoderAnsCrawler=()=>{
+    let  title=
+    getTextContentByClassName('content-post-title')
+    || getTextContentByClassName('tw-mb-5 tw-font-medium tw-text-size-title-lg-pure tw-text-gray-800')
+    // 'tw-mb-5 tw-font-medium tw-text-size-title-lg-pure tw-text-gray-800'
+    // 'tw-flex'
+    let askContent=
+    getTextContentByClassName('nc-post-content')
+    ||  getTextContentByClassName('feed-content-text tw-text-gray-800 tw-mb-4 tw-break-all')
+    console.log("askContent");
+    console.log(askContent);
+
+    // let  askContent=
+    // getTextContentByClassName('feed-content-text tw-text-gray-800 tw-mb-4 tw-break-all')
+    let  discussDoms=
+    document.getElementsByClassName('vue-ellipsis-js-content')
+    let  discussList=[]
+    for(let i=0;i<discussDoms.length;i++){
+        // let  discussDoms
+        // discussDoms[i]
+        let  discuss=
+        getTextContent(discussDoms[i])
+        discussList.push(discuss)
+    }
+    let res={
+        title,
+        askContent,
+        discussList
+    }
+
+    console.log("res");
+    console.log(res);
+
+    let idx=
+    getNowIdx()
+
+  
+    // nowcoderLinkList
+
+
+   downloadTxt(`nowcoderAns_idx_${idx}.json`,JSON.stringify(res))
+    nextLinkReplace(nowcoderLinkList)
+
+}
 // tw-cursor-pointer
 const nowCoderCrawler=()=>{
 
@@ -4016,6 +4070,42 @@ function zhihuDownload(){
 
   }
 
+  const getLinkMark=()=>{
+    let   href=  location.href
+    //  href. 
+    let  linkMark="?"
+    if(
+        href.includes("?")
+    ){
+        linkMark="$"
+    }
+    return linkMark
+  }
+
+  function nextLinkReplace(lst){
+    let nowIdx= getNowIdx()
+    if(lst.length<=nowIdx+1){
+         return
+    }
+    let  nextLink= lst[nowIdx+1]
+    console.log("nextLink");
+        console.log(nextLink);
+
+     let   href=  location.href
+    //  href. 
+    let  linkMark="?"
+    if(
+        href.includes("?")
+    ){
+        linkMark="&"
+    }
+       
+    let  nextAllLink=`${nextLink}${linkMark}idx=${nowIdx+1}`
+    console.log("nextAllLink");
+    console.log(nextAllLink);
+
+        location.href=`${nextLink}${linkMark}idx=${nowIdx+1}`
+  }
   
   function nextLink(linkTpl,lst,){
     let nowIdx=
