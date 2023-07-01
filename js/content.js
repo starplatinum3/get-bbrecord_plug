@@ -284,6 +284,217 @@ function downloadPage(callback) {
     // callback()
 
 
+    // let idx = getQueryString("idx")
+    // console.log("idx");
+    // console.log(idx);
+    // if (!idx) {
+    //     idx = "0"
+    // }
+    // let idxInt = parseInt(idx)
+    // let idxIntNext = idxInt + 1
+    // if (idxIntNext >= searchWordList.length) {
+    //     return
+    // }
+
+    // let searchWordNext = searchWordList[idxIntNext]
+    // //  location.href.replace 
+
+    // window.location.href = `https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
+
+
+    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
+
+    // taoBaoNext()
+
+
+}
+
+// let click='click'
+let k={
+    click:"click"
+}
+
+function saveData(data){
+    // getMongoData
+    // http://localhost:8080/index
+    let url="http://localhost:8080/saveData"
+ 
+    let collectionName="kaggle_down"
+    let postForm={
+        saveData:data,
+     collectionName:collectionName
+    }
+    console.log("postForm");
+    console.log(postForm);
+    postData(url,postForm).then(res=>{
+     console.log("res");
+     console.log(res);
+ 
+    }).catch(e=>{
+     console.log(e);
+    })
+}
+
+function getChildText(element) {
+    var childText = '';
+    var children = element.childNodes;
+  
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      if (child.nodeType === Node.TEXT_NODE) {
+        childText += child.textContent.trim();
+      }
+    }
+  
+    return childText;
+  }
+  
+//   // 使用示例
+//   var parentElement = document.getElementById('parent');
+//   var text = getChildText(parentElement);
+//   console.log(text);
+
+let baseUrl="http://localhost:8080"
+function getMongoData(fileName){
+    let url=`${baseUrl}/getMongoData`
+    // getMongoData
+    let collectionName="kaggle_down"
+    let postForm={
+        fileName:fileName,
+     collectionName:collectionName
+    }
+    console.log("postForm");
+    console.log(postForm);
+    postData(url,postForm).then(res=>{
+     console.log("res");
+     console.log(res);
+     let dataList=
+     res.data
+     if(   dataList.length>=1){
+        // 有了 不要下载了
+        let btnDownd=
+        document.getElementsByClassName('rmwc-icon rmwc-icon--ligature google-material-icons sc-BKAtq fmysTT')[0]
+        DomUtil.domAddText(btnDownd,"已经有下载了")
+     }
+  
+    }).catch(e=>{
+     console.log(e);
+    })
+    // console.log("postForm");
+    // console.log(postForm);
+    // postData(url,postForm).then(res=>{
+    //  console.log("res");
+    //  console.log(res);
+    // }).catch(e=>{
+}
+
+function domAddText(targetElement,text){
+// 创建文本节点
+var textNode = document.createTextNode(text);
+
+// 获取目标元素
+// var targetElement = document.getElementById('target');
+
+// 将文本节点添加到目标元素后面
+targetElement.parentNode.insertBefore(textNode, targetElement.nextSibling);
+
+}
+
+let DomUtil={
+    domAddText,
+}
+
+
+
+function kaggleDownClickedSetup(){
+
+    // kaggleDownClickedSetupInterval
+    // location.  window.href.location
+    if (
+       ! strIsIn("output",     location. href )
+    ){
+        // kaggleDownClickedSetupInterval.st 
+        // 停止一个 interval js 
+       
+        return 
+    }
+
+    clearInterval (kaggleDownClickedSetupInterval)
+
+    // getMongoData
+    // postData
+    // sc-brKeYL sc-ktEKTO sc-iyAnkk izsmej JpJng igGRJm
+    let btn=
+    document.getElementsByClassName('rmwc-icon rmwc-icon--ligature google-material-icons sc-BKAtq fmysTT')[0]
+    console.log("btn");
+    console.log(btn);
+    // \
+    // \rmwc-icon rmwc-icon--ligature google-material-icons sc-BKAtq fmysTT
+
+    let btn展开=
+    document.getElementsByClassName('rmwc-icon rmwc-icon--ligature google-material-icons sc-BKAtq fmysTT')[1]
+   
+    // btn.onclick=function(evt){
+    //     console.log("点击了 ");
+    //     console.log(evt);
+    //     // downloadPage()
+    // }
+
+    let domName=
+    document.getElementsByClassName('sc-brKeYL sc-ktEKTO sc-cIvudY izsmej JpJng cWpa-dx')[0]
+//    let fileName= getTextContent( domName)
+//    gette 
+// js 获取子 的 文本 不要孙子
+let fileName=  getChildText(domName)
+
+  getMongoData(fileName)
+
+//    let url="https://www.kaggle.com/c/lish-moa/data"
+ 
+    btn.addEventListener(k.click, function(evt){
+        console.log("点击了 btn");
+        console.log(evt);
+
+        let date= new Date()
+        let data={
+         fileName,
+         date,
+        
+        }
+        console.log("data");
+        console.log(data);
+        console.log("saveData");
+        // console.log(data);
+        saveData(data)
+    });
+
+    btn展开.addEventListener(k.click, function(evt){
+        console.log("点击了 btn展开");
+        console.log(evt);
+
+        // let date= new Date()
+        // let data={
+        //  fileName,
+        //  date,
+        
+        // }
+        // console.log("data");
+        // console.log(data);
+        // console.log("saveData");
+        // // console.log(data);
+        // saveData(data)
+    });
+
+    // js 绑定 on click
+    // btn展开.onclick=function(evt){
+    //     console.log("点击了 btn展开");
+    //     console.log(evt);
+    //     // downloadPage()
+    // }
+}
+
+function taoBaoNext(){
+    
     let idx = getQueryString("idx")
     console.log("idx");
     console.log(idx);
@@ -300,9 +511,6 @@ function downloadPage(callback) {
     //  location.href.replace 
 
     window.location.href = `https://uland.taobao.com/sem/tbsearch?keyword=${searchWordNext}&idx=${idxIntNext}`
-
-    // https://uland.taobao.com/sem/tbsearch?keyword=橘子&idx=3
-
 }
 
 function getNowTimeStr() {
@@ -523,7 +731,15 @@ let searchWordList = ["手机", "面包", "泡面",
     "D-Link 路由器",
     "西部数据 移动硬盘",
     "金士顿 内存条",
-    "海盗船 机械键盘"
+    "海盗船 机械键盘",
+    "止疼药","布洛芬","阿司匹林","塞来昔布",
+    "曲马多","吗啡",
+    "连花清瘟胶囊","金花清感颗粒","藿香正气水","宣肺败毒颗粒","化湿败毒颗粒",
+    "洛芬混悬液","洛索洛芬钠片","复方对乙酰氨基酚片",
+    "盐酸氨溴索片","氢溴酸右美沙芬缓释片",
+    "头孢呋辛酯片","盐酸莫西沙星片","头孢地尼胶囊",
+    "甲泼尼龙片","醋酸地塞米松片","氢化可的松片",
+    "利巴韦林片","利托那韦片","阿昔洛韦片"
 ]
 let fruits = ['樱桃', '西瓜', '葡萄', "橘子",
     "香蕉", '水蜜桃', '芒果', '石榴', '李子', '柚子', '橄榄', '荔枝', '柠檬',
@@ -787,6 +1003,380 @@ searchWordList =
     addAll(searchWordList, fruits)
 // 水果 fruit
 
+function 安居客Get(){
+    // zu-info
+// zuInfo
+    let zuInfos=[]
+    let  zuInfoDoms=
+    document.  getElementsByClassName('zu-info')
+    let side租金Doms=
+    document.getElementsByClassName('zu-side')
+    let detailsDoms=
+    document.getElementsByClassName('details-item')
+    
+    let botTagDoms=
+    document.getElementsByClassName('details-item bot-tag')
+    let detailsTagDoms=
+    document.getElementsByClassName('details-item tag')
+    for(let i=0;i<zuInfoDoms.length;i++){
+        // let detailsDom=
+        // detailsDoms[i]
+
+        let money租金Dom=
+        side租金Doms[i]
+        let zuInfoDom=
+        zuInfoDoms[i]
+        let aDom=
+        zuInfoDom.getElementsByTagName('a')[0]
+        let placeName=
+        getTextContent(aDom)
+        let  href=
+        aDom.href
+        let  zuInfo=
+        zuInfoDom.innerHTML
+        let detailsDom=
+        zuInfoDom.getElementsByTagName('address')[0]
+        console.log(zuInfo);
+        let detail=
+        getTextContent(detailsDom)
+        // 租金Dom.get 
+        let placeLink=
+        detailsDom.getElementsByTagName('a')[0]?.href
+
+        let botTag=
+        getTextContent(botTagDoms[i])
+        
+        let  detailsTag=
+        getTextContent(
+            detailsTagDoms[i]
+        )
+        
+        let money=
+        getTextContent(money租金Dom)
+        let obj={
+            botTag,
+            detailsTag,
+            href,
+            zuInfo,
+            placeName,
+            money,
+            detail,
+            placeLink,
+        }
+        zuInfos.push(obj)
+        // zuInfos.push(zuInfo)
+    }
+    downloadTxt(`安居客.json`,JSON.stringify(zuInfos))
+    document.getElementsByClassName('aNxt')[0].click()
+
+
+}
+
+// d(){
+//     // footer
+// }
+
+
+function getXiaoHongShu(){
+    
+    let titleDoms=  document.getElementsByClassName("footer")
+    // let titleDoms=  document.getElementsByClassName("title")
+
+    let coverDoms=   document.getElementsByClassName("cover ld")
+    // detail
+    // font15 mt12 bold
+//   let detailDoms=  document.getElementsByClassName("font15 mt12 bold")
+//   let addressDoms=  document.getElementsByClassName("gray6 mt12")
+// //   gray6 mt12
+
+// let dis地铁Doms=  document.getElementsByClassName("note subInfor")
+
+    let resList=[]
+    
+    for(let i=0;i<titleDoms.length;i++){
+
+        let titleDom=  titleDoms[i]
+       let  coverDom= coverDoms[i]
+    let  href=   coverDom?.href
+   let  style= coverDom?.style
+//    style= 
+// background=
+let background=
+style?.background
+        // let priceDoms=
+        // priceDoms[i]
+      let   title= getTextContent(titleDom)
+    //   let   price= getTextContent( priceDoms[i])
+      
+    //   let   detail= getTextContent( detailDoms[i])
+      
+    //   let   address= getTextContent( addressDoms[i])
+    //   let   dis地铁= getTextContent( dis地铁Doms[i])
+
+      resList.push({
+        background,
+        href,
+        // style,
+        title,
+        // price,
+        // detail,
+        // address,
+        // dis地铁,
+      })
+    }
+
+    downloadTxt(`xhs_${location.href}.json`,JSON.stringify(resList))
+}
+
+function  xhs_note_get(){
+    // note-content
+  let  noteContent=  getTextContentByClassName('note-content')
+    // document.getElementsByClassName('note-content')[0]
+   let  descDoms=document.getElementsByClassName('desc')
+//    descDoms
+
+let  author=  getTextContentByClassName('author border')
+
+let  xgplayerDom=document.getElementsByClassName('xgplayer-poster')[0]
+
+let player_background_image=
+xgplayerDom?.style['background-image']
+let  note_scroller_dom=document.getElementsByClassName('note-scroller')[0]
+let  date=
+note_scroller_dom.getElementsByClassName('date')[0]?.textContent
+// let  date=document.getElementsByClassName('date')
+
+let  imgDoms=document.getElementsByClassName('swiper-slide zoom-in')
+let  comment_item_doms=document.getElementsByClassName('comment-item')
+let  comment_list=[]
+for(let i=0;i<comment_item_doms.length;i++){
+   let comment_item_dom= comment_item_doms[i]
+  let  comment_author=getTextContentByClassName("author-wrapper",comment_item_dom)
+  
+  let  content=getTextContentByClassName("content",comment_item_dom)
+  
+  let  info=getTextContentByClassName("info",comment_item_dom)
+
+  comment_list.push({
+    comment_author,
+    content,
+    info,
+  })
+}
+// comment-item
+let  backgroundImgList=[]
+// note-scroller. 
+for(let i=0;i<imgDoms.length;i++){
+   let  imgDom= imgDoms[i]
+ let  backgroundImg=  imgDom?.style['background-image']
+//    background-image
+backgroundImgList.push(backgroundImg)
+}
+let descList=[]
+for(let i=0;i<descDoms.length;i++){
+    let descDom= descDoms[i]
+  let  desc=  getTextContent(descDom)
+  descList.push(desc)
+}
+    let res={
+        comment_list,
+        player_background_image,
+        author,
+        date,
+        noteContent,
+        descList,
+        backgroundImgList,
+    }
+    downloadTxt(`xhs_note_${location.href}.json`,JSON.stringify(res))
+}
+
+function getFangTianXia(){
+    
+    let titleDoms=
+    document.getElementsByClassName("title")
+    let priceDoms=
+    document.getElementsByClassName("mt5 alingC")
+    // detail
+    // font15 mt12 bold
+  let detailDoms=  document.getElementsByClassName("font15 mt12 bold")
+  let addressDoms=  document.getElementsByClassName("gray6 mt12")
+//   gray6 mt12
+
+let dis地铁Doms=  document.getElementsByClassName("note subInfor")
+
+    let resList=[]
+    
+    for(let i=0;i<titleDoms.length;i++){
+
+        let titleDom=
+        titleDoms[i]
+        
+        // let priceDoms=
+        // priceDoms[i]
+      let   title= getTextContent(titleDom)
+      let   price= getTextContent( priceDoms[i])
+      
+      let   detail= getTextContent( detailDoms[i])
+      
+      let   address= getTextContent( addressDoms[i])
+      let   dis地铁= getTextContent( dis地铁Doms[i])
+
+      resList.push({
+        title,
+        price,
+        detail,
+        address,
+        dis地铁,
+      })
+    }
+
+    downloadTxt(`fangTianXia_${location.href}.json`,JSON.stringify(resList))
+}
+
+function getAnJuKe(){
+    
+    let titleDoms=
+    document.getElementsByClassName("hd")
+    let priceDoms=
+    document.getElementsByClassName("cbook-price")
+    // detail
+  let detailDoms=  document.getElementsByClassName("detail")
+  let addressDoms=  document.getElementsByClassName("address")
+
+    let resList=[]
+    
+    for(let i=0;i<titleDoms.length;i++){
+
+        let titleDom=
+        titleDoms[i]
+        
+        // let priceDoms=
+        // priceDoms[i]
+      let   title= getTextContent(titleDom)
+      let   price= getTextContent( priceDoms[i])
+      
+      let   detail= getTextContent( detailDoms[i])
+      
+      let   address= getTextContent( addressDoms[i])
+
+      resList.push({
+        title,
+        price,
+        detail,
+        address,
+      })
+    }
+
+    downloadTxt(`anJuKe_${location.href}.json`,JSON.stringify(resList))
+}
+// https://hz.lianjia.com/zufang/rs%E8%9A%95%E8%8A%B1%E5%9B%AD%20%E6%B0%B8%E5%AE%89%E5%9D%8A/
+
+function get链家(){
+    
+    let titleDoms=
+    document.getElementsByClassName("content__list--item--title")
+    let despDoms=
+    document.getElementsByClassName("content__list--item--des")
+    let priceDoms=
+    document.getElementsByClassName("content__list--item-price")
+    let tagsDoms=
+    document.getElementsByClassName("content__list--item--bottom oneline")
+    
+    let resList=[]
+    for(let i=0;i<titleDoms.length;i++){
+        let titleDom=
+        titleDoms[i]
+        let title=
+        getTextContent(titleDom)
+        let desp=
+        getTextContent(despDoms[i])
+        let price=
+        getTextContent(priceDoms[i])
+        let tags=
+        getTextContent(tagsDoms[i])
+        
+        resList.push({
+            title,
+            desp,
+            price,
+            tags,
+        })
+
+    }
+
+    downloadTxt(`链家_${location.href}.json`,JSON.stringify(resList))
+}
+
+function woAi我爱我家Get(){
+    // listTit
+    let listTitDoms=
+    document.getElementsByClassName('listTit')
+    let listXDoms=
+    document.getElementsByClassName('listX')
+    let listImgDoms=
+    document.getElementsByClassName('listImg')
+    let costDoms=
+    document.getElementsByClassName('redC')
+    // redC
+
+    // location.href
+    
+    let resList=[]
+    for(let i=0;i<listTitDoms.length;i++){
+        let costDom=
+        costDoms[i]
+        let listXDom=
+        listXDoms[i]
+        let listImgDom=
+        listImgDoms[i]
+        let imgSrc=
+        listImgDom.getElementsByTagName('a')[0]?.src
+        let  ps=
+        listXDom.getElementsByTagName('p')
+
+      let area=  getTextContent( ps[0])
+      let place=  getTextContent( ps[1])
+      let publishTime=  getTextContent( ps[2])
+      let cost=  getTextContent( costDom)
+        let titleDom=
+        listTitDoms[i]
+        let title=
+        getTextContent(titleDom)
+        resList.push({
+            cost,
+            title,
+            area,
+            place,
+            publishTime,
+            imgSrc,
+        })
+    }
+
+    downloadTxt(`我爱我家_${location.href}.json`,JSON.stringify(resList))
+}
+
+function  bahaDown(){
+    let  imgDoms=
+document.getElementsByClassName('gallery-image')
+// for(let i=0;i<imgDoms.length;i++){
+    
+//     let 
+//     imgDoms[i]
+// }
+
+let links=[]
+for(let i=0;i<imgDoms.length;i++){
+    let imgDom=
+    imgDoms[i]
+    let src=
+    imgDom.
+    src
+    console.log(src);
+    links.push(src)
+}
+  downloadTxt('baha.txt',JSON.stringify(links))
+}
+
 function downloadMoocCourseLinks() {
 
     let courseObjList = []
@@ -869,6 +1459,18 @@ function downloadMoocCourseLinks() {
 
 }
 
+function biliDown(){
+    // video-title tit
+    let title= getTextContentByClassName('video-title tit')
+    
+    let desc_info= getTextContentByClassName('desc-info-text')
+    let res={
+        title,
+        desc_info,
+    }
+    downloadTxt(`bili_${location.href}.json`,JSON.stringify(res))
+
+}
 function getUrlFileName() {
     var path = window.location.pathname;
     console.log("path");
@@ -1900,9 +2502,12 @@ function crawlerDo() {
 
         //  searchWordListAllDownload(searchWordList)
         // let waitMs=3000
-        let waitMs=2000
+        // let waitMs=2000
+        let waitMs=10000
         setTimeout(() => {
             downloadPage()
+
+            
             // searchWordListAllDownload(searchWordList)
             // let  idx=     getQueryString("idx")
             // console.log("idx");
@@ -2006,6 +2611,64 @@ else if (location_href =='https://www.ncss.cn/student/jobs/index.html') {
     }, 5000);
 
 }
+// https://home.gamer.com.tw/artwork.php?sn=5711233
+else if (location_href.startsWith('https://home.gamer.com.tw/artwork.php?')) {
+    setTimeout(() => {
+        bahaDown()
+    }, 4000);
+}
+// https://hz.5i5j.com/zufang/gongchenqiao/p1/
+else if (location_href.startsWith('https://hz.5i5j.com/zufang')) {
+    
+
+if(
+    location_href.endsWith(".html")
+){
+    return
+}
+
+setTimeout(() => {
+        woAi我爱我家Get()
+    }, 4000);
+}
+else if (location_href.startsWith('https://hz.lianjia.com/zufang')) {
+  setTimeout(() => {
+        get链家()
+    }, 3000);
+}
+else if (location_href.startsWith('https://www.anjuke.com/')) {
+  setTimeout(() => {
+    getAnJuKe()
+    }, 3000);
+}
+else if (location_href.startsWith('https://sh.zu.fang.com/house')
+||location_href.startsWith('https://hz.zu.fang.com/house')) {
+  setTimeout(() => {
+    getFangTianXia()
+    }, 3000);
+}
+// https://www.xiaohongshu.com/explore/63675bcb00000000090001d5
+else if (location_href.startsWith('https://www.xiaohongshu.com/explore/')) {
+    let waitMs=5000
+  setTimeout(() => {
+    xhs_note_get()
+    }, waitMs);
+}
+
+else if (location_href.startsWith('https://www.xiaohongshu.com/explore')) {
+    let waitMs=7000
+  setTimeout(() => {
+    getXiaoHongShu()
+    }, waitMs);
+}
+
+
+// https://hz.zu.fang.com/house/xm2011074318-s31/
+// getFangTianXia
+// getAnJuKe
+// get链家
+// woAi我爱我家Get
+// bahaDown
 else if (location_href.startsWith('https://www.kanzhun.com/search/') ) {
     setTimeout(() => {
         getKanZhunCompanyLink()
@@ -2051,12 +2714,28 @@ else if (location_href.startsWith('https://www.zhihu.com/question') ) {
         zhihu_ans_download()
     }, waitMs);
 }
+else if (location_href.startsWith('https://gitee.com/projects/import/url') ) {
+    let waitMs=2000
+    setTimeout(() => {
+        // gitee_project_import_url()
+    }, waitMs);
+}
+// gitee_project_import_url
 // zhihu_ans_download
 // zhiHuGet
 else if (location_href.startsWith('https://huggingface.co/')
 &&
 strIsIn('tree/',location_href) ) {
     
+//     let  repositoryDoms=
+// document.getElementsByClassName('repository')
+// for(let i=0;i<repositoryDoms.length;i++){
+//     let repositoryDom=
+//     repositoryDoms[i]
+//     let  href=
+//     repositoryDom.href
+//     console.log(href);
+// }
     let   btnsBar= document.getElementsByClassName('container relative ')[0]
     // new Dom 
     // 插入一个新的 button js 
@@ -2098,14 +2777,28 @@ console.log(chrome.tabs);
     let waitMs=3000
     setTimeout(() => {
         hugDown()
+        hugDownLinks()
     }, waitMs);
 }
-
+// else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
+//     setTimeout(() => {
+//         hugDownLinks()
+//     }, 3000);
+// }
+// hugDownLinks
+// gitee_project_import_url
 else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
     setTimeout(() => {
         kaoBianLinkGet()
     }, 5000);
 }
+else if (location_href.startsWith('https://www.mewx.art/m/album') ) {
+    let waitMs=20*1000
+    setTimeout(() => {
+        downloadImgLinks()
+    }, waitMs);
+}
+// downloadImgLinks
 // http://zjks.rlsbt.zj.gov.cn/col
 // hugDown
 // 15-1243.00 - Database Architects
@@ -2115,6 +2808,26 @@ else if (location_href.startsWith('https://www.onetonline.org/link/summary') ) {
         onetonlineGet()
     }, 3000);
 }
+else if (location_href.startsWith('https://gitee.com/starplatinum111/projects') ) {
+    setTimeout(() => {
+        reposNames()
+    }, 2000);
+}
+// https://modelscope.cn/models/dienstag/anything-v4.0/files
+else if (location_href.startsWith('https://modelscope.cn/models/') ) {
+    setTimeout(() => {
+        modelscope_file_names_get()
+    }, 2000);
+}
+else if (location_href.startsWith('https://www.seaart.ai/explore?keyword=') ) {
+    setTimeout(() => {
+        seaart_img_links_get()
+    }, 6000);
+}
+// seaart_img_links_get
+// img-content
+// modelscope_file_names_get
+// reposNames
 // 'https://chat.openai.com/chat'
 else if (location_href.startsWith('https://chat.openai.com/chat') ) {
     // setTimeout(() => {
@@ -2133,6 +2846,96 @@ else if (location_href.startsWith('https://gitee.com')) {
     }, 2000);
 
 }
+// https://www.douyin.com/note/7235973589936229672
+else if (location_href.startsWith('https://www.douyin.com/note')) {
+    setTimeout(() => {
+        dou_yin_note_crawler()
+    }, 1000); 
+}
+else if (location_href.startsWith('https://baijiahao.baidu.com/s')) {
+    setTimeout(() => {
+        bai_jia_hao_crawler()
+    }, 1000); 
+}
+else if (location_href.startsWith('https://www.kaggle.com/code/')) {
+    setTimeout(() => {
+        kaggle_code_crawler()
+    }, 1000); 
+}
+// https://www.kaggle.com/discussions/product-feedback/417318#2303506
+else if (location_href.startsWith('https://www.kaggle.com/discussions')) {
+    setTimeout(() => {
+        kaggle_discussions_crawler()
+    }, 1000); 
+}
+// https://github.com/Tencent/vConsole/issues/615
+else if (location_href.startsWith('https://github.com/')
+&&strIsIn("/issues/",location_href) ){
+    setTimeout(() => {
+        github_issues_crawler()
+    }, 3000); 
+}
+// github_issues_crawler
+// https://www.baidu.com/s?tn=48021271_51_hao_pg&wd=lugin+with+id+%27org.springframework.boot%27+not+fou
+else if (location_href.startsWith('https://www.baidu.com/s')) {
+    setTimeout(() => {
+        baidu_crawler()
+    }, 1000); 
+}
+// baidu_crawler
+else if (location_href.startsWith('https://www.nettsz.com/')) {
+    setTimeout(() => {
+        nettsz_crawler()
+    }, 1000); 
+}
+// https://github.com/search?q=springboot+gradle+dubbo&type=repositories
+else if (location_href.startsWith('https://github.com/search?')) {
+    setTimeout(() => {
+        github_search_crawler()
+    }, 2000); 
+}
+// http://newspaper.ucdrs.superlib.net/searchNP?Field=2&channel=searchNP&sw=%C2%ED%D1%C7%CE%B0
+else if (location_href.startsWith('http://newspaper.ucdrs.superlib.net/searchNP?')) {
+    setTimeout(() => {
+        get图书联盟()
+    }, 4000); 
+}
+// get图书联盟
+// https://stackoverflow.com/questions/57604665/cannot-access-built-in-declaration-ensure-that-you-have-a-dependency-on-the-kotl
+else if (location_href.startsWith('https://stackoverflow.com/questions/')) {
+    setTimeout(() => {
+        stackoverflow_questions_crawler()
+    }, 8000); 
+}
+// https://mp.weixin.qq.com/s/4qD_9YUJleDlsLkRcf4FJg
+else if (location_href.startsWith('https://mp.weixin.qq.com/s/')) {
+    setTimeout(() => {
+        weixin_article_crawler()
+    }, 2000); 
+}
+// https://huggingface.co/WarriorMama777/OrangeMixs/discussions
+else if (location_href.startsWith('https://huggingface.co/')
+&& location_href.endsWith('/discussions') ) {
+  
+    setTimeout(() => {
+        huggingface_discussions_crawler()
+    }, 2000); 
+   
+ 
+}
+// huggingface_discussions_crawler
+
+// https://mp.weixin.qq.com/s/4qD_9YUJleDlsLkRcf4FJg
+// stackoverflow_questions_crawler
+// https://stackoverflow.com/questions/57604665/cannot-access-built-in-declaration-ensure-that-you-have-a-dependency-on-the-kotl
+// github_search_crawler
+// https://github.com/search?q=springboot+gradle+dubbo&type=repositories
+// nettsz_crawler
+// kaggle_discussions_crawler
+// kaggle_code_crawler
+// https://www.nettsz.com/dahuaba
+// https://baijiahao.baidu.com/s?id=1762056884949064865
+// dou_yin_note_crawler
 else if (location_href.startsWith('https://www.nowcoder.com/search/all')) {
     setTimeout(() => {
         nowCoderCrawler()
@@ -2192,7 +2995,85 @@ else if (location.host =='search.gitee.com') {
             qianCheng()
         }, 5000);
 
+    
     }
+    // https://movie.douban.com/subject/35936775/
+    else if (location_href.startsWith('https://movie.douban.com/subject') ) {
+        setTimeout(() => {
+            douBanHtmlDown()
+        }, 3000);
+    }
+     else if (location_href.startsWith('https://zhuanlan.zhihu.com/p') ) {
+        setTimeout(() => {
+            zhihuArticleDown()
+        }, 3000);
+    }
+    else if (location_href.startsWith('https://www.jianshu.com/p') ) {
+        // https://www.jianshu.com/p/f214d2e87386
+        setTimeout(() => {
+            jianshuHtmlDown()
+        }, 3000);
+    }
+    else if (location_href.startsWith('https://www.bilibili.com/read/cv') ) {
+        // https://www.jianshu.com/p/f214d2e87386
+        // https://www.bilibili.com/read/cv19928387
+        setTimeout(() => {
+            bilibiliCvHtmlDown()
+        }, 3000);
+    }
+    else if (location_href=='https://www.zhihu.com/' ) {
+        setTimeout(() => {
+            zhihu_shouye_HtmlDown()
+        }, 3000);
+    }
+    // https://www.reddit.com/r/StableDiffusion/comments/yv1p9b/example_of_prompts_for_anything_v3_model/
+    // th('https://www.reddit.com/r/') ) 
+    else if (location_href.startsWith('https://www.reddit.com/') ) {
+        setTimeout(() => {
+            console.log("reddit_HtmlDown");
+            reddit_HtmlDown()
+        }, 3000);
+    }
+    // reddit_HtmlDown
+    else if (location_href.startsWith('https://blog.csdn.net/') 
+    &&    strIsIn("article/details",location_href)) {
+    
+        setTimeout(() => {
+            csdnDown()
+        }, 3000);
+    } 
+
+    // https://ask.dcloud.net.cn/question/63456
+      else if (location_href.startsWith('https://www.bing.com/search?') 
+      ) {
+        // https://www.bing.com/search?q=%E7%88%AC%E8%99%AB&cvid=8f338982caab42f49aa83fb6d23e36fa&aqs=edge..69i57j0l3j69i61l2j69i60j69i65l2.788j0j4&FORM=ANAB01&PC=LCTS&mkt=zh-CN
+        setTimeout(() => {
+            bingDown()
+        }, 3000);
+    }
+
+    // https://ask.dcloud.net.cn/question/63456
+    else if (location_href.startsWith('https://ask.dcloud.net.cn/question/') 
+    ) {
+      // https://www.bing.com/search?q=%E7%88%AC%E8%99%AB&cvid=8f338982caab42f49aa83fb6d23e36fa&aqs=edge..69i57j0l3j69i61l2j69i60j69i65l2.788j0j4&FORM=ANAB01&PC=LCTS&mkt=zh-CN
+      setTimeout(() => {
+        dcloudAskDown()
+      }, 3000);
+  }
+    // dcloudAskDown
+
+    // bingDown
+    else if (location_href.startsWith('https://github.com/') 
+    &&    strIsIn("pull/",location_href)) {
+        // https://github.com/huggingface/diffusers/pull/254
+        setTimeout(() => {
+            githubPullDown()
+        }, 3000);
+    }
+    
+    
+    // https://zhuanlan.zhihu.com/p/562313703
+    // douBanHtmlDown
     else if (location.host =='www.zhipin.com') {
         setTimeout(() => {
             // zhiPin()
@@ -2200,6 +3081,15 @@ else if (location.host =='search.gitee.com') {
         }, 5000);
 
     }
+    // https://hz.zu.anjuke.com/fangyuan/gongshu-q-gongchenqiao/zj101/?pi=baidu-cpchz-hz-jingpin2&kwid=8250900320&utm_term=%E6%9D%AD%E5%B7%9E%E7%A7%9F%E6%88%BF%E5%AD%90&bd_vid=9919696102807174406
+    else if (location_href.startsWith(
+        'https://hz.zu.anjuke.com/fangyuan'
+    ) ) {
+        setTimeout(() => {
+            安居客Get()
+        }, 5000);
+    }
+    // 安居客Get
     else if (location.host =='24365.zj.smartedu.cn') {
         setTimeout(() => {
             // get24365()
@@ -3522,6 +4412,65 @@ function get24365ByIndex(){
    
 }
 
+function fakeInput(dom_project_import_url){
+    // let importUrl?='https://github.com/wuyouzhuguli/SpringAll'
+    // let dom_project_import_url= document.getElementById('project_import_url')
+    // document.getElementById('project_import_url').value=importUrl
+    // 触发输入事件
+const inputEvent = new window.Event('input', { bubbles: true });
+dom_project_import_url.dispatchEvent(inputEvent);
+}
+
+// let importUrls=[]
+let importUrls=
+[
+    // 'https://github.com/brpc/brpc.git', 'https://github.com/PX4/eigen.git', 
+// 'https://github.com/gflags/gflags.git', 
+'https://github.com/google/glog.git',
+ 'https://github.com/google/googletest.git', 'https://github.com/open-source-parsers/jsoncpp.git',
+//   'https://github.com/baidu/lac.git',
+//    'https://github.com/google/leveldb.git', 
+  'https://github.com/openssl/openssl.git', 
+//   'https://github.com/PaddlePaddle/Paddle.git',
+   'https://github.com/google/protobuf.git', 'https://github.com/dmlc/xgboost.git', 
+   'https://github.com/madler/zlib.git']
+const gitee_project_import_url=()=>{
+    // ui input
+    // get 
+    // let  urlDom=
+    // document.getElementsByClassName('ui input')[0]
+    // urlDom.
+    // project_import_url. 
+
+    // importUrls
+
+    // https://gitee.com/projects/import/url
+    let nowIdx=
+    getNowIdx()
+
+    // nowIdx[]
+    let importUrl=importUrls[nowIdx]
+    // importUrls[nowIdx]
+
+    // let importUrl='https://github.com/wuyouzhuguli/SpringAll'
+    let dom_project_import_url= document.getElementById('project_import_url')
+    document.getElementById('project_import_url').value=importUrl
+    // 触发输入事件
+// const inputEvent = new window.Event('input', { bubbles: true });
+// dom_project_import_url.dispatchEvent(inputEvent);
+
+fakeInput(dom_project_import_url)
+
+    setTimeout(() => { 
+        document.getElementById('submit-project-new').click()
+        setTimeout(() => {
+            location.href=`https://gitee.com/projects/import/url?idx=${nowIdx+1}`
+        }, 5000);
+    },2000) 
+
+    // document.getElementById('project_import_url').value="https://github.com/baidu/AnyQ"
+}
+
 // nowcoderLinkList
 const nowCoderAnsCrawler=()=>{
     let  title=
@@ -3566,6 +4515,217 @@ const nowCoderAnsCrawler=()=>{
    downloadTxt(`nowcoderAns_idx_${idx}.json`,JSON.stringify(res))
     nextLinkReplace(nowcoderLinkList)
 
+}
+// https://baijiahao.baidu.com/s?id=1762056884949064865
+const bai_jia_hao_crawler=()=>{
+    let  dom=  document.getElementById('ssr-content-wrapper')
+    let txt= dom.innerHTML
+    downloadTxt(`bai_jia_hao_${location.href}.html`,txt)
+  }
+
+  const nettsz_crawler=()=>{
+    let  dom=  document.getElementById('page')
+    let txt= dom.innerHTML
+    downloadTxt(`nettsz_${location.href}.html`,txt)
+  }
+  const github_search_crawler=()=>{
+    let  dom=  document.getElementsByClassName('logged-in env-production page-responsive')[0]
+    // let  dom=  document.getElementById('page')
+    let txt= dom.innerHTML
+    downloadTxt(`github_search_${location.href}.html`,txt)
+  }
+
+  function getChildrenText(parentElement,childrenIdx=0){
+    // 获取父元素
+// var parentElement = document.getElementById('parent');
+
+// 获取第二个子元素
+// var secondChild = parentElement.children[1];
+var secondChild = parentElement.children[childrenIdx];
+
+// 获取第二个子元素的文本内容
+var textContent = secondChild?.textContent;
+
+// console.log(textContent);
+return textContent
+
+  }
+
+
+  function parseMapBySplit(str){
+    // var str = "作者: 马亚伟\n日期: 2023.05.16\n来源: 辽沈晚报\n版次: 第A10版：迟桂花";
+
+// 通过换行符分割字符串为数组
+var lines = str.split('\n');
+
+// 存储提取的键值对
+var keyVal = {};
+
+// 循环遍历每一行
+for (var i = 0; i < lines.length; i++) {
+  // 通过冒号分割每一行为键和值
+  var parts = lines[i].split(':');
+  
+  // 提取键和值
+  var key = parts[0].trim();
+  var val = parts[1].trim();
+  
+  // 存储键值对
+  keyVal[key] = val;
+}
+
+// console.log(keyVal);
+return keyVal
+
+  }
+
+  function parseMap(str){
+   return parseMapBySplit(str)
+
+  }
+ function parseMapByReg(str){
+    // var str = "作者: 马亚伟\n 日期: 2023.05.16\n 来源: 辽沈晚报\n 版次: 第A10版：迟桂花";
+
+// 定义正则表达式，匹配键值对
+var regex = /([^:\n]+):\s*([^:\n]+)/g;
+
+// 存储提取的键值对
+var keyVal = {};
+
+// 循环匹配正则表达式
+var match;
+while ((match = regex.exec(str)) !== null) {
+  var key = match[1].trim();
+  var val = match[2].trim();
+  keyVal[key] = val;
+}
+
+// console.log(keyVal);
+return keyVal
+
+  }
+  const get图书联盟=()=>{
+
+    // noscroll
+    let html=document.getElementById('noscroll').innerHTML
+    downloadTxt(`图书联盟_html_${location.href}.html`,html)
+
+    let resList=[]
+    // book1
+    let  bookDoms= document.getElementsByClassName(' book1')
+
+let  infoDoms= document.getElementsByClassName(' fc-green')
+for(let i=0;i<infoDoms.length;i++){
+  
+    let info=
+    getTextContent(  infoDoms[i])
+    let bookDom=
+    bookDoms[i]
+
+    let inputs=
+    bookDom.getElementsByTagName('input')
+  
+//   let   inputs[0]?.value
+  let  id= inputs[1]?.value
+  let  title= inputs[2]?.value
+  let  url= inputs[3]?.value
+  let  memo= inputs[4]?.value
+    // getTextContent()
+
+  let bookLink=  bookDom.getElementsByTagName('a')[0]?.href
+//   span
+let spanDom=bookDom.getElementsByTagName('span')[1]
+//    let  内容= getChildrenText(spanDom,1)
+   let  内容= getChildrenText(spanDom,2)
+
+  let infoMap= parseMap(info)
+//    info.split()
+    resList.push({
+        info,
+        title,
+        id,
+        bookLink,
+        memo,
+        url,
+        内容,
+        ...infoMap,
+    })
+}
+
+
+
+    // let  dom=  document.getElementsByClassName(' fc-green')[0]
+    // let  dom=  document.getElementById('page')
+    // let txt= dom.innerHTML
+    
+    downloadTxt(`图书联盟_${location.href}.json`,JSON.stringify(resList))
+    // downloadTxt(`github_search_${location.href}.html`,txt)
+    // let urlTPl="http://newspaper.ucdrs.superlib.net/searchNP?channel=searchNP&Field=2&sw=%E9%A9%AC%E4%BA%9A%E4%BC%9F&ecode=utf-8&by=&ey=&year=&sectyear=&view=0&np_id=&date=&isort=0&searchtype=&uscol=0&exp=0&expertsw=&Pages={idx}"
+    // nextLink(urlTPl,)
+    let nowIdx=   getNowIdx()
+    setTimeout(() => {
+        document.getElementsByClassName('px14')[1].click()
+    }, 200);
+
+    // location.href=`http://newspaper.ucdrs.superlib.net/searchNP?channel=searchNP&Field=2&sw=%E9%A9%AC%E4%BA%9A%E4%BC%9F&ecode=utf-8&by=&ey=&year=&sectyear=&view=0&np_id=&date=&isort=0&searchtype=&uscol=0&exp=0&expertsw=&Pages=${nowIdx+1}`
+    // http://newspaper.ucdrs.superlib.net/searchNP?channel=searchNP&Field=2&sw=%E9%A9%AC%E4%BA%9A%E4%BC%9F&ecode=utf-8&by=&ey=&year=&sectyear=&view=0&np_id=&date=&isort=0&searchtype=&uscol=0&exp=0&expertsw=&Pages=2
+  }
+//   fc-green
+  const stackoverflow_questions_crawler=()=>{
+   
+    let  dom=  document.getElementById( "mainbar")
+    let txt= dom.innerHTML
+    downloadTxt(`stackoverflow_questions_${location.href}.html`,txt)
+  }
+  const weixin_article_crawler=()=>{
+   
+    let  dom=  document.getElementById( "js_article")
+    let txt= dom.innerHTML
+    downloadTxt(`weixin_article_${location.href}.html`,txt)
+  }
+   const huggingface_discussions_crawler=()=>{
+   
+    let  dom=   document.getElementsByClassName('flex min-h-screen flex-col')[0]
+    let txt= dom.innerHTML
+    downloadTxt(`huggingface_discussions_${location.href}.html`,txt)
+  }
+//   https://huggingface.co/WarriorMama777/OrangeMixs/discussions
+
+//   https://mp.weixin.qq.com/s/4qD_9YUJleDlsLkRcf4FJg
+//   https://stackoverflow.com/questions/57604665/cannot-access-built-in-declaration-ensure-that-you-have-a-dependency-on-the-kotl
+//   https://github.com/search?q=springboot+gradle+dubbo&type=repositories
+  const kaggle_code_crawler=()=>{
+    let  dom=  document.getElementById('site-container')
+    let txt= dom.innerHTML
+    downloadTxt(`kaggle_code_${location.href}.html`,txt)
+  }
+  const baidu_crawler=()=>{
+    let  dom=  document.getElementById('wrapper')
+    let txt= dom.innerHTML
+    downloadTxt(`baidu_${location.href}.html`,txt)
+  }
+//   https://www.baidu.com/s?tn=48021271_51_hao_pg&wd=lugin+with+id+%27org.springframework.boot%27+not+fou
+  const kaggle_discussions_crawler=()=>{
+    let  dom=  document.getElementById('site-container')
+    let txt= dom.innerHTML
+    downloadTxt(`kaggle_discussions_${location.href}.html`,txt)
+  }
+
+  const github_issues_crawler=()=>{
+    let  dom=  document.getElementById('repo-content-pjax-container')
+    let txt= dom.innerHTML
+    downloadTxt(`github_issues_${location.href}.html`,txt)
+  }
+//   https://github.com/Tencent/vConsole/issues/615
+//   https://www.kaggle.com/discussions/product-feedback/417318#2303506
+//   https://www.kaggle.com/code/starplatinumora/stable-diffusion-nsfw/notebook
+
+//   https://www.nettsz.com/dahuaba
+// douyin-right-container
+const dou_yin_note_crawler=()=>{
+  let  dom=  document.getElementById('douyin-right-container')
+  let txt= dom.innerHTML
+  downloadTxt(`dou_yin_note_${location.href}.html`,txt)
 }
 // tw-cursor-pointer
 const nowCoderCrawler=()=>{
@@ -4106,17 +5266,18 @@ function zhihuDownload(){
 
         location.href=`${nextLink}${linkMark}idx=${nowIdx+1}`
   }
-  
+  /**
+   * `https://www.zhihu.com/search?type=content&q=${word}&idx=${idx}`
+   * @param {*} linkTpl 
+   * @param {*} lst 
+   * @returns 
+   */
   function nextLink(linkTpl,lst,){
-    let nowIdx=
-    getNowIdx()
+    let nowIdx=   getNowIdx()
     
-    
-    if(lst.length<=nowIdx+1
-        ){
+    if(lst.length<=nowIdx+1 ){
             return
         }
-    
         location.href=linkTpl.replace('${word}',lst[nowIdx+1]).replace('${idx}',nowIdx+1)
     // `https://www.zhihu.com/search?type=content&q=${lst[nowIdx+1]}&idx=${nowIdx+1}`
     // `https://www.zhihu.com/search?type=content&q=${word}&idx=${idx}`
@@ -4232,6 +5393,33 @@ let  brach=parts[parts.length-1]
 
 }
 
+
+function downloadImgLinks(){
+    
+    // let  imgDoms=
+    // document.getElementsByClassName('absolute top-0 left-0 false bottom-0 right-0 flex justify-center items-center')
+    let  imgDoms=
+    document.getElementsByClassName('h-0 relative w-full')
+    
+
+    // h-0 relative w-full
+    let resList=[]
+    for(let i=0;i<imgDoms.length;i++){
+    
+        let imgOuterDom=
+        imgDoms[i]
+        let href=
+        imgOuterDom.getElementsByTagName('img')[0]?.src
+        // resList.push({
+        //     href,
+        // })
+
+        resList.push(href)
+    }
+
+    downloadTxt(`imgLinks.json`, JSON.stringify(resList))
+    }
+
 function kaoBianLinkGet(){
     
 
@@ -4279,6 +5467,86 @@ setTimeout(() => {
 
 // content script 有个 hugDown 方法，我用插件在页面上加了一个按钮，按钮按下去怎么运行这个方法，谷歌插件
 
+// img-content
+// https://www.seaart.ai/explore?keyword=
+function seaart_img_links_get(){
+    let imgDoms=
+document.getElementsByClassName('img-content')
+let imgLinks=[]
+for(let i=0;i<imgDoms.length;i++){
+
+    let imgDom=
+    imgDoms[i]
+    let src=
+    imgDom.getElementsByTagName('img')[0]?.src
+    imgLinks.push(src)
+}
+downloadTxt(`seaart_img_${location.href}.json`, JSON.stringify(imgLinks))
+
+// imgLinks
+}
+function modelscope_file_names_get(){
+
+let names=
+document.getElementsByClassName('hover___2YAFK')
+let file_names=[]
+for(let i=0;i<names.length;i++){
+    let  nameDom=
+    names[i]
+    let file_name=
+    nameDom.textContent.trim()
+    // console.log(file_name);
+    file_names.push(file_name)
+}
+downloadTxt(`modelscope_file_names_${location.href}.json`, JSON.stringify(file_names))
+
+
+
+}
+
+function reposNames(){
+    let  repoLinks=[]
+    let  repositoryDoms=
+    document.getElementsByClassName('repository')
+    for(let i=0;i<repositoryDoms.length;i++){
+        let repositoryDom=
+        repositoryDoms[i]
+        let  href=
+        repositoryDom.href
+        repoLinks.push(href)
+    }
+
+    
+
+    downloadTxt(`reposLinks_${location.href}.json`, JSON.stringify(repoLinks))
+}
+
+function hugDownLinks(){
+    
+    let  linkDoms=
+    document.getElementsByClassName('group col-span-4 flex items-center justify-self-end truncate text-right font-mono text-[0.8rem] leading-6 text-gray-400 md:col-span-2 xl:pr-10')
+
+
+    let links=[]
+    for(let i=0;i<linkDoms.length;i++){
+        let linkDom=
+        linkDoms[i]
+        // let link=
+        // getTextContent(linkDom)
+        let link=  linkDom.   href
+        console.log(link);
+        links.push(link)
+    }
+
+    downloadTxt(`hugDownLinks_${location.href}.json`, JSON.stringify(links))
+
+}
+
+// b_content
+
+// function bingDown(){
+//     let dom=document.getElementById('b_content')
+// }
 function hugDown(){
     
 let  names= document.getElementsByClassName('group flex items-center truncate')
@@ -4286,23 +5554,38 @@ let parts=location.href.split('/')
 let  brach=parts[parts.length-1]
 // let  mdCmd=`md /${parts[3]}/${parts[4]}`
 // let disk="d:"
+// let username=parts[3]
+// let repoName=parts[4]
+// let username=parts[2]
+// let repoName=parts[3]
+let username=parts[3]
+let repoName=parts[4]
 let disk=""
-let modelDir=`${disk}/j05025/model/${parts[3]}/${parts[4]}`
+let modelDir=`${disk}/j05025/model/${username}/${repoName}`
+
+// let modelDir=`${disk}/j05025/model/${parts[3]}/${parts[4]}`
 if(location.href.startsWith("https://huggingface.co/datasets")){
      modelDir=`${disk}/j05025/datasets/${parts[4]}/${parts[5]}`
 
 }
+// let
+// modelDirKaggle=`model/${parts[4]}/${parts[5]}`
+let  modelDirKaggle=`model/${username}/${repoName}`
 // if("https://huggingface.co/datasets"){
 
 // }
 // let  mdCmd=`mkdir -p /j05025/model/${parts[3]}/${parts[4]}`
 let  mdCmd=`mkdir -p ${modelDir}`
+// let  mdCmd=`mkdir -p ${modelDir}`
 
 console.log(mdCmd);
 let allCmd=` ${mdCmd}\n`
+let allCmdWin=` ${mdCmd}\n`
+
+let allCmdKaggle=`mkdir -p ${modelDirKaggle}\n`
 
 // "D:\software\wget-1.21.3-win64\wget.exe"
-// let  wgetSh=String.raw`D:\software\wget-1.21.3-win64\wget.exe`
+let  wgetShWin=String.raw`D:\software\wget-1.21.3-win64\wget.exe`
 let  wgetSh=String.raw`wget`
 
 // let  wgetSh="D:\software\wget-1.21.3-win64\wget.exe"
@@ -4313,22 +5596,36 @@ for(let i=0;i<names.length;i++){
     // let fileName=`pytorch_model.bin`
     fileName=name
  let repoName= `${parts[2]}/${parts[3]}`
- let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
+//  let link=  `https://huggingface.co/${parts[3]}/${parts[4]}/resolve/${brach}/${fileName}`
+ let link=  `https://huggingface.co/${username}/${repoName}/resolve/${brach}/${fileName}`
+
  let downFilePath=`d:/download/${fileName}`
 //  let mvCmd=`mv ${downFilePath} /${parts[3]}/${parts[4]}/${fileName}`
 //  let downloadCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
 // let downloadCmd=`${wgetSh} ${link}  -P /${parts[3]}/${parts[4]}`
 let downloadCmd=`${wgetSh} ${link} -c -P ${modelDir}  &`
+let downloadCmdWin=`${wgetShWin} ${link} -c -P ${modelDir}  &`
+let downloadCmdkaggle=`${wgetSh} ${link} -c -P ${modelDirKaggle}  &`
 
 //  let downloadCmd=`wget ${link}  -P /${parts[3]}/${parts[4]}`
 
  console.log(downloadCmd);
  allCmd+=downloadCmd+"\n"
+ allCmdWin+=downloadCmdWin+"\n"
+
+ allCmdKaggle+=downloadCmdkaggle+"\n"
+
 }
 
-// downloadTxt(`hugDown_${parts[3]}_${parts[4]}.bat`, allCmd)
-downloadTxt(`hugDown_${parts[3]}_${parts[4]}.txt`, allCmd)
 
+
+// downloadTxt(`hugDown_${parts[3]}_${parts[4]}.bat`, allCmd)
+downloadTxt(`hugDown_${username}_${repoName}.txt`, allCmd)
+// downloadTxt(`hugDown_${parts[3]}_${parts[4]}.txt`, allCmd)
+downloadTxt(`hugDownWin_${username}_${repoName}.txt`, allCmdWin)
+
+// downloadTxt(`hugDownWin_${parts[3]}_${parts[4]}.txt`, allCmdWin)
+downloadTxt(`hugDownKaggle_${username}_${repoName}.sh`, allCmdKaggle)
 
 // let allCmd=`wget ${link} -O /${parts[3]}/${parts[4]} && ${mvCmd}`
 // let allCmd=`wget ${link} -O /${parts[3]}/${parts[4]}`
@@ -4699,3 +5996,312 @@ function getCurBrowser(){
 }
 // 看准网-查工资|聊面试|评公司|搜职位|中国领先的职场信息平台
 // https://www.kanzhun.com/search/?query=%E4%B8%89%E6%9B%BF%E9%9B%86%E5%9B%A2%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&type=0
+
+
+function stripScripts (s) {
+    var div = document.createElement('div');
+    div.innerHTML = s.outerHTML;
+    // div.innerHTML = s;
+    // div.firstChild=s;
+    // console.log(div);
+    var scripts = div.getElementsByTagName('script');
+    console.log(scripts.length);
+    var i = scripts.length;
+    while (i--) {
+        scripts[i].parentNode.removeChild(scripts[i]);
+    }
+
+    // return div.innerHTML;
+    return div;
+    // http://codingdict.com/questions/10189
+}
+
+function getTitle () {
+    let title = null;
+    // j-title f-fl  mooc 
+    let titleClassMaybe = ["problemName_3A5bH", "mb-2 card-header", "Card-title", "j-title f-fl", "f-fl j-hwname",
+        "highwire-cite-title"];
+    let titleIdMaybe = ["pageTitleText"];
+    let titleDom;
+    for (let i = 0; i < titleClassMaybe.length; i++) {
+        titleDom = document.getElementsByClassName(titleClassMaybe[i])[0];
+        if (titleDom) {
+            title = titleDom.textContent;
+            break;
+        }
+    }
+
+    for (let i = 0; i < titleIdMaybe.length; i++) {
+        titleDom = document.getElementById(titleIdMaybe[i]);
+        if (titleDom) {
+            title = titleDom.textContent;
+            break;
+        }
+    }
+    if (title == null) {
+        title = "";
+        // title = "没有标题";
+    }
+    title = to_file_path_name(title);
+    return title;
+
+}
+// 把html 需要加载的资源 变成绝对路径，防止他一直在加载加载不到的东西
+// 只针对mooc
+function stripHtml (string) {
+    // '//mc.stu.126.net/pub/s/pt_learn_learn_cc4c15bc2a2b6747962307bf201cc776.css':
+    //     'https://mc.stu.126.net/pub/s/pt_learn_learn_cc4c15bc2a2b6747962307bf201cc776.css',
+    replaceMap = {
+
+        '<span class="u-icon-correct"></span>': '<span class="u-icon-correct">对</span>',
+        '<span class="u-icon-wrong"></span>': '<span class="u-icon-wrong">错</span>',
+
+    }
+    replaceToNoneList = ["//edu-image.nosdn.127.net/6C21E8FAE2F95E8A964501AB5F920FC8.png?imageView&thumbnail=402y95&quality=100",
+        "//s.stu.126.net/res/images/ui/ui_appbanner_closebtn.png",
+
+        "//edu-image.nosdn.127.net/C98738F71B5E662F0239FA9D59D88011.png?imageView&thumbnail=285y66&quality=95",
+
+        "//s.stu.126.net/res/images/ui/ui_appbanner_jt.png",
+
+        "//edu-image.nosdn.127.net/3310f128e53b406f94400f7ae6046db2.png?imageView&quality=100",
+
+        "//img-ph-mirror.nosdn.127.net/Rg6muO26iMOFWx9vwEHC-g==/6630234335885341999.png",
+
+    ];
+    // 那 http:// 这种不能变的啊
+    addHttpPrefixList = ["//edu-image.nosdn.127.net/6C21E8FAE2F95E8A964501AB5F920FC8.png?imageView&thumbnail=402y95&quality=100",
+        "//s.stu.126.net/res/images/ui/ui_appbanner_closebtn.png",
+
+        "//edu-image.nosdn.127.net/C98738F71B5E662F0239FA9D59D88011.png?imageView&thumbnail=285y66&quality=95",
+
+        "//s.stu.126.net/res/images/ui/ui_appbanner_jt.png",
+
+        "//edu-image.nosdn.127.net/3310f128e53b406f94400f7ae6046db2.png?imageView&quality=100",
+
+        "//img-ph-mirror.nosdn.127.net/Rg6muO26iMOFWx9vwEHC-g==/6630234335885341999.png",];
+
+    prefixList = ["//s.stu.126.net", "//edu-image.nosdn.127.net", "//img-ph-mirror.nosdn.127.net", "//mc.stu.126.net"];
+    for (i = 0; i < prefixList.length; i++) {
+        string = string.replaceAll("\"" + prefixList[i], "\"https:" + prefixList[i]);
+    }
+    // data=data.replace('<span class="u-icon-correct"></span>'
+    // ,'<span class="u-icon-correct">对</span>')
+    // # <span class="u-icon-wrong"></span>
+    // data=data.replace('<span class="u-icon-wrong"></span>'
+    // ,'<span class="u-icon-wrong">错</span>')
+    // filename_no_sufix=r_del_str(filename,".mhtml")
+    // for(s in replaceToNoneList){
+    //     string=string.replaceAll(replaceToNoneList[s],"");
+    // }
+    // edu-image.nosdn.127.net
+
+    // string.replaceAll("// edu-image.nosdn.127.net")
+    // for(i=0;i<addHttpPrefixList.length;i++){
+    //     string=string.replaceAll(addHttpPrefixList[i],"https:"+addHttpPrefixList[i]);
+    // }
+    for (s in replaceMap) {
+        string = string.replaceAll(s, replaceMap[s]);
+    }
+    // string=string.replaceAll('//mc.stu.126.net/pub/s/pt_learn_learn_cc4c15bc2a2b6747962307bf201cc776.css',
+    // 'https://mc.stu.126.net/pub/s/pt_learn_learn_cc4c15bc2a2b6747962307bf201cc776.css');
+    return string;
+}
+// var box2Div = document.createElement("div");
+function insertAfter (newElement, targetElement) {
+    var parent = targetElement.parentNode;
+    // console.log(parent);
+    if (parent.lastChild == targetElement) {
+        // 如果最后的节点是目标元素，则直接添加。因为默认是最后        
+        parent.appendChild(newElement);
+    }
+    else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+        //如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面    
+    }
+}
+// ————————————————
+// 版权声明：本文为CSDN博主「ACGuan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/csdnlinyongsheng/article/details/82983446
+
+
+function textareasPutVals (textareas) {
+    for (i = 0; i < textareas.length; i++) {
+        textarea = textareas[i];
+        var fillVal = document.createElement("div");
+        // https://zhidao.baidu.com/question/537483459.html
+        fillVal.innerHTML=textarea.value;
+        // $0.value
+        insertAfter(fillVal,textarea);
+    
+    }
+}
+
+function douBanHtmlDown(){
+    // getCardViewsData
+    // content
+  let  douBanHtml=  document.getElementById('content').innerHTML
+  downloadTxt(`douBanHtml_${location.href}.html`,douBanHtml);
+}
+// https://www.jianshu.com/p/f214d2e87386
+function jianshuHtmlDown(){
+  let  douBanHtml=  document.getElementById('__next').innerHTML
+  downloadTxt(`jianshuHtml_${location.href}.html`,douBanHtml);
+}
+// https://www.bilibili.com/read/cv19928387
+function bilibiliCvHtmlDown(){
+    let  douBanHtml=  document.getElementById('app').innerHTML
+    downloadTxt(`bili_cv_${location.href}.html`,douBanHtml);
+  }
+
+//   https://www.reddit.com/r/StableDiffusion/comments/yv1p9b/example_of_prompts_for_anything_v3_model/
+
+function reddit_HtmlDown(){
+    let HtmlTxt=  document.getElementsByClassName('v2')[0].innerHTML
+    downloadTxt(`reddit_${location.href}.html`,HtmlTxt);
+  }
+
+  function zhihu_shouye_HtmlDown(){
+    // App-main
+    let HtmlTxt=  document.getElementsByClassName('App-main')[0].innerHTML
+    downloadTxt(`zhihu_shouye_${location.href}.html`,HtmlTxt);
+  }
+//   App-main
+
+function zhihuArticleDown(){
+  let  douBanHtml=  document.getElementById('root').innerHTML
+  downloadTxt(`zhihuArticle_${location.href}.html`,douBanHtml);
+}
+
+function bingDown(){
+    let  htmlDoc=document.getElementById('b_content').innerHTML
+    downloadTxt(`bingDown_${location.href}.html`,htmlDoc);
+  }
+
+  function dcloudAskDown(){
+    let  htmlDoc= document.getElementsByClassName('aw-container-wrap')[0].innerHTML
+    // let  htmlDoc=document.getElementById('b_content').innerHTML
+    downloadTxt(`dcloudAsk_${location.href}.html`,htmlDoc);
+  }
+
+//   https://ask.dcloud.net.cn/question/63456
+
+function  csdnDown(){
+    let  douBanHtml=   document.getElementsByClassName('main_father clearfix d-flex justify-content-center')[0].innerHTML
+    // let  douBanHtml=  document.getElementById('root').innerHTML
+    downloadTxt(`csdn_${location.href}.html`,douBanHtml);
+  }
+  function  githubIssueDown(){
+    let  douBanHtml=   document.getElementsByClassName('logged-in env-production page-responsive')[0].innerHTML
+    downloadTxt(`githubIssue_${location.href}.html`,douBanHtml);
+  }
+
+  function  githubPullDown(){
+    let  douBanHtml=   document.getElementsByClassName('logged-in env-production page-responsive')[0].innerHTML
+    downloadTxt(`githubPull_${location.href}.html`,douBanHtml);
+  }
+//   logged-in env-production page-responsive
+
+// 可以下载mooc  但是 mooc 的那个文件还要加载
+function downloadPageHtml () {
+    console.log("downloadPageHtml");
+    
+    // https://blog.csdn.net/weixin_42649856/article/details/104325029
+    // console.log(document.);
+    //  console.log(document.getElementsByTagName('html')[0].outerHTML);
+    // downloadTxt("pta.html",document.getElementsByTagName('html')[0].outerHTML);
+    // document.ge 
+    let htmlTxt= document.innerHTML
+//    let htmlTxt= document.outerHTML
+   console.log("htmlTxt");
+   console.log(htmlTxt);
+
+//     let htmlDom = document.getElementsByTagName("html")[0];
+//     // console.log(htmlDom);
+//     // j-textarea inputtxt
+//     // 2021年3月20日11:21:33 mqp 添加这个，可以在mooc 获得填空题的内容
+//     textareas = htmlDom?.getElementsByClassName("j-textarea inputtxt");
+//     // textareasPutVals(textareas);
+// // 
+//     let title = getTitle();
+//     console.log("title");
+//     console.log(title);
+
+//     let htmlTxt = stripScripts(htmlDom).outerHTML;
+    htmlTxt = stripHtml(htmlTxt);
+
+    // location.href
+
+    downloadTxt( `${location.href }_${title}.html`, htmlTxt);
+}
+
+// downloadPage();
+// downloadPageHtml()
+
+function downloadHTML() {
+    var url = window.location.href; // 获取当前网页的URL
+    var xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var htmlContent = xhr.responseText;
+          var blob = new Blob([htmlContent], { type: 'text/html' });
+          var downloadLink = URL.createObjectURL(blob);
+          
+          var a = document.createElement('a');
+          a.href = downloadLink;
+         let title= getTitle()
+         let htmlName=`${location.href }_${title}.html`
+          a.download = htmlName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          console.log('请求失败：' + xhr.status);
+        }
+      }
+    };
+    
+    xhr.open('GET', url, true);
+    xhr.send();
+  }
+  
+  // 调用函数以开始下载
+//   downloadHTML();
+  
+
+
+// setTimeout(() => {
+//     kaggleDownClickedSetup()
+// }, 3000);
+
+// let kaggleDownClickedSetupInterval =setInterval(() => {
+//     kaggleDownClickedSetup()
+// },3000)
+let kaggleDownClickedSetupInterval
+//监听触发操作
+function hashChange(){
+    // alert("URL产生了变化")
+    console.log("URL产生了变化");
+     kaggleDownClickedSetupInterval =setInterval(() => {
+        kaggleDownClickedSetup()
+    },3000)
+    
+}
+ 
+//url变化监听器
+if( ('onhashchange' in window) && ((typeof document.documentMode==='undefined') || document.documentMode==8)) {
+    // 浏览器支持onhashchange事件
+    window.onhashchange = hashChange;  // TODO，对应新的hash执行的操作函数
+} else {
+    // 不支持则用定时器检测的办法
+    setInterval(function() {
+        // 检测hash值或其中某一段是否更改的函数， 
+        // 在低版本的iE浏览器中通过window.location.hash取出的指和其它的浏览器不同，要注意
+        var ischanged = isHashChanged();
+        if(ischanged) {
+            hashChange();  // TODO，对应新的hash执行的操作函数
+        }
+    }, 150);
+}
