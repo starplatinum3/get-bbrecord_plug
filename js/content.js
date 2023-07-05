@@ -2913,6 +2913,15 @@ else if (location_href.startsWith('https://mp.weixin.qq.com/s/')) {
         weixin_article_crawler()
     }, 2000); 
 }
+// https://tusi.art/models/600998819590570287
+else if (location_href.startsWith('https://tusi.art/models/')) {
+    setTimeout(() => {
+        万象_crawler()
+    }, 2000); 
+}
+// 万象_crawler
+
+// huggingface_main_crawler
 // https://huggingface.co/WarriorMama777/OrangeMixs/discussions
 else if (location_href.startsWith('https://huggingface.co/')
 && location_href.endsWith('/discussions') ) {
@@ -2920,8 +2929,13 @@ else if (location_href.startsWith('https://huggingface.co/')
     setTimeout(() => {
         huggingface_discussions_crawler()
     }, 2000); 
-   
- 
+  
+}
+// https://huggingface.co/kakaobrain/karlo-v1-alpha
+else if (location_href.startsWith('https://huggingface.co/')) {
+    setTimeout(() => {
+        huggingface_main_crawler()
+    }, 2000); 
 }
 // huggingface_discussions_crawler
 
@@ -4677,6 +4691,15 @@ let spanDom=bookDom.getElementsByTagName('span')[1]
     let txt= dom.innerHTML
     downloadTxt(`stackoverflow_questions_${location.href}.html`,txt)
   }
+//   https://huggingface.co/kakaobrain/karlo-v1-alpha
+    const huggingface_main_crawler=()=>{
+    //   getTextContentByClassName("flex min-h-screen flex-col")
+      let  dom=  document.getElementsByClassName('flex min-h-screen flex-col')[0]
+    // let  dom=  document.getElementById( "mainbar")
+    let txt= dom.innerHTML
+    downloadTxt(`huggingface_main_${location.href}.html`,txt)
+  }
+//   https://huggingface.co/kakaobrain/karlo-v1-alpha
   const weixin_article_crawler=()=>{
    
     let  dom=  document.getElementById( "js_article")
@@ -4689,6 +4712,30 @@ let spanDom=bookDom.getElementsByTagName('span')[1]
     let txt= dom.innerHTML
     downloadTxt(`huggingface_discussions_${location.href}.html`,txt)
   }
+
+  const 万象_crawler=()=>{
+   
+    // https://tusi.art/models/600998819590570287
+    // 万象
+    let imgDoms= document.getElementsByClassName('w-full h-full @hover:scale-108 transition-transform duration-300')
+ 
+    let resList=[]
+    for(let i=0;i<imgDoms.length;i++){
+
+        let src=
+        imgDoms[i].src
+        resList.push({
+            src,
+        })
+
+    }
+    downloadTxt(`万象_imgs_${location.href}.json`,JSON.stringify(resList))
+    // let txt= dom.innerHTML
+    // downloadTxt(`万象_${location.href}.html`,txt)
+  }
+
+
+//   
 //   https://huggingface.co/WarriorMama777/OrangeMixs/discussions
 
 //   https://mp.weixin.qq.com/s/4qD_9YUJleDlsLkRcf4FJg
