@@ -1615,9 +1615,11 @@ async function postData(url = "", data = {}) {
     const response = await fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
+        // mode: "no-cors",
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, *same-origin, omit
         headers: {
+            // "Access-Control-Allow-Origin":"*",
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -1628,11 +1630,87 @@ async function postData(url = "", data = {}) {
     return response.json(); // parses JSON response into native JavaScript objects
 }
 
+
+function insertScrawlData(obj){
+    let postForm={
+        // "type": "string",
+        // "params": "string",
+        // "localDoc": "string",
+        // "otherDoc": "string",
+        // "localField": "string",
+        // "foreignField": "string",
+        // "ops": [
+        //   {
+        //     "field": "string",
+        //     "op": "string",
+        //     "value": {}
+        //   }
+        // ],
+        // "sortBy": [
+        //   {
+        //     "field": "string",
+        //     "op": "string",
+        //     "value": {}
+        //   }
+        // ],
+        "data": obj,
+        "collectionName": "boss_data",
+        // "likeMap": "string",
+        // "equalMap": "string",
+        // "notEqualMap": "string",
+        // "pageNumber": 0,
+        // "pageSize": 0,
+        // "updateMap": "string"
+      }
+      let baseUrl="http://localhost:8889"
+      let funcPath="/all/searchWord/insert"
+      let insertScrawlDataPath="/all/insertScrawlData"
+        postData(baseUrl+insertScrawlDataPath,postForm).then(res=>{
+
+            console.log("res insertScrawlDataPath")
+            console.log(res)
+
+        })
+
+}
+
+
+
+function insertScrawlDataOfCollectionName(postForm){
+    let postFormDemo={
+        "data": {},
+        "collectionName": "boss_data",
+      }
+      let baseUrl="http://localhost:8889"
+      let funcPath="/all/searchWord/insert"
+      let insertScrawlDataPath="/all/insertScrawlData"
+        postData(baseUrl+insertScrawlDataPath,postForm).then(res=>{
+
+            console.log("res insertScrawlDataPath")
+            console.log(res)
+
+        })
+
+}
+
 // function 
 // D:\proj\python\my_util_py_pub>python "d:\proj\python\my_util_py_pub\read_job.py"
 let detailLinkList = ['http://career.zucc.edu.cn/job/view/id/1195408', 'http://career.zucc.edu.cn/job/view/id/1195407', 'http://career.zucc.edu.cn/job/view/id/1195406', 'http://career.zucc.edu.cn/job/view/id/1195405', 'http://career.zucc.edu.cn/job/view/id/1195404', 'http://career.zucc.edu.cn/job/view/id/1195403', 'http://career.zucc.edu.cn/job/view/id/1195401', 'http://career.zucc.edu.cn/job/view/id/1195400', 'http://career.zucc.edu.cn/job/view/id/1195399', 'http://career.zucc.edu.cn/job/view/id/1195398', 'http://career.zucc.edu.cn/job/view/id/1195397', 'http://career.zucc.edu.cn/job/view/id/1195396', 'http://career.zucc.edu.cn/job/view/id/1195395', 'http://career.zucc.edu.cn/job/view/id/1195394', 'http://career.zucc.edu.cn/job/view/id/1195392', 'http://career.zucc.edu.cn/job/view/id/1195390', 'http://career.zucc.edu.cn/job/view/id/1195389', 'http://career.zucc.edu.cn/job/view/id/1195388', 'http://career.zucc.edu.cn/job/view/id/1195387', 'http://career.zucc.edu.cn/job/view/id/1195386', 'http://career.zucc.edu.cn/job/view/id/1195384', 'http://career.zucc.edu.cn/job/view/id/1195383', 'http://career.zucc.edu.cn/job/view/id/1195382', 'http://career.zucc.edu.cn/job/view/id/1195380', 'http://career.zucc.edu.cn/job/view/id/1195378', 'http://career.zucc.edu.cn/job/view/id/1195377', 'http://career.zucc.edu.cn/job/view/id/1195374', 'http://career.zucc.edu.cn/job/view/id/1195372', 'http://career.zucc.edu.cn/job/view/id/1195371', 'http://career.zucc.edu.cn/job/view/id/1195360', 'http://career.zucc.edu.cn/job/view/id/1195359', 'http://career.zucc.edu.cn/job/view/id/1195358', 'http://career.zucc.edu.cn/job/view/id/1195357', 'http://career.zucc.edu.cn/job/view/id/1195356', 'http://career.zucc.edu.cn/job/view/id/1195349', 'http://career.zucc.edu.cn/job/view/id/1195347', 'http://career.zucc.edu.cn/job/view/id/1195346', 'http://career.zucc.edu.cn/job/view/id/1195345', 'http://career.zucc.edu.cn/job/view/id/1195344', 'http://career.zucc.edu.cn/job/view/id/1195343', 'http://career.zucc.edu.cn/job/view/id/1195342', 'http://career.zucc.edu.cn/job/view/id/1195334', 'http://career.zucc.edu.cn/job/view/id/1195326', 'http://career.zucc.edu.cn/job/view/id/1195317', 'http://career.zucc.edu.cn/job/view/id/1195316', 'http://career.zucc.edu.cn/job/view/id/1195315', 'http://career.zucc.edu.cn/job/view/id/1195314', 'http://career.zucc.edu.cn/job/view/id/1195313', 'http://career.zucc.edu.cn/job/view/id/1195311', 'http://career.zucc.edu.cn/job/view/id/1195312', 'http://career.zucc.edu.cn/job/view/id/1195310', 'http://career.zucc.edu.cn/job/view/id/1195309', 'http://career.zucc.edu.cn/job/view/id/1195307', 'http://career.zucc.edu.cn/job/view/id/1195306', 'http://career.zucc.edu.cn/job/view/id/1195305', 'http://career.zucc.edu.cn/job/view/id/1195304', 'http://career.zucc.edu.cn/job/view/id/1195303', 'http://career.zucc.edu.cn/job/view/id/1195302', 'http://career.zucc.edu.cn/job/view/id/1195301', 'http://career.zucc.edu.cn/job/view/id/1195300', 'http://career.zucc.edu.cn/job/view/id/1195299', 'http://career.zucc.edu.cn/job/view/id/1195294', 'http://career.zucc.edu.cn/job/view/id/1195293', 'http://career.zucc.edu.cn/job/view/id/1195292', 'http://career.zucc.edu.cn/job/view/id/1195290', 'http://career.zucc.edu.cn/job/view/id/1195288', 'http://career.zucc.edu.cn/job/view/id/1195284', 'http://career.zucc.edu.cn/job/view/id/1195282', 'http://career.zucc.edu.cn/job/view/id/1195281', 'http://career.zucc.edu.cn/job/view/id/1195280', 'http://career.zucc.edu.cn/job/view/id/1195279', 'http://career.zucc.edu.cn/job/view/id/1195278', 'http://career.zucc.edu.cn/job/view/id/1195277', 'http://career.zucc.edu.cn/job/view/id/1195296', 'http://career.zucc.edu.cn/job/view/id/1195297', 'http://career.zucc.edu.cn/job/view/id/1195271', 'http://career.zucc.edu.cn/job/view/id/1195270', 'http://career.zucc.edu.cn/job/view/id/1195269', 'http://career.zucc.edu.cn/job/view/id/1195268', 'http://career.zucc.edu.cn/job/view/id/1195267', 'http://career.zucc.edu.cn/job/view/id/1195266', 'http://career.zucc.edu.cn/job/view/id/1195265', 'http://career.zucc.edu.cn/job/view/id/1195264', 'http://career.zucc.edu.cn/job/view/id/1195263', 'http://career.zucc.edu.cn/job/view/id/1195262', 'http://career.zucc.edu.cn/job/view/id/1195261', 'http://career.zucc.edu.cn/job/view/id/1195260', 'http://career.zucc.edu.cn/job/view/id/1195259', 'http://career.zucc.edu.cn/job/view/id/1195258', 'http://career.zucc.edu.cn/job/view/id/1195257', 'http://career.zucc.edu.cn/job/view/id/1195256', 'http://career.zucc.edu.cn/job/view/id/1195255', 'http://career.zucc.edu.cn/job/view/id/1195254', 'http://career.zucc.edu.cn/job/view/id/1195253', 'http://career.zucc.edu.cn/job/view/id/1195252', 'http://career.zucc.edu.cn/job/view/id/1195251', 'http://career.zucc.edu.cn/job/view/id/1195250', 'http://career.zucc.edu.cn/job/view/id/1195249', 'http://career.zucc.edu.cn/job/view/id/1195248', 'http://career.zucc.edu.cn/job/view/id/1195247', 'http://career.zucc.edu.cn/job/view/id/1195246', 'http://career.zucc.edu.cn/job/view/id/1195245', 'http://career.zucc.edu.cn/job/view/id/1195244', 'http://career.zucc.edu.cn/job/view/id/1195243', 'http://career.zucc.edu.cn/job/view/id/1195242', 'http://career.zucc.edu.cn/job/view/id/1195241', 'http://career.zucc.edu.cn/job/view/id/1195239', 'http://career.zucc.edu.cn/job/view/id/1195238', 'http://career.zucc.edu.cn/job/view/id/1195237', 'http://career.zucc.edu.cn/job/view/id/1195234', 'http://career.zucc.edu.cn/job/view/id/1195225', 'http://career.zucc.edu.cn/job/view/id/1195224', 'http://career.zucc.edu.cn/job/view/id/1195232', 'http://career.zucc.edu.cn/job/view/id/1195233', 'http://career.zucc.edu.cn/job/view/id/1195236', 'http://career.zucc.edu.cn/job/view/id/1195223', 'http://career.zucc.edu.cn/job/view/id/1195222', 'http://career.zucc.edu.cn/job/view/id/1195221', 'http://career.zucc.edu.cn/job/view/id/1195219', 'http://career.zucc.edu.cn/job/view/id/1195218', 'http://career.zucc.edu.cn/job/view/id/1195214', 'http://career.zucc.edu.cn/job/view/id/1195213', 'http://career.zucc.edu.cn/job/view/id/1195212', 'http://career.zucc.edu.cn/job/view/id/1195209', 'http://career.zucc.edu.cn/job/view/id/1195208', 'http://career.zucc.edu.cn/job/view/id/1195202', 'http://career.zucc.edu.cn/job/view/id/1195201', 'http://career.zucc.edu.cn/job/view/id/1195197', 'http://career.zucc.edu.cn/job/view/id/1195196', 'http://career.zucc.edu.cn/job/view/id/1195195', 'http://career.zucc.edu.cn/job/view/id/1195194', 'http://career.zucc.edu.cn/job/view/id/1195193', 'http://career.zucc.edu.cn/job/view/id/1195191', 'http://career.zucc.edu.cn/job/view/id/1195190', 'http://career.zucc.edu.cn/job/view/id/1195183', 'http://career.zucc.edu.cn/job/view/id/1195173', 'http://career.zucc.edu.cn/job/view/id/1195170', 'http://career.zucc.edu.cn/job/view/id/1195169', 'http://career.zucc.edu.cn/job/view/id/1195168', 'http://career.zucc.edu.cn/job/view/id/1195167', 'http://career.zucc.edu.cn/job/view/id/1195166', 'http://career.zucc.edu.cn/job/view/id/1195165', 'http://career.zucc.edu.cn/job/view/id/1195164', 'http://career.zucc.edu.cn/job/view/id/1195162', 'http://career.zucc.edu.cn/job/view/id/1195150', 'http://career.zucc.edu.cn/job/view/id/1195149', 'http://career.zucc.edu.cn/job/view/id/1195147', 'http://career.zucc.edu.cn/job/view/id/1195145', 'http://career.zucc.edu.cn/job/view/id/1195138', 'http://career.zucc.edu.cn/job/view/id/1195137', 'http://career.zucc.edu.cn/job/view/id/1195136', 'http://career.zucc.edu.cn/job/view/id/1195135', 'http://career.zucc.edu.cn/job/view/id/1195134', 'http://career.zucc.edu.cn/job/view/id/1195133', 'http://career.zucc.edu.cn/job/view/id/1195132', 'http://career.zucc.edu.cn/job/view/id/1195131', 'http://career.zucc.edu.cn/job/view/id/1195130', 'http://career.zucc.edu.cn/job/view/id/1195129', 'http://career.zucc.edu.cn/job/view/id/1195128', 'http://career.zucc.edu.cn/job/view/id/1195127', 'http://career.zucc.edu.cn/job/view/id/1195125', 'http://career.zucc.edu.cn/job/view/id/1195111', 'http://career.zucc.edu.cn/job/view/id/1195110', 'http://career.zucc.edu.cn/job/view/id/1195109', 'http://career.zucc.edu.cn/job/view/id/1195108', 'http://career.zucc.edu.cn/job/view/id/1195107', 'http://career.zucc.edu.cn/job/view/id/1195106', 'http://career.zucc.edu.cn/job/view/id/1195105', 'http://career.zucc.edu.cn/job/view/id/1195104', 'http://career.zucc.edu.cn/job/view/id/1195103', 'http://career.zucc.edu.cn/job/view/id/1195102', 'http://career.zucc.edu.cn/job/view/id/1195100', 'http://career.zucc.edu.cn/job/view/id/1195099', 'http://career.zucc.edu.cn/job/view/id/1195098', 'http://career.zucc.edu.cn/job/view/id/1195095', 'http://career.zucc.edu.cn/job/view/id/1195094', 'http://career.zucc.edu.cn/job/view/id/1195093', 'http://career.zucc.edu.cn/job/view/id/1195091', 'http://career.zucc.edu.cn/job/view/id/1195090', 'http://career.zucc.edu.cn/job/view/id/1195089', 'http://career.zucc.edu.cn/job/view/id/1195088', 'http://career.zucc.edu.cn/job/view/id/1195087', 'http://career.zucc.edu.cn/job/view/id/1195086', 'http://career.zucc.edu.cn/job/view/id/1195085', 'http://career.zucc.edu.cn/job/view/id/1195083', 'http://career.zucc.edu.cn/job/view/id/1195082', 'http://career.zucc.edu.cn/job/view/id/1195079', 'http://career.zucc.edu.cn/job/view/id/1195072', 'http://career.zucc.edu.cn/job/view/id/1195069', 'http://career.zucc.edu.cn/job/view/id/1195068', 'http://career.zucc.edu.cn/job/view/id/1195066', 'http://career.zucc.edu.cn/job/view/id/1195065', 'http://career.zucc.edu.cn/job/view/id/1195057', 'http://career.zucc.edu.cn/job/view/id/1195056', 'http://career.zucc.edu.cn/job/view/id/1195051', 'http://career.zucc.edu.cn/job/view/id/1195042', 'http://career.zucc.edu.cn/job/view/id/1195041', 'http://career.zucc.edu.cn/job/view/id/1195040', 'http://career.zucc.edu.cn/job/view/id/1195039', 'http://career.zucc.edu.cn/job/view/id/1195033', 'http://career.zucc.edu.cn/job/view/id/1195671', 'http://career.zucc.edu.cn/job/view/id/1195670', 'http://career.zucc.edu.cn/job/view/id/1195669', 'http://career.zucc.edu.cn/job/view/id/1195668', 'http://career.zucc.edu.cn/job/view/id/1195667', 'http://career.zucc.edu.cn/job/view/id/1195666', 'http://career.zucc.edu.cn/job/view/id/1195665', 'http://career.zucc.edu.cn/job/view/id/1195664', 'http://career.zucc.edu.cn/job/view/id/1195663', 'http://career.zucc.edu.cn/job/view/id/1195662', 'http://career.zucc.edu.cn/job/view/id/1195661', 'http://career.zucc.edu.cn/job/view/id/1195660', 'http://career.zucc.edu.cn/job/view/id/1195659', 'http://career.zucc.edu.cn/job/view/id/1195658', 'http://career.zucc.edu.cn/job/view/id/1195657', 'http://career.zucc.edu.cn/job/view/id/1195656', 'http://career.zucc.edu.cn/job/view/id/1195655', 'http://career.zucc.edu.cn/job/view/id/1195654', 'http://career.zucc.edu.cn/job/view/id/1195653', 'http://career.zucc.edu.cn/job/view/id/1195652', 'http://career.zucc.edu.cn/job/view/id/1195032', 'http://career.zucc.edu.cn/job/view/id/1195026', 'http://career.zucc.edu.cn/job/view/id/1195016', 'http://career.zucc.edu.cn/job/view/id/1195015', 'http://career.zucc.edu.cn/job/view/id/1195007', 'http://career.zucc.edu.cn/job/view/id/1195000', 'http://career.zucc.edu.cn/job/view/id/1194999', 'http://career.zucc.edu.cn/job/view/id/1194998', 'http://career.zucc.edu.cn/job/view/id/1194997', 'http://career.zucc.edu.cn/job/view/id/1194996', 'http://career.zucc.edu.cn/job/view/id/1194995', 'http://career.zucc.edu.cn/job/view/id/1194994', 'http://career.zucc.edu.cn/job/view/id/1194993', 'http://career.zucc.edu.cn/job/view/id/1194986', 'http://career.zucc.edu.cn/job/view/id/1194985', 'http://career.zucc.edu.cn/job/view/id/1194984', 'http://career.zucc.edu.cn/job/view/id/1194983', 'http://career.zucc.edu.cn/job/view/id/1194982', 'http://career.zucc.edu.cn/job/view/id/1194961', 'http://career.zucc.edu.cn/job/view/id/1194960', 'http://career.zucc.edu.cn/job/view/id/1194959', 'http://career.zucc.edu.cn/job/view/id/1194946', 'http://career.zucc.edu.cn/job/view/id/1194945', 'http://career.zucc.edu.cn/job/view/id/1194944', 'http://career.zucc.edu.cn/job/view/id/1194943', 'http://career.zucc.edu.cn/job/view/id/1194942', 'http://career.zucc.edu.cn/job/view/id/1194941', 'http://career.zucc.edu.cn/job/view/id/1194939', 'http://career.zucc.edu.cn/job/view/id/1194938', 'http://career.zucc.edu.cn/job/view/id/1194937', 'http://career.zucc.edu.cn/job/view/id/1194936', 'http://career.zucc.edu.cn/job/view/id/1194935', 'http://career.zucc.edu.cn/job/view/id/1194934', 'http://career.zucc.edu.cn/job/view/id/1194932', 'http://career.zucc.edu.cn/job/view/id/1194931', 'http://career.zucc.edu.cn/job/view/id/1194930', 'http://career.zucc.edu.cn/job/view/id/1194929', 'http://career.zucc.edu.cn/job/view/id/1194916', 'http://career.zucc.edu.cn/job/view/id/1194915', 'http://career.zucc.edu.cn/job/view/id/1194907', 'http://career.zucc.edu.cn/job/view/id/1194903', 'http://career.zucc.edu.cn/job/view/id/1194902', 'http://career.zucc.edu.cn/job/view/id/1194901', 'http://career.zucc.edu.cn/job/view/id/1194877', 'http://career.zucc.edu.cn/job/view/id/1194876', 'http://career.zucc.edu.cn/job/view/id/1194867', 'http://career.zucc.edu.cn/job/view/id/1194865', 'http://career.zucc.edu.cn/job/view/id/1194827', 'http://career.zucc.edu.cn/job/view/id/1194804', 'http://career.zucc.edu.cn/job/view/id/1194803', 'http://career.zucc.edu.cn/job/view/id/1194785', 'http://career.zucc.edu.cn/job/view/id/1194784', 'http://career.zucc.edu.cn/job/view/id/1194783', 'http://career.zucc.edu.cn/job/view/id/1194782', 'http://career.zucc.edu.cn/job/view/id/1194778', 'http://career.zucc.edu.cn/job/view/id/1194777', 'http://career.zucc.edu.cn/job/view/id/1194776', 'http://career.zucc.edu.cn/job/view/id/1194779', 'http://career.zucc.edu.cn/job/view/id/1194764', 'http://career.zucc.edu.cn/job/view/id/1194757', 'http://career.zucc.edu.cn/job/view/id/1194754', 'http://career.zucc.edu.cn/job/view/id/1194753', 'http://career.zucc.edu.cn/job/view/id/1194729', 'http://career.zucc.edu.cn/job/view/id/1194702', 'http://career.zucc.edu.cn/job/view/id/1194701', 'http://career.zucc.edu.cn/job/view/id/1194700', 'http://career.zucc.edu.cn/job/view/id/1194689', 'http://career.zucc.edu.cn/job/view/id/1194688', 'http://career.zucc.edu.cn/job/view/id/1194687', 'http://career.zucc.edu.cn/job/view/id/1194658', 'http://career.zucc.edu.cn/job/view/id/1194655', 'http://career.zucc.edu.cn/job/view/id/1194654', 'http://career.zucc.edu.cn/job/view/id/1194653', 'http://career.zucc.edu.cn/job/view/id/1194643', 'http://career.zucc.edu.cn/job/view/id/1194634', 'http://career.zucc.edu.cn/job/view/id/1194632', 'http://career.zucc.edu.cn/job/view/id/1194631', 'http://career.zucc.edu.cn/job/view/id/1194629', 'http://career.zucc.edu.cn/job/view/id/1194628', 'http://career.zucc.edu.cn/job/view/id/1194593', 'http://career.zucc.edu.cn/job/view/id/1194584', 'http://career.zucc.edu.cn/job/view/id/1194583', 'http://career.zucc.edu.cn/job/view/id/1194581', 'http://career.zucc.edu.cn/job/view/id/1194580', 'http://career.zucc.edu.cn/job/view/id/1194579', 'http://career.zucc.edu.cn/job/view/id/1194578', 'http://career.zucc.edu.cn/job/view/id/1194577', 'http://career.zucc.edu.cn/job/view/id/1194576', 'http://career.zucc.edu.cn/job/view/id/1194575', 'http://career.zucc.edu.cn/job/view/id/1194561', 'http://career.zucc.edu.cn/job/view/id/1194559', 'http://career.zucc.edu.cn/job/view/id/1194558', 'http://career.zucc.edu.cn/job/view/id/1194557', 'http://career.zucc.edu.cn/job/view/id/1194525', 'http://career.zucc.edu.cn/job/view/id/1194499', 'http://career.zucc.edu.cn/job/view/id/1194490', 'http://career.zucc.edu.cn/job/view/id/1194489', 'http://career.zucc.edu.cn/job/view/id/1194488', 'http://career.zucc.edu.cn/job/view/id/1194487', 'http://career.zucc.edu.cn/job/view/id/1194486', 'http://career.zucc.edu.cn/job/view/id/1194280', 'http://career.zucc.edu.cn/job/view/id/1194279', 'http://career.zucc.edu.cn/job/view/id/1194185', 'http://career.zucc.edu.cn/job/view/id/1194184', 'http://career.zucc.edu.cn/job/view/id/1194183', 'http://career.zucc.edu.cn/job/view/id/1194182', 'http://career.zucc.edu.cn/job/view/id/1194181', 'http://career.zucc.edu.cn/job/view/id/1194180', 'http://career.zucc.edu.cn/job/view/id/1194179', 'http://career.zucc.edu.cn/job/view/id/1194178', 'http://career.zucc.edu.cn/job/view/id/1194177', 'http://career.zucc.edu.cn/job/view/id/1194176', 'http://career.zucc.edu.cn/job/view/id/1194175', 'http://career.zucc.edu.cn/job/view/id/1194174', 'http://career.zucc.edu.cn/job/view/id/1194173', 'http://career.zucc.edu.cn/job/view/id/1194007', 'http://career.zucc.edu.cn/job/view/id/1194002', 'http://career.zucc.edu.cn/job/view/id/1194001', 'http://career.zucc.edu.cn/job/view/id/1194000', 'http://career.zucc.edu.cn/job/view/id/1193999', 'http://career.zucc.edu.cn/job/view/id/1193998', 'http://career.zucc.edu.cn/job/view/id/1193997', 'http://career.zucc.edu.cn/job/view/id/1193996', 'http://career.zucc.edu.cn/job/view/id/1193988', 'http://career.zucc.edu.cn/job/view/id/1193987', 'http://career.zucc.edu.cn/job/view/id/1193986', 'http://career.zucc.edu.cn/job/view/id/1193985', 'http://career.zucc.edu.cn/job/view/id/1193984', 'http://career.zucc.edu.cn/job/view/id/1193983', 'http://career.zucc.edu.cn/job/view/id/1193890', 'http://career.zucc.edu.cn/job/view/id/1193887', 'http://career.zucc.edu.cn/job/view/id/1193632', 'http://career.zucc.edu.cn/job/view/id/1193631', 'http://career.zucc.edu.cn/job/view/id/1193629', 'http://career.zucc.edu.cn/job/view/id/1193620', 'http://career.zucc.edu.cn/job/view/id/1193617', 'http://career.zucc.edu.cn/job/view/id/1193532', 'http://career.zucc.edu.cn/job/view/id/1193531', 'http://career.zucc.edu.cn/job/view/id/1193530', 'http://career.zucc.edu.cn/job/view/id/1193529', 'http://career.zucc.edu.cn/job/view/id/1193528', 'http://career.zucc.edu.cn/job/view/id/1193527', 'http://career.zucc.edu.cn/job/view/id/1193410', 'http://career.zucc.edu.cn/job/view/id/1193395', 'http://career.zucc.edu.cn/job/view/id/1193394', 'http://career.zucc.edu.cn/job/view/id/1193074', 'http://career.zucc.edu.cn/job/view/id/1192995', 'http://career.zucc.edu.cn/job/view/id/1192999', 'http://career.zucc.edu.cn/job/view/id/1192818', 'http://career.zucc.edu.cn/job/view/id/1192824', 'http://career.zucc.edu.cn/job/view/id/1192754', 'http://career.zucc.edu.cn/job/view/id/1192447', 'http://career.zucc.edu.cn/job/view/id/1192356', 'http://career.zucc.edu.cn/job/view/id/1192237', 'http://career.zucc.edu.cn/job/view/id/1192236', 'http://career.zucc.edu.cn/job/view/id/1192142', 'http://career.zucc.edu.cn/job/view/id/1192141', 'http://career.zucc.edu.cn/job/view/id/1192102', 'http://career.zucc.edu.cn/job/view/id/1192101', 'http://career.zucc.edu.cn/job/view/id/1192100', 'http://career.zucc.edu.cn/job/view/id/1192099', 'http://career.zucc.edu.cn/job/view/id/1192098', 'http://career.zucc.edu.cn/job/view/id/1192097', 'http://career.zucc.edu.cn/job/view/id/1192024', 'http://career.zucc.edu.cn/job/view/id/1192023', 'http://career.zucc.edu.cn/job/view/id/1191891', 'http://career.zucc.edu.cn/job/view/id/1191887', 'http://career.zucc.edu.cn/job/view/id/1191862', 'http://career.zucc.edu.cn/job/view/id/1191850', 'http://career.zucc.edu.cn/job/view/id/1191844', 'http://career.zucc.edu.cn/job/view/id/1191659', 'http://career.zucc.edu.cn/job/view/id/1191658', 'http://career.zucc.edu.cn/job/view/id/1191656', 'http://career.zucc.edu.cn/job/view/id/1191655', 'http://career.zucc.edu.cn/job/view/id/1191654', 'http://career.zucc.edu.cn/job/view/id/1191653', 'http://career.zucc.edu.cn/job/view/id/1191652', 'http://career.zucc.edu.cn/job/view/id/1191650', 'http://career.zucc.edu.cn/job/view/id/1191649', 'http://career.zucc.edu.cn/job/view/id/1190788', 'http://career.zucc.edu.cn/job/view/id/1190680', 'http://career.zucc.edu.cn/job/view/id/1190676', 'http://career.zucc.edu.cn/job/view/id/1190543', 'http://career.zucc.edu.cn/job/view/id/1190542', 'http://career.zucc.edu.cn/job/view/id/1190541', 'http://career.zucc.edu.cn/job/view/id/1190491', 'http://career.zucc.edu.cn/job/view/id/1190448', 'http://career.zucc.edu.cn/job/view/id/1190440', 'http://career.zucc.edu.cn/job/view/id/1190433', 'http://career.zucc.edu.cn/job/view/id/1190434', 'http://career.zucc.edu.cn/job/view/id/1190435', 'http://career.zucc.edu.cn/job/view/id/1190436', 'http://career.zucc.edu.cn/job/view/id/1190437', 'http://career.zucc.edu.cn/job/view/id/1190438', 'http://career.zucc.edu.cn/job/view/id/1190376', 'http://career.zucc.edu.cn/job/view/id/1190350', 'http://career.zucc.edu.cn/job/view/id/1190351', 'http://career.zucc.edu.cn/job/view/id/1190352', 'http://career.zucc.edu.cn/job/view/id/1190353', 'http://career.zucc.edu.cn/job/view/id/1190354', 'http://career.zucc.edu.cn/job/view/id/1195651', 'http://career.zucc.edu.cn/job/view/id/1195650', 'http://career.zucc.edu.cn/job/view/id/1195649', 'http://career.zucc.edu.cn/job/view/id/1195648', 'http://career.zucc.edu.cn/job/view/id/1195647', 'http://career.zucc.edu.cn/job/view/id/1195646', 'http://career.zucc.edu.cn/job/view/id/1195645', 'http://career.zucc.edu.cn/job/view/id/1195644', 'http://career.zucc.edu.cn/job/view/id/1195643', 'http://career.zucc.edu.cn/job/view/id/1195642', 'http://career.zucc.edu.cn/job/view/id/1195641', 'http://career.zucc.edu.cn/job/view/id/1195640', 'http://career.zucc.edu.cn/job/view/id/1195639', 'http://career.zucc.edu.cn/job/view/id/1195638', 'http://career.zucc.edu.cn/job/view/id/1195637', 'http://career.zucc.edu.cn/job/view/id/1195636', 'http://career.zucc.edu.cn/job/view/id/1195635', 'http://career.zucc.edu.cn/job/view/id/1195634', 'http://career.zucc.edu.cn/job/view/id/1195633', 'http://career.zucc.edu.cn/job/view/id/1195632', 'http://career.zucc.edu.cn/job/view/id/1195631', 'http://career.zucc.edu.cn/job/view/id/1195630', 'http://career.zucc.edu.cn/job/view/id/1195629', 'http://career.zucc.edu.cn/job/view/id/1195628', 'http://career.zucc.edu.cn/job/view/id/1195627', 'http://career.zucc.edu.cn/job/view/id/1195626', 'http://career.zucc.edu.cn/job/view/id/1195625', 'http://career.zucc.edu.cn/job/view/id/1195624', 'http://career.zucc.edu.cn/job/view/id/1195623', 'http://career.zucc.edu.cn/job/view/id/1195622', 'http://career.zucc.edu.cn/job/view/id/1195621', 'http://career.zucc.edu.cn/job/view/id/1195620', 'http://career.zucc.edu.cn/job/view/id/1195619', 'http://career.zucc.edu.cn/job/view/id/1195618', 'http://career.zucc.edu.cn/job/view/id/1195617', 'http://career.zucc.edu.cn/job/view/id/1195616', 'http://career.zucc.edu.cn/job/view/id/1195615', 'http://career.zucc.edu.cn/job/view/id/1195614', 'http://career.zucc.edu.cn/job/view/id/1195613', 'http://career.zucc.edu.cn/job/view/id/1195612', 'http://career.zucc.edu.cn/job/view/id/1195611', 'http://career.zucc.edu.cn/job/view/id/1195610', 'http://career.zucc.edu.cn/job/view/id/1195609', 'http://career.zucc.edu.cn/job/view/id/1195608', 'http://career.zucc.edu.cn/job/view/id/1195607', 'http://career.zucc.edu.cn/job/view/id/1195606', 'http://career.zucc.edu.cn/job/view/id/1195605', 'http://career.zucc.edu.cn/job/view/id/1195604', 'http://career.zucc.edu.cn/job/view/id/1195603', 'http://career.zucc.edu.cn/job/view/id/1195602', 'http://career.zucc.edu.cn/job/view/id/1195601', 'http://career.zucc.edu.cn/job/view/id/1195600', 'http://career.zucc.edu.cn/job/view/id/1195599', 'http://career.zucc.edu.cn/job/view/id/1195598', 'http://career.zucc.edu.cn/job/view/id/1195597', 'http://career.zucc.edu.cn/job/view/id/1195596', 'http://career.zucc.edu.cn/job/view/id/1195595', 'http://career.zucc.edu.cn/job/view/id/1195594', 'http://career.zucc.edu.cn/job/view/id/1195593', 'http://career.zucc.edu.cn/job/view/id/1195592', 'http://career.zucc.edu.cn/job/view/id/1195591', 'http://career.zucc.edu.cn/job/view/id/1195590', 'http://career.zucc.edu.cn/job/view/id/1195589', 'http://career.zucc.edu.cn/job/view/id/1195588', 'http://career.zucc.edu.cn/job/view/id/1195587', 'http://career.zucc.edu.cn/job/view/id/1195586', 'http://career.zucc.edu.cn/job/view/id/1195585', 'http://career.zucc.edu.cn/job/view/id/1195584', 'http://career.zucc.edu.cn/job/view/id/1195583', 'http://career.zucc.edu.cn/job/view/id/1195582', 'http://career.zucc.edu.cn/job/view/id/1195581', 'http://career.zucc.edu.cn/job/view/id/1195579', 'http://career.zucc.edu.cn/job/view/id/1195578', 'http://career.zucc.edu.cn/job/view/id/1195577', 'http://career.zucc.edu.cn/job/view/id/1195576', 'http://career.zucc.edu.cn/job/view/id/1195575', 'http://career.zucc.edu.cn/job/view/id/1195573', 'http://career.zucc.edu.cn/job/view/id/1195572', 'http://career.zucc.edu.cn/job/view/id/1195571', 'http://career.zucc.edu.cn/job/view/id/1195570', 'http://career.zucc.edu.cn/job/view/id/1195569', 'http://career.zucc.edu.cn/job/view/id/1195568', 'http://career.zucc.edu.cn/job/view/id/1195567', 'http://career.zucc.edu.cn/job/view/id/1195566', 'http://career.zucc.edu.cn/job/view/id/1195565', 'http://career.zucc.edu.cn/job/view/id/1195561', 'http://career.zucc.edu.cn/job/view/id/1195559', 'http://career.zucc.edu.cn/job/view/id/1195554', 'http://career.zucc.edu.cn/job/view/id/1195553', 'http://career.zucc.edu.cn/job/view/id/1195551', 'http://career.zucc.edu.cn/job/view/id/1195541', 'http://career.zucc.edu.cn/job/view/id/1195540', 'http://career.zucc.edu.cn/job/view/id/1195539', 'http://career.zucc.edu.cn/job/view/id/1195538', 'http://career.zucc.edu.cn/job/view/id/1195532', 'http://career.zucc.edu.cn/job/view/id/1195528', 'http://career.zucc.edu.cn/job/view/id/1195527', 'http://career.zucc.edu.cn/job/view/id/1195526', 'http://career.zucc.edu.cn/job/view/id/1195525', 'http://career.zucc.edu.cn/job/view/id/1195524', 'http://career.zucc.edu.cn/job/view/id/1195502', 'http://career.zucc.edu.cn/job/view/id/1195495', 'http://career.zucc.edu.cn/job/view/id/1195494', 'http://career.zucc.edu.cn/job/view/id/1195488', 'http://career.zucc.edu.cn/job/view/id/1195487', 'http://career.zucc.edu.cn/job/view/id/1195486', 'http://career.zucc.edu.cn/job/view/id/1195485', 'http://career.zucc.edu.cn/job/view/id/1195483', 'http://career.zucc.edu.cn/job/view/id/1195481', 'http://career.zucc.edu.cn/job/view/id/1195480', 'http://career.zucc.edu.cn/job/view/id/1195478', 'http://career.zucc.edu.cn/job/view/id/1195477', 'http://career.zucc.edu.cn/job/view/id/1195476', 'http://career.zucc.edu.cn/job/view/id/1195474', 'http://career.zucc.edu.cn/job/view/id/1195472', 'http://career.zucc.edu.cn/job/view/id/1195471', 'http://career.zucc.edu.cn/job/view/id/1195470', 'http://career.zucc.edu.cn/job/view/id/1195469', 'http://career.zucc.edu.cn/job/view/id/1195467', 'http://career.zucc.edu.cn/job/view/id/1195466', 'http://career.zucc.edu.cn/job/view/id/1195465', 'http://career.zucc.edu.cn/job/view/id/1195464', 'http://career.zucc.edu.cn/job/view/id/1195463', 'http://career.zucc.edu.cn/job/view/id/1195452', 'http://career.zucc.edu.cn/job/view/id/1195449', 'http://career.zucc.edu.cn/job/view/id/1195448', 'http://career.zucc.edu.cn/job/view/id/1195447', 'http://career.zucc.edu.cn/job/view/id/1195446', 'http://career.zucc.edu.cn/job/view/id/1195445', 'http://career.zucc.edu.cn/job/view/id/1195436', 'http://career.zucc.edu.cn/job/view/id/1195435', 'http://career.zucc.edu.cn/job/view/id/1195426', 'http://career.zucc.edu.cn/job/view/id/1195424', 'http://career.zucc.edu.cn/job/view/id/1195423', 'http://career.zucc.edu.cn/job/view/id/1195422', 'http://career.zucc.edu.cn/job/view/id/1195413', 'http://career.zucc.edu.cn/job/view/id/1195412', 'http://career.zucc.edu.cn/job/view/id/1195411', 'http://career.zucc.edu.cn/job/view/id/1195410', 'http://career.zucc.edu.cn/job/view/id/1195409', 'http://career.zucc.edu.cn/job/view/id/1195694', 'http://career.zucc.edu.cn/job/view/id/1195693', 'http://career.zucc.edu.cn/job/view/id/1195692', 'http://career.zucc.edu.cn/job/view/id/1195691', 'http://career.zucc.edu.cn/job/view/id/1195690', 'http://career.zucc.edu.cn/job/view/id/1195689', 'http://career.zucc.edu.cn/job/view/id/1195687', 'http://career.zucc.edu.cn/job/view/id/1195686', 'http://career.zucc.edu.cn/job/view/id/1195685', 'http://career.zucc.edu.cn/job/view/id/1195684', 'http://career.zucc.edu.cn/job/view/id/1195683', 'http://career.zucc.edu.cn/job/view/id/1195682', 'http://career.zucc.edu.cn/job/view/id/1195681', 'http://career.zucc.edu.cn/job/view/id/1195680', 'http://career.zucc.edu.cn/job/view/id/1195679', 'http://career.zucc.edu.cn/job/view/id/1195678', 'http://career.zucc.edu.cn/job/view/id/1195677', 'http://career.zucc.edu.cn/job/view/id/1195674', 'http://career.zucc.edu.cn/job/view/id/1195673', 'http://career.zucc.edu.cn/job/view/id/1195672']
 
 function jobDetailDownloadBoss() {
+
+    let error_content= getTextContentByClassName('error-content')
+    if(
+        error_content  &&  strIsIn('Oops!',error_content)
+    ){
+
+    //   nextLinkBossDetail(bossList,2000)
+      nextLinkBossDetail(bossList,1000)
+      return
+    }
+   
+
+
     // jobDetailDownloadBoss
     // job-sec-text
 
@@ -1736,19 +1814,87 @@ let  jobTags=  document.getElementsByClassName("job-tags")[0]?.innerHTML?.trim()
 
 let  jobStatus=  document.getElementsByClassName("job-status")[0]?.textContent?.trim()
 
-let  hrName=  document.getElementsByClassName("name")[0]?.textContent?.trim()
-
+// let  hrName=  document.getElementsByClassName("name")[0]?.textContent?.trim()
+// let  jobName=  document.getElementsByClassName("name")[0]?.textContent?.trim()
+// h1
+let  jobNameDom=document.getElementsByClassName("name")[0]
+let jobName= jobNameDom.getElementsByTagName('h1')[0]?.textContent?.trim()
 let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textContent?.trim()
 
+let  hrName=document.getElementsByClassName("job-boss-info")[0].getElementsByClassName('name')[0]?.textContent?.trim()
+// getTextContentByClassName()
         let idxIntNext = genNextIdx()
         console.log("idxIntNext");
         console.log(idxIntNext);
+
+        // error-content
+
+        // docu 
+    
     
         // let  linkList
         let  detailLinkList=bossList
 
        let link= detailLinkList[idxIntNext-1]
+
+
+// CREATE TABLE `t_jobs` (
+//     `id` int(11) NOT NULL AUTO_INCREMENT,
+//     `profession_code` int(11) DEFAULT NULL COMMENT '三类code(职业code)',   -- 分析
+//     `name` varchar(150) DEFAULT NULL COMMENT '岗位名称',    /// "jobTitle": "高级爬虫工程师", ----  "jobName": "百瑞思招聘送餐员", 
+//     `description` longtext COMMENT '岗位描述',              -- 详细信息  --jobDescription
+//     `city` varchar(100) DEFAULT NULL COMMENT '岗位地点',   // "placeWork": "杭州·西湖区·高新文教区", ---    "cityName": "杭州",
+//     `experiece` varchar(100) DEFAULT NULL COMMENT '岗位经验',  --  在详细信息 ---    "jobExperience": "经验不限",
+//     `minimum_education` varchar(150) DEFAULT NULL COMMENT '要求最低学历',   -- 详细信息  --- "jobDegree": "学历不限",
+//     `welfare` longtext COMMENT '福利待遇',      /////  "infoDesc": "通讯补贴，带薪年假，五险一金",  --- "welfareList": [
+//     `company_name` varchar(200) DEFAULT NULL COMMENT '公司名称', ////    "companyName": "杭州景初信息科技", ---   "brandName": "百瑞思",
+//     `salary` int(11) DEFAULT NULL COMMENT '岗位薪酬',  -- //  "salary": "20-40K",  ---   "salaryDesc": "6-8元/单",
+//     `start_salary` int(11) DEFAULT NULL COMMENT '起始薪酬',
+//     `end_salary` int(11) DEFAULT NULL COMMENT '截止薪酬',
+//     `delete_status` int(2) NOT NULL DEFAULT '0' COMMENT '删除状态1删除  0正常',  --
+//     PRIMARY KEY (`id`)
+//   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='岗位表';
+
+// </span><span>
+jobTags=jobTags?.replaceAll('</span><span>',',')?.replaceAll('<span>','')?.replaceAll('</span>','')
+
+       let name=jobName
+let  description=jobDescription
+let jobId=id
+let city=placeWork
+let experiece=workExperience
+// let experiece=expa  
+// text-desc text-degree
+let  minimum_education= getTextContentByClassName('text-desc text-degree')
+// getTextContent(document.getb)
+let welfare=jobTags
+let company_name=companyName
+let salary=monthlySalary
+
+ let  salaryObj=  salaryLowHighParse(salary)
+    let  start_salary=  salaryObj?.low
+    let  end_salary=  salaryObj?.high
+let delete_status=0
+
        let  obj={
+        name,
+        description,
+   
+        city,
+        experiece,
+        minimum_education,
+        welfare,
+        company_name,
+        salary,
+        start_salary,
+        end_salary,
+        delete_status,
+
+
+        jobId,
+
+
+
         jobDescription,
         companyIntroduction,
         companyUser,
@@ -1756,7 +1902,7 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
         companyType,
         manageState,
         companyFund,
-        id,
+        // id,
         link,
         companyName,
         workExperience,
@@ -1765,7 +1911,8 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
         jobTags,
         jobStatus,
         hrName,
-        bossInfo
+        bossInfo,
+        jobName,
     
        }
     //    子节点 的 值 没有孙子节点的 js 
@@ -1776,7 +1923,49 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
         console.log("obj");
         console.log(obj);
 
-       downloadTxt(`boss_detail_${id}_idx_${idxIntNext-1}.json`, JSON.stringify(obj))
+        let downloadName=`boss_detail_${id}_${name}_idx_${idxIntNext-1}`
+
+       downloadTxt(`${downloadName}.json`, JSON.stringify(obj))
+    //    downloadTxt(`boss_detail_${id}_${name}_idx_${idxIntNext-1}.json`, JSON.stringify(obj))
+
+       let htmlTxt=
+       document.getElementsByClassName("job-body-wrapper")[0]?.innerHTML
+    //    downloadTxt(`boss_detail_${id}_idx_${idxIntNext-1}.html`, htmlTxt)
+       downloadTxt(`${downloadName}.html`, htmlTxt)
+
+       let postForm={
+        "type": "string",
+        "params": "string",
+        "localDoc": "string",
+        "otherDoc": "string",
+        "localField": "string",
+        "foreignField": "string",
+        "ops": [
+          {
+            "field": "string",
+            "op": "string",
+            "value": {}
+          }
+        ],
+        "sortBy": [
+          {
+            "field": "string",
+            "op": "string",
+            "value": {}
+          }
+        ],
+        "data": obj,
+        "collectionName": "string",
+        "likeMap": "string",
+        "equalMap": "string",
+        "notEqualMap": "string",
+        "pageNumber": 0,
+        "pageSize": 0,
+        "updateMap": "string"
+      }
+        // postData(,postForm).then(res=>{
+
+        // })
 
         if (idxIntNext >= detailLinkList.length) {
             return
@@ -1809,7 +1998,83 @@ let  bossInfo=  document.getElementsByClassName("boss-info-attr")[0]?.textConten
 
 }
 
+
+
+
+function nextLinkJump(detailLinkList, waitMs =  4000){
+
+    let idxIntNext = genNextIdx()
+    console.log("idxIntNext");
+    console.log(idxIntNext);
+
+    if (idxIntNext >= detailLinkList.length) {
+        return
+    }
+   
+
+    let contentIdNext = detailLinkList[idxIntNext]
+    console.log("contentIdNext");
+    console.log(contentIdNext);
+    // detailLinkList
+    // let nextLink =`${contentIdNext}/&idx=${idxIntNext}`
+    // let nextLink =`${contentIdNext}/idx=${idxIntNext}`
+    let nextLink = `${contentIdNext}&idx=${idxIntNext}`
+
+    // let waitMs=1000
+    //  let waitMs=500
+    // let waitMs = 20
+    // let waitMs = 2000
+    // let waitMs =   randomNum(2000, 4000)
+            // let waitMs =  4000
+
+    // js 生成 随机数 1000 到 3000
+//         这种最简单，因为和 random 的特点保持一致。只需使用如下公式即可：
+// Math.random()*(m-n)+n
+    // let nextLink = `http://career.zucc.edu.cn/job/search?title=&city=&d_skill=&d_industry=&d_major=&d_education=&d_category=&d_salary=&nature=&scale=&time=&page=${idxIntNext}&idx=${idxIntNext}`
+    setTimeout(() => {
+        window.location.href = nextLink
+    }, waitMs)
+}
+
+function nextLinkBossDetail(detailLinkList, waitMs =  4000){
+
+    let idxIntNext = genNextIdx()
+    console.log("idxIntNext");
+    console.log(idxIntNext);
+
+    if (idxIntNext >= detailLinkList.length) {
+        return
+    }
+   
+
+    let contentIdNext = detailLinkList[idxIntNext]
+    console.log("contentIdNext");
+    console.log(contentIdNext);
+    // detailLinkList
+    // let nextLink =`${contentIdNext}/&idx=${idxIntNext}`
+    // let nextLink =`${contentIdNext}/idx=${idxIntNext}`
+    let nextLink = `${contentIdNext}&idx=${idxIntNext}`
+
+    // let waitMs=1000
+    //  let waitMs=500
+    // let waitMs = 20
+    // let waitMs = 2000
+    // let waitMs =   randomNum(2000, 4000)
+            // let waitMs =  4000
+
+    // js 生成 随机数 1000 到 3000
+//         这种最简单，因为和 random 的特点保持一致。只需使用如下公式即可：
+// Math.random()*(m-n)+n
+    // let nextLink = `http://career.zucc.edu.cn/job/search?title=&city=&d_skill=&d_industry=&d_major=&d_education=&d_category=&d_salary=&nature=&scale=&time=&page=${idxIntNext}&idx=${idxIntNext}`
+    setTimeout(() => {
+        window.location.href = nextLink
+    }, waitMs)
+}
+
 function zhihu_ans_download(){
+
+    // id="root"
+ 
     // QuestionHeader-title
     // getElementsByClassName("QuestionHeader-title")
     let title=
@@ -1833,6 +2098,9 @@ function zhihu_ans_download(){
         ansList
     }
     downloadTxt(`zhihu_ans_${title}.json`, JSON.stringify(res))
+
+    let  html= document.getElementById('root').innerHTML
+    downloadTxt(`zhihu_ans_${title}.html`,html)
 }
 
 function giteeFileDown(){
@@ -2792,6 +3060,13 @@ else if (location_href.startsWith('http://zjks.rlsbt.zj.gov.cn/col') ) {
         kaoBianLinkGet()
     }, 5000);
 }
+// https://twitter.com/home
+else if (location_href.startsWith('https://twitter.com/home') ) {
+    setTimeout(() => {
+        twitterDown()
+    }, 4000);
+}
+// twitterDown
 else if (location_href.startsWith('https://www.mewx.art/m/album') ) {
     let waitMs=20*1000
     setTimeout(() => {
@@ -2819,8 +3094,16 @@ else if (location_href.startsWith('https://modelscope.cn/models/') ) {
         modelscope_file_names_get()
     }, 2000);
 }
+// https://tusi.art/images/611958480938613059?post_id=611962157426425110
+else if (location_href.startsWith('https://tusi.art/images/') ) {
+    setTimeout(() => {
+        tusi_imgs_get()
+    }, 2000);
+}
+// tusi_imgs_get
 else if (location_href.startsWith('https://www.seaart.ai/explore?keyword=') ) {
     setTimeout(() => {
+        strIsIn
         seaart_img_links_get()
     }, 6000);
 }
@@ -2868,6 +3151,18 @@ else if (location_href.startsWith('https://www.kaggle.com/discussions')) {
         kaggle_discussions_crawler()
     }, 1000); 
 }
+// https://tusi.art/
+else if (location_href.startsWith('https://tusi.art/')) {
+   
+    // setTimeout
+    setTimeout(() => {
+        tusi_pic_gen()
+    }, 5000);
+    // setTimeout(() => {
+    //     tusi_pic_gen()
+    // }, 60*1000); 
+}
+// tusi_pic_gen
 // https://github.com/Tencent/vConsole/issues/615
 else if (location_href.startsWith('https://github.com/')
 &&strIsIn("/issues/",location_href) ){
@@ -3056,7 +3351,12 @@ else if (location.host =='search.gitee.com') {
             csdnDown()
         }, 3000);
     } 
-
+    // https://discord.com/channels/1100710961549168640/1100712151867473930
+    else if (location_href.startsWith('https://discord.com/channels/') ) {
+        setTimeout(() => {
+            discordChatDown()
+        }, 3000);
+    } 
     // https://ask.dcloud.net.cn/question/63456
       else if (location_href.startsWith('https://www.bing.com/search?') 
       ) {
@@ -3358,6 +3658,414 @@ function  listContains(lst,target){
     return false
 //    return  lst.indexOf(target) != -1  
 }
+
+
+/**
+ * 
+ * @param {{
+            "companyTagList": "医疗健康未融资1000-9999人",
+            "companyIndustry": "服务业",
+            "companyName": "丁香园",
+            "jobTitle": "【丁香园】直播买手助理",
+            "placeWork": "杭州·滨江区·长河",
+            "salary": "5-7K",
+            "infoPublic": "涂女士人才经纪人",
+            "infoDesc": "",
+            "jobLink": "https://www.zhipin.com/job_detail/898dda92eb9b15f31HRz0ti7GFZY.html?lid=3daoswVDbT5.search.13&securityId=jJkgDWygImm9J-P1d1W5wKOb3vPp9yCEbVOtmmt3rvcstRRUKxPVwpMsD3N7kTqB3j3V8s7UYTXoyIENV7j02zbqwR1clyw7E5pREPiErE-bMLc~&sessionId=",
+            "companyIntroduction": "医疗健康",
+            "companyNature": "未融资",
+            "CompanySize": "1000-9999人",
+            "tagListKey": "<li>软件/SaaS</li><li>B端市场开发经验</li><li>软件/信息化服务销售经验</li><li>面销/陌拜经验</li><li>新客户开发</li><li>定制解决方案</li><li>企业服务</li><li>医疗/大健康</li><li>业务开拓能力</li><li>商务谈判技巧</li><li>医药</li><li>客户成功</li><li>销售</li>",
+            "tagList": [
+                "软件/SaaS",
+                "B端市场开发经验",
+                "软件/信息化服务销售经验",
+                "面销/陌拜经验",
+                "新客户开发",
+                "定制解决方案",
+                "企业服务",
+                "医疗/大健康",
+                "业务开拓能力",
+                "商务谈判技巧",
+                "医药",
+                "客户成功",
+                "销售"
+            ]
+        },} bossVo 
+
+           CREATE TABLE `t_jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `profession_code` int(11) DEFAULT NULL COMMENT '三类code(职业code)',   -- 分析
+  `name` varchar(150) DEFAULT NULL COMMENT '岗位名称',    /// "jobTitle": "高级爬虫工程师", ----  "jobName": "百瑞思招聘送餐员", 
+  `description` longtext COMMENT '岗位描述',              -- 详细信息
+  `city` varchar(100) DEFAULT NULL COMMENT '岗位地点',   // "placeWork": "杭州·西湖区·高新文教区", ---    "cityName": "杭州",
+  `experiece` varchar(100) DEFAULT NULL COMMENT '岗位经验',  --  在详细信息 ---    "jobExperience": "经验不限",
+  `minimum_education` varchar(150) DEFAULT NULL COMMENT '要求最低学历',   -- 详细信息  --- "jobDegree": "学历不限",
+  `welfare` longtext COMMENT '福利待遇',      /////  "infoDesc": "通讯补贴，带薪年假，五险一金",  --- "welfareList": [
+                    "绩效奖金",
+                    "加班补助",
+                    "底薪加提成",
+                    "零食下午茶",
+                    "节假日加班费",
+                    "高温补贴",
+                    "法定节假日三薪",
+                    "工龄奖",
+                    "节日福利",
+                    "团建聚餐",
+                    "保底工资",
+                    "五险一金",
+                    "生日福利",
+                    "全勤奖"
+                ],
+  `company_name` varchar(200) DEFAULT NULL COMMENT '公司名称', ////    "companyName": "杭州景初信息科技", ---   "brandName": "百瑞思",
+  `salary` int(11) DEFAULT NULL COMMENT '岗位薪酬',  -- //  "salary": "20-40K",  ---   "salaryDesc": "6-8元/单",
+  `start_salary` int(11) DEFAULT NULL COMMENT '起始薪酬',
+  `end_salary` int(11) DEFAULT NULL COMMENT '截止薪酬',
+  `delete_status` int(2) NOT NULL DEFAULT '0' COMMENT '删除状态1删除  0正常',  --
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='岗位表';
+
+
+
+ */
+function bossDbObjMake(bossVo){
+   let  bossDbObj={
+    ...bossVo
+   }
+   bossDbObj.name= bossDbObj.jobTitle
+   bossDbObj.company_name= bossDbObj.companyName
+   bossDbObj.city= bossDbObj.placeWork
+   
+   bossDbObj.welfare= bossDbObj.infoDesc
+   let salaryObj= salaryLowHighParse( bossDbObj.salary)
+   bossDbObj.start_salary= salaryObj.low
+   bossDbObj.end_salary= salaryObj.high
+
+//    `start_salary` int(11) DEFAULT NULL COMMENT '起始薪酬',
+//    `end_salary` int(11) DEFAULT NULL COMMENT '截止薪酬',
+   return bossDbObj
+   
+    // jobTitle
+    // name
+    
+}
+
+function bossDbListMake(bossVoList){
+
+}
+
+let positionCodeList=
+['1000020','100101','100102','100103','100109','100106','100107','100116','100114','100108','100121','100124','100125','100123','100199','1000030','100901','100202','100203','100209','100211','100210','100212','100208','1000040','100301','100309','100302','100303','100305','100308','100307','100304','100310','100306','1000050','100401','100405','100403','100407','100404','100402','100406','100409','100408','100410','1000130','101306','100117','101310','100104','101311','101312','100118','100115','101305','101309','101307','100120','101301','101302','101308','130121','1000140','101201','101202','101299','160303','1000060','100511','100508','100507','100506','100104','100512','100514','100122','1000070','100601','100603','100604','100606','100605','100607','100817','1000120','100701','100704','100702','100705','100703','100707','100706','1000150','101101','2600422','100601','100603','100604','100606','100605','100607','100817','1000110','101405','101406','101407','101403','1000080','101401','100801','100802','100808','100804','100806','100811','101408','100816','100805','100807','100818','100809','100810','1000100','101011','101012','101001','101002','101008','101004','101005','101003','101014','101016','101017','101018','101009','101007','101015','101013','101010','101006','2600842','101402','101404','100803','300310','220223','2600852','100401','100404','100410','2600862','101201','101202','101299','1000160','110101','110108','110104','110302','110106','110110','110105','110103','180501','130133','110111','110109','110401','2600432','110107','120305','120303','110303','1001230','120302','120407','120408','1000270','130305','130306','130304','130303','130308','130302','130301','130309','1001290','130111','130122','170108','130104','130113','1001300','130117','130124','130107','130126','130127','130128','130129','130130','130133','130132','130131','1000250','130118','130102','130101','130106','130103','130112','130108','130105','130110','130120','130121','1001310','130123','130116','290314','1000260','130203','130204','210101','130201','1000280','130405','130402','130403','130404','1000290','130501','1000490','140301','140310','140314','140307','140304','140317','140305','140303','140316','1000520','140302','140402','160103','160104','160102','160101','1000420','140309','130119','160301','160302','140403','160303','1000480','250203','250201','1000500','190601','190602','190603','1000450','230201','230202','230207','1000430','160401','160403','220403','220505','1000440','160501','290312','210414','210406','210610','210602','280103','1000510','210502','210506','210803','210801','210505','210504','210507','1000460','140313','140504','140501','1000470','180506','180701','180401','180801','1000530','160201','1000380','150201','150401','150209','150202','150207','150205','150210','140802','1000370','150104','150403','150108','150102','150103','150105','150109','150110','150111','150106','1000400','150203','150506','150507','150504','150502','1000410','150601','1001250','150301','150311','150310','150304','150313','150312','1001260','150306','150305','1001270','150402','150308','150404','1000390','150302','150307','150303','150314','150316','2600722','300601','300624','300628','300630','300623','2600902','300604','300605','300610','300613','300631','300616','300622','300619','300611','300633','300612','300617','300621','300614','300615','300620','1001200','300606','300635','300618','300608','300609','300627','2600732','300602','300603','300634','1001130','300201','300208','300402','300205','300206','300204','300203','300202','250108','210122','230109','300209','1001170','300311','300301','300306','300308','300303','300314','300305','300310','300316','300313','300312','300317','300304','300309','300307','300315','100813','300318','1001120','300103','300104','300102','300101','300108','300107','300106','300110','2600712','300207','220225','300903','300210','1001180','300402','300401','300406','300405','110111','300404','300407','1001190','300510','300509','120601','300507','300629','300632','300511','300637','1001140','300801','300802','1001150','230102','230106','101308','300803','230110','230105','230103','230107','230101','230109','230210','230108','2600602','300903','300905','300902','300901','300904','1001210','300701','1001050','290303','290201','290302','290307','290311','290306','290308','290304','290305','290309','290314','1001060','210405','210410','210408','210608','210413','210407','210607','210409','290801','210609','2600592','210403','210404','210412','210411','210415','2600572','290105','290117','290121','290120','290112','290123','1001100','290106','290122','290108','290109','290118','290110','290111','290169','290114','290113','290166','1001160','230204','230205','230213','230209','230203','230208','230206','230214','1001090','290601','290602','1001070','190705','190701','190312','190706','190702','190704','190707','190708','190709','210613','190719','190766','190720','190769','2600562','160501','290312','210414','210406','210610','210602','280103','2600752','240305','240306','240307','150208','240301','240308','100311','1001110','290701','290702','290313','210109','170602','170626','170628','170613','290401','2600512','290202','290201','290107','290216','2600522','290212','290203','290219','290222','290220','290221','290218','290213','290208','290209','290217','290224','2600532','290206','290207','290226','290215','290214','2600552','290204','290210','290223','290227','290225','290211','2600542','290205','1001040','290102','290107','290103','290104','290115','290116','290158','1001000','280103','280104','280106','280101','280105','280102','1001010','280201','280202','1001020','280301','1000680','190301','190309','190302','190317','190316','190303','190304','190305','190321','190318','190319','190307','190314','190320','190308','190245','190315','2600892','190306','190322','190323','190326','190324','1000670','190202','190201','190204','190203','190205','190313','2600812','190705','190312','190706','190702','190704','190707','190708','190709','190719','190766','190720','190769','2600822','190311','190701','190712','190310','190716','190713','190715','190714','190710','190767','190768','2600832','190717','190711','190718','1000700','190503','190504','190501','1000690','190404','190401','190406','190411','190408','190409','190410','190407','190402','190405','190403','190718','2600452','190601','190602','190603','1000660','190503','190101','190102','190107','190104','190106','1000720','190801','1000190','120106','120117','120119','120116','120105','120101','120108','120201','120102','120109','120103','2600652','120607','120604','120605','120603','120602','120118','120606','120613','2600642','120601','300507','2600622','120107','120121','120120','120110','120122','120123','1000200','120113','120114','120112','120303','120305','120111','120115','100212','120306','2600662','120608','120611','120612','1000210','120302','120407','120408','120304','1000220','120401','120402','120404','1000240','120501','2600672','220212','220209','220208','220210','220218','220211','220220','220219','220225','1000900','120607','220217','220222','1000910','220401','220406','220404','220407','220403','300627','300635','220405','290105','290117','290121','290123','300638','2600692','220204','220206','220203','220202','220207','220213','220223','220214','220215','220216','220221','220224','1000890','220103','220102','220101','220302','1000920','220501','220502','220503','2600442','160401','160403','220505','1001280','300606','300604','300608','300625','300609','300626','1000930','220601','2600872','170610','170625','130122','170629','170621','1000570','210609','170611','170617','170620','170630','170602','170601','170605','170616','170615','170609','170608','170623','170603','170606','120120','120123','170622','170614','170604','170624','170626','170628','170613','170627','1000560','140608','140609','140604','140605','140612','140601','120108','140602','140607','140611','1000550','140203','140205','140204','140201','140206','140202','1000540','170102','130201','170101','170104','170106','170109','170105','170627','1000580','170501','1000310','140101','140104','130109','140107','140102','140109','140315','140111','140103','140116','140105','140106','140113','140115','140110','140114','140108','1000320','140203','140205','140204','140201','140206','140202','1000300','140112','140801','140803','140804','1000340','140608','140609','140604','140605','140612','140601','120108','140602','140607','140611','1000330','140506','140503','140505','140502','2600462','140313','140504','140501','1001240','120302','120407','120408','1000350','140401','140407','140405','140404','140406','1000360','140701','1000840','240103','240104','240402','240105','240106','240108','240110','240119','240113','240111','240112','240302','240109','2600742','240206','240303','240304','300630','240118','1000860','240301','150208','240305','240306','240307','240308','100311','1000850','240204','240205','240201','1000870','240101','240102','240401','300107','1000810','250103','250102','250105','250104','250108','250111','140312','250101','250109','250110','2600482','250203','250201','1000820','250204','240117','240114','1000830','250301','2600772','300801','300802','2600782','230102','230106','101308','300803','230110','230105','230103','230107','230101','230109','230210','230108','2600792','230201','230202','230207','2600802','230204','230205','230213','230209','230203','230208','230206','230214','1000750','210201','210503','210202','290111','1000740','210309','210306','210313','210311','210310','210312','210303','210402','210307','210314','210111','210113','210114','210315','210316','210112','210302','210304','210308','210104','210109','210317','210103','1000760','210403','210401','210404','210305','290118','1000790','210803','210802','210801','1000770','210115','210108','210128','210117','210116','210123','210124','210125','210129','210126','210127','1000730','210119','211002','211001','210120','210118','210501','1000780','210122','210105','210121','210901','2600472','210502','210506','210803','210801','210505','210504','210507','1000800','210101','210701','1000610','180402','180404','180403','180406','1000590','180106','180802','180803','180806','180805','180402','180807','1000630','150307','180204','260202','180203','180304','180104','180501','180503','1000600','180101','180118','180103','180115','180117','180116','180112','180120','180111','2600492','180506','180701','180401','180801','1000620','180703','180702','1000650','180601','1000960','260111','140804','260106','260101','260107','150303','260104','260402','260105','260108','260401','260109','260102','260112','260113','260110','1000980','260301','260302','260303','260306','260307','260305','260304','260308','1000970','260201','260204','150503','260203','260202','1000990','260501','1000940','301002','301003','301004','301001','2600612','300903','300905','300902','300901','300904','1000950','400101','400201','400202','400203','1000010','150407','150408','150411','150410','150409','150414','150413','150499','1001220','200101']
+
+
+function makeTag(dbObj,){
+    // "tagList": [
+    //     "1-3年",
+    //     "本科"
+    // ]
+  let   tagList=dbObj.tagList
+    for(let tag of tagList){
+        if(
+            strIsIn("年",tag)
+            ||  strIsIn("经验",tag)
+        ){
+            dbObj.experiece=tag
+        }
+
+        else if(strIsIn("科",tag) ||
+        strIsIn("专",tag)
+        || strIsIn("研",tag) 
+        || strIsIn("博",tag)
+        || strIsIn("高",tag)
+        || strIsIn("学",tag)
+        || strIsIn("中",tag)
+         ){
+            dbObj.minimum_education=tag
+        }
+
+    
+    }
+}
+
+
+function parseMoneyInt(MoneyStr){
+   return MoneyStr.replace("K","").replace("W","").replace("k","").replace("w","")
+}
+
+
+function salaryLowHighParse(salaryStr){
+    // ·
+  let   salaryStrRange= salaryStr.split("·")
+//   "salary": "30-60K·15薪",
+  let salaryStrRangeParts=   salaryStrRange[0].split('-')
+//   salaryStrRangeParts[]
+//   let isK= strIsIn("K" , salaryStrRange)
+  let isK= strIsIn("K" , salaryStr)
+
+  let jinWei=1
+  if(isK){
+    jinWei=1000
+  }
+  if(
+    // strIsIn("W" , salaryStrRange)
+    strIsIn("W" , salaryStr)
+
+  ){
+    jinWei=10000
+  }
+  let low=  parseInt(parseMoneyInt(
+    salaryStrRangeParts[0]
+  )) * jinWei
+
+  let high=  parseInt(parseMoneyInt(
+    salaryStrRangeParts[1]
+  )) * jinWei
+
+
+  let salaryObj={
+    low,
+    high
+  }
+  return salaryObj
+}
+
+function bossZhiPinGetOnePageOfCode(){
+    console.log('bossZhiPinGetOnePageOfCode start');
+    let classNameInfoMap = {
+        // "job-card-left": "href",
+        // "company-name": "companyName",
+        // "job-title clearfix": "jobTitle",
+        // "salary": "salary",
+        'postName elli': "postName",
+        // companyIndustry
+        'company-tag-list': "companyTagList",
+        // company-tag-list
+        'compName': "compName",
+        'pay': "pay",
+        'postMsg': "postMsg",
+        'compMsg elli': "compMsg",
+        // 'label': "label",
+        'label': "companyIndustry",
+        "jname at":"jobName",
+        "sal":"salary",
+        "sal":"monthlySalary",
+
+        "d at":"jobDetail",
+        "er":"companyName",
+        "job-name":'jobName',
+        "job-name":'jobTitle',
+        // 'job-area':"jobArea",
+        'job-area':"detailedPlaceWork",
+        'job-area':"placeWork",
+        // monthlySalary
+        // detailedPlaceWork
+        'company-name':"companyName",
+        'salary':'salary',
+        // "tag-list":"tagList",
+'info-public':"infoPublic",
+"info-desc":"infoDesc"
+    }
+
+
+    let resMap = toTextList(classNameInfoMap)
+
+    let hrefList = []
+    let linkDoms = document.getElementsByClassName('list_l')
+    for (let i = 0; i < linkDoms.length; i++) {
+        let href = linkDoms[i].getElementsByTagName('a')[0].href
+        hrefList.push(href)
+    }
+    resMap["href"] = {}
+    resMap["href"].texts = hrefList
+
+    // company-name
+    // job-card-body clearfix
+    // jobLink
+    let linkName="jobLink"
+
+    // let linkName="linkToDetail"
+    resMap[linkName] = {}
+    // resMap[linkName].texts = firstLinkListGet('company-name')
+    resMap[linkName].texts = firstLinkListGet('job-card-body clearfix')
+
+    let tagListKey="tagListKey"
+   
+    let tagListArrTexts = []
+    let  tagTextListList=[]
+    let tagListArr = document.getElementsByClassName('tag-list')
+    for (let i = 0; i < tagListArr.length; i++) {
+        let tagList= tagListArr[i]
+        let lis= tagList.getElementsByTagName('li')
+       let tagTextList= getLiTextList(lis)
+        let href = tagListArr[i].innerHTML?.trim()
+        tagListArrTexts.push(href)
+        tagTextListList.push(tagTextList)
+    }
+
+    let  keyIndexMap={
+        'companyIntroduction':0,
+        'companyNature':1,
+        'CompanySize':2,
+        
+    }
+
+    let  textsMap={
+        'companyIntroduction':[]
+    }
+
+ 
+    for(let key in keyIndexMap){
+        resMap[key] = {}
+        // textsMap[key] = []
+        resMap[key].texts =[]
+        // resMap[key].texts = tagTextListList
+    }
+    let companyTagListRes=[]
+    let  companyIntroductionList=[]
+    let companyTagListArr = document.getElementsByClassName('company-tag-list')
+    for (let i = 0; i < companyTagListArr.length; i++) {
+        let companyTagList= companyTagListArr[i]
+        let lis= companyTagList.getElementsByTagName('li')
+       let tagTextList= getLiTextList(lis)
+ 
+        companyTagListRes.push(tagTextList)
+
+        for(let key in keyIndexMap){
+            // resMap[key] = {}
+            // textsMap[key] = []
+            let idx=keyIndexMap[key]
+            resMap[key].texts.push(    tagTextList[idx]?.trim())
+            // textsMap[key] .push(    tagTextList[idx]?.trim())
+            // resMap[key].texts = tagTextListList
+        }
+    }
+
+
+    resMap[tagListKey] = {}
+    resMap[tagListKey].texts = tagListArrTexts
+    let tagTextListKey="tagList"
+
+    resMap[tagTextListKey]={
+        texts :tagTextListList
+    }
+
+    let resList = toResList(resMap)
+
+    // getNowIdx  /////////////
+    // https://www.zhipin.com/web/geek/job?query=%E5%8C%BB%E7%94%9F&city=101210100&position=100601
+    let position = getQueryString("position")
+    // profession_code
+    let dbList=[]
+    for(let o of resList){
+      let dbObj=  bossDbObjMake(o)
+    //   dbObj.tagList 
+    // infoDesc
+      dbObj.profession_code=position
+      makeTag(dbObj)
+    //   salaryLowHighParse
+   
+    //   "salary": "7-10K·13薪",
+        dbList.push(  dbObj )
+    }
+    
+
+
+    let hostName='zhiPin'
+    let  queryStr=getQueryString('query')
+    let  query=queryStr
+    if(!query){
+        query=""
+    }
+    query= decodeURIComponent(query)
+    // js query str 转化 中文
+
+    let   location_href= location.href
+
+    let res={
+     location_href,
+     resList,
+     queryStr,
+     dbList,
+    }
+
+    // number active
+    let pageIndex=   document.getElementsByClassName('selected')[0]?.textContent
+    // bossNextPage
+    if(!pageIndex){
+        // bossNextPage()
+        bossNextPosCodePage()
+    }
+//   let pageIndex=   document.getElementsByClassName('number active')[0].textContent
+  
+let htmlTxt=
+document.getElementById("wrap")?.innerHTML
+
+ let  nowTimeStr=getNowTimeStr()
+ if(htmlTxt){
+    downloadTxt(`${hostName}_page_pos_${position}_${pageIndex}_${query}_${nowTimeStr}.html`,htmlTxt)
+ }
+//  药师
+
+
+
+// let searchWordObj={
+//     "searchWord": "string",
+//     // "idx": 0,
+//     // "id": "string",
+//     // "creatorId": "string",
+//     // "deleted": true,
+//     // "insertTime": 0,
+//     // "updateTime": 0,
+//     // "deleteTime": 0
+//   }
+
+let nextPageFunc=bossNextPosCodePage
+
+// postDat 
+let postForm={
+    "data": res,
+    "collectionName": "boss_data_page",
+  }
+  console.log("postForm")
+  console.log(postForm)
+
+insertScrawlDataOfCollectionName(postForm)
+// idx
+
+let nowIdx= getNowIdx()
+
+//   downloadTxt(`${hostName}_page_${pageIndex}_${query}_${nowTimeStr}_idx_${nowIdx}.json`, JSON.stringify(res))
+//   downloadTxt(`${hostName}_page_pos_${position}_${query}_idx_${pageIndex}_${nowTimeStr}_idx_${nowIdx}.json`, JSON.stringify(res))
+// 
+downloadTxt(`${hostName}_page_pos_${position}_${query}_pageIndex_${pageIndex}_${nowTimeStr}_idx_${nowIdx}.json`, JSON.stringify(res))
+
+
+    // let  nextBtn= document.getElementsByClassName('btn-next')[0]
+
+    let  pageAs= document.getElementsByClassName('options-pages')[0].getElementsByTagName('a')
+    let  nextBtn=  getListLast(pageAs)
+    // disabled
+    // List.indexOf("str") != -1  
+//  .conta 
+    let  isDisabled= listContains(   nextBtn.classList,"disabled")
+    if(isDisabled || !pageIndex){
+        let  inputDom=document.getElementsByClassName('input')[0]
+        // bossNextPage()
+        // bossNextPosCodePage()
+        nextPageFunc()
+        return 
+    }
+    // js 调用函数本身
+
+        nextBtn?.click()
+        setTimeout(() => {
+            bossZhiPinGetOnePageOfCode()
+            // bossNextPosCodePage()
+        }, 10000);
+}
+
+
+
 function zhiPinGetOne(){
     console.log('qianCheng start');
     let classNameInfoMap = {
@@ -3395,6 +4103,7 @@ function zhiPinGetOne(){
 "info-desc":"infoDesc"
     }
 
+    // profession code
     // let classNames = [
     //     'postName elli',
     //     'compName', 'pay', 'postMsg', 'compMsg elli',
@@ -3502,8 +4211,11 @@ function zhiPinGetOne(){
     resMap[tagListKey] = {}
     resMap[tagListKey].texts = tagListArrTexts
     let tagTextListKey="tagList"
-    resMap[tagTextListKey] = {}
-    resMap[tagTextListKey].texts = tagTextListList
+    // resMap[tagTextListKey] = {}
+    // resMap[tagTextListKey].texts = tagTextListList
+    resMap[tagTextListKey]={
+        texts :tagTextListList
+    }
     // resMap["tagTextListList"] = {}
     // resMap["tagTextListList"].texts = tagTextListList
     // resMap["tagTextListList"] = {}
@@ -3517,12 +4229,38 @@ function zhiPinGetOne(){
     // console.log("resMap");
     // console.log(resMap);
     let resList = toResList(resMap)
+
+    // getNowIdx  /////////////
+    // https://www.zhipin.com/web/geek/job?query=%E5%8C%BB%E7%94%9F&city=101210100&position=100601
+    let position = getQueryString("position")
+    // profession_code
+    let dbList=[]
+    for(let o of resList){
+      let dbObj=  bossDbObjMake(o)
+      dbObj.profession_code=position
+        dbList.push(  dbObj )
+    }
+
+
+
+    // let tagListDoms=
+    // document.getElementsByClassName('tag-list')
+    // // tagListDoms. 
+    // for(let i=0;i<tagListDoms.length;i++){
+    //     let tagListDom=
+    //     tagListDoms[i]
+    // }
+
+
+
+
     // console.log("resList");
     // console.log(resList);
 
     // let hostName='zhiLian'
     let hostName='zhiPin'
-    let  query=getQueryString('query')
+    let  queryStr=getQueryString('query')
+    let  query=queryStr
     if(!query){
         query=""
     }
@@ -3533,14 +4271,57 @@ function zhiPinGetOne(){
 
     let res={
      location_href,
-     resList
+     resList,
+     queryStr,
+     dbList,
     }
 
     // number active
-    let pageIndex=   document.getElementsByClassName('selected')[0].textContent
+    let pageIndex=   document.getElementsByClassName('selected')[0]?.textContent
+    // bossNextPage
+    if(!pageIndex){
+        bossNextPage()
+    }
 //   let pageIndex=   document.getElementsByClassName('number active')[0].textContent
-  downloadTxt(`${hostName}_page_${pageIndex}_${query}.json`, JSON.stringify(res))
+  
+let htmlTxt=
+document.getElementById("wrap")?.innerHTML
 
+ let  nowTimeStr=getNowTimeStr()
+ if(htmlTxt){
+    downloadTxt(`${hostName}_page_${pageIndex}_${query}_${nowTimeStr}.html`,htmlTxt)
+ }
+//  药师
+
+
+
+// let searchWordObj={
+//     "searchWord": "string",
+//     // "idx": 0,
+//     // "id": "string",
+//     // "creatorId": "string",
+//     // "deleted": true,
+//     // "insertTime": 0,
+//     // "updateTime": 0,
+//     // "deleteTime": 0
+//   }
+
+// postDat 
+let postForm={
+    "data": res,
+    "collectionName": "boss_data_page",
+  }
+  console.log("postForm")
+  console.log(postForm)
+
+insertScrawlDataOfCollectionName(postForm)
+// idx
+
+let nowIdx= getNowIdx()
+
+//   downloadTxt(`${hostName}_page_${pageIndex}_${query}_${nowTimeStr}_idx_${nowIdx}.json`, JSON.stringify(res))
+  downloadTxt(`${hostName}_page_${query}_idx_${pageIndex}_${nowTimeStr}_idx_${nowIdx}.json`, JSON.stringify(res))
+// 
 
     // let  nextBtn= document.getElementsByClassName('btn-next')[0]
 
@@ -3550,7 +4331,180 @@ function zhiPinGetOne(){
     // List.indexOf("str") != -1  
 //  .conta 
     let  isDisabled= listContains(   nextBtn.classList,"disabled")
-    if(isDisabled){
+    if(isDisabled || !pageIndex){
+        let  inputDom=document.getElementsByClassName('input')[0]
+        // inputDom. 
+        // zhip  直聘 input 输入 
+        // inputDom.value="科技"
+
+
+
+        // let searchWordList=["技术","爬虫","vue",'java',]
+        let searchWordList=[]
+      let hotBrandNameList=  [
+            '阿里巴巴集团', '华为',     '网易',
+            '快手',         '滴滴出行', '天猫',
+            '遥望科技',     '饿了么',   'BOSS直聘',
+            '中软国际',     '九阳',     '婚礼纪',
+            '光云科技',     '微店',     '迪安诊断',
+            '美年大健康',   '朗新科技', '京东',
+            '英雄互娱',     '行动教育', '泛微网络',
+            '智云健康',     '顺网科技', '好未来',
+            '中国人寿',     '华东医药', '美团网',
+            '当贝网络',     '纷享销客', '百草味',
+            '微博',         '东信时代', '新课堂',
+            '丁香园',       '蘑菇街',   '长亮科技',
+            'Keep',         '鸿程系统', '亲宝宝',
+            '永辉超市集团'
+          ]
+
+          let searchWordList2=[
+            "律师","保险员","飞行员",
+            
+          ]
+
+         let jobStr= "教师、工人、记者、演员、厨师、医生、护士、司机、军人、律师、商人、会计、店员、出纳、作家、导游、模特、警察、歌手、画家、裁缝"
+        //   let 
+
+      let searchWordList3=  jobStr.split("、")
+        //   pushList(searchWordList,hotBrandNameList)
+          pushList(searchWordList,searchWordList3)
+          let searchWordList4=  ["ic数字验证","贴膜","全栈","后端","数字ic前端设计"]
+          let searchWordList5=  [
+            '数字ic后端',       '数字ic设计',
+            '数字ic前端',       '数字ic工程师',
+            '数字ic后端设计',   '数字ic设计工程师',
+            '数字ic前端设计',   'ic',
+            '数字ic后端工程师', '电子ic',
+            'ic采购员',         'ic版图',
+            'ic助理',           'ic芯片',
+            'ic工程师',         'ic焊接',
+            '数字芯片',         '数字文旅',
+            '数字推广',         '数字新媒体',
+            '数字工程师',       '数字能源',
+            '数字设计',         '数字电视',
+            '数字艺术家',       '数字交易员',
+            '数字电影',         '数字医疗',
+            '数字运营',         '数字前端',
+           
+          ]
+
+          let searchWordList6=   ['后端开发','前端/移动开发','测试','运维/技术支持','人工智能','销售技术支持','数据','技术项目管理','高端技术职位','其他技术职位','技术项目管理','半导体/芯片','电子/硬件开发','通信','电气/自动化','运维/技术支持','销售技术支持','产品经理','游戏策划/制作','用户研究','客服','内容运营','电商运营','业务运营','线下运营','编辑','高端运营职位','其他运营职位','销售','销售管理','销售行政/商务','外贸销售','课程销售','汽车销售','房地产销售/招商','服务业销售','医疗销售','广告/会展销售','金融销售','其他销售职位','行政','人力资源','法律服务','其他职能职位','会计','审计/税务','高级财务职位','其他财务岗位','普工','机械加工','技工','运输设备操作','质量管理','机械设计/制造','生产营运','生产安全','化工','服装/纺织/皮革','新能源汽车','汽车研发/制造','环保','其他生产制造职位','零售','美容美发','理疗保健','安保服务','家政保洁/维修','汽车服务','宠物服务','运动健身','服务业销售','驾驶员','其他服务业职位','前厅','后厨','餐饮管理','甜点饮品','其他餐饮岗位','酒店','旅游服务','旅游产品开发/策划','其他旅游职位','教师','幼少儿教师','教育行政','运动健身','文化艺术','科学探索培训','职业培训','IT培训','课程销售','教育产品研发','其他教育培训职位','视觉/交互设计','工业/家居设计','服装设计','美术/3D/动画','游戏设计','展示/照明设计','用户研究','高端设计职位','其他设计职位','工程管理','装饰装修','物业管理','建筑/规划设计','房地产规划开发','高端房地产职位','房地产销售','建筑/装修工人','其他房地产职位','直播','影视','广告','公关媒介','采编/写作/出版','其他传媒职位','市场/营销','公关媒介','政府事务','广告','会务会展','广告/会展销售','用户研究','高端市场职位','其他市场职位','物流/运输','配送理货','驾驶员','仓储','供应链','采购','外贸销售','进出口贸易','其他采购/贸易职位','新能源汽车','汽车研发/制造','汽车销售','汽车服务','护士/护理','医生/医技','保健理疗','药店','生物医药','临床试验','医疗器械','医疗销售','其他医疗健康职位','银行','证券/基金/期货','中后台','投融资','金融销售','保险','其他金融职位','咨询/调研','翻译','法律服务','其他咨询类职位','能源/地质','环保','农/林/牧/渔','高级管理职位','其他职位类别']
+       
+          let searchWordList7=   [   "药师","cos","售货员","林业","园艺","管家","猫娘","咖啡"]
+          let searchWordList8=   [      '市场营销', '产品经理', '数据分析师', 'UI/UX设计师', '网络安全工程师', '数据库管理员', '系统架构师', '项目经理', '电子商务专员', '人力资源经理', '财务分析师', '法律顾问', '教育培训师', '医生', '护士', '药剂师', '会计师', '审计师', '建筑师', '室内设计师', '汽车机械师', '电子工程师', '航空工程师', '翻译', '编辑', '作家', '艺术家', '摄影师', '音乐家', '演员', '导演']
+        
+
+          let jobList = [
+            '后端开发',
+            '前端/移动开发',
+            '测试',
+            '运维/技术支持',
+            '人工智能',
+            '销售技术支持',
+            '市场营销', 
+            '产品经理', 
+            '数据分析师', 
+            'UI/UX设计师', 
+            '网络安全工程师', 
+            '数据库管理员', 
+            '系统架构师', 
+            '项目经理', 
+            '电子商务专员',
+            '人力资源经理', 
+            '财务分析师', 
+            '法律顾问', 
+            '教育培训师', 
+            '医生', 
+            '护士', 
+            '药剂师', 
+            '会计师', 
+            '审计师', 
+            '建筑师', 
+            '室内设计师', 
+            '汽车机械师', 
+            '电子工程师', 
+            '航空工程师', 
+            '翻译', 
+            '编辑', 
+            '作家', 
+            '艺术家', 
+            '摄影师', 
+            '音乐家', 
+            '演员', 
+            '导演',
+            '市场营销专员',
+            '品牌经理',
+            '公关专员',
+            '媒体策划师',
+            '广告创意总监',
+            '市场调研员',
+            '客户关系经理',
+            '市场推广专员',
+            '电商运营经理',
+            '内容编辑',
+            '社交媒体经理',
+            '用户体验设计师',
+            '游戏设计师',
+            '软件工程师',
+            '系统管理员',
+            '网络工程师',
+            '数据工程师',
+            '人力资源助理',
+            '招聘专员',
+            '薪酬福利经理', 
+            '培训发展经理', 
+            '财务经理', 
+            '税务专员',
+            '风险管理师',
+            '律师', 
+            '法务助理', 
+            '教师', 
+            '教育顾问', 
+            '心理咨询师', 
+            '健康顾问', 
+            '美容师', 
+            '时装设计师', 
+            '珠宝设计师', 
+            '游戏开发者',
+            '动画师',
+            '声音设计师',
+            '舞台剧导演',
+            '编舞',
+            '剧务',
+            '放映员'
+          ];
+
+
+          pushList(searchWordList,searchWordList4)
+          pushList(searchWordList,searchWordList5)
+          pushList(searchWordList,searchWordList6)
+          pushList(searchWordList,searchWordList7)
+          pushList(searchWordList,searchWordList8)
+          pushList(searchWordList,jobList)
+
+        //   searchWordList. 
+        //   app 
+        // push 
+        
+        //   searchWordList+=hotBrandNameList
+          
+
+       let nowIdx= getNowIdx()
+      let searchWord= searchWordList[nowIdx+1]
+        // let searchWord="vue"
+        // inputDom.value="vue"
+        // fakeInput(inputDom)
+        // console.log("go ")
+        // zhiPinGetOne()
+        setTimeout(() => {
+            // https://www.zhipin.com/web/geek/job?query=%E7%A7%91%E6%8A%80&city=101210100&page=10
+            // zhiPinGetOne()
+            location.href=`https://www.zhipin.com/web/geek/job?query=${searchWord}&city=101210100&page=1&idx=${nowIdx+1}`
+        }, 3*1000);
+
+
+
         return 
     }
 // js 列表 contains 
@@ -3566,6 +4520,289 @@ function zhiPinGetOne(){
         setTimeout(() => {
             zhiPinGetOne()
         }, 10000);
+}
+
+
+// function bossNextPage
+
+function pushList(originList,toBeAdd){
+
+    // toBeAdd. 
+    for(let o of toBeAdd){
+        originList.push(o)
+    }
+}
+
+
+function bossNextPage(){
+    let  inputDom=document.getElementsByClassName('input')[0]
+        // inputDom. 
+        // zhip  直聘 input 输入 
+        // inputDom.value="科技"
+
+
+
+    //     // let searchWordList=["技术","爬虫","vue",'java',]
+    //     let searchWordList=[]
+    //   let hotBrandNameList=  [
+    //         '阿里巴巴集团', '华为',     '网易',
+    //         '快手',         '滴滴出行', '天猫',
+    //         '遥望科技',     '饿了么',   'BOSS直聘',
+    //         '中软国际',     '九阳',     '婚礼纪',
+    //         '光云科技',     '微店',     '迪安诊断',
+    //         '美年大健康',   '朗新科技', '京东',
+    //         '英雄互娱',     '行动教育', '泛微网络',
+    //         '智云健康',     '顺网科技', '好未来',
+    //         '中国人寿',     '华东医药', '美团网',
+    //         '当贝网络',     '纷享销客', '百草味',
+    //         '微博',         '东信时代', '新课堂',
+    //         '丁香园',       '蘑菇街',   '长亮科技',
+    //         'Keep',         '鸿程系统', '亲宝宝',
+    //         '永辉超市集团'
+    //       ]
+
+    //       let searchWordList2=[
+    //         "律师","保险员","飞行员",
+            
+    //       ]
+
+    //      let jobStr= "教师、工人、记者、演员、厨师、医生、护士、司机、军人、律师、商人、会计、店员、出纳、作家、导游、模特、警察、歌手、画家、裁缝"
+    //     //   let 
+
+    //   let searchWordList3=  jobStr.split("、")
+    //     //   pushList(searchWordList,hotBrandNameList)
+    //       pushList(searchWordList,searchWordList3)
+    //       let searchWordList4=  ["ic数字验证","贴膜","全栈","后端","数字ic前端设计"]
+    //       let searchWordList5=  [
+    //         '数字ic后端',       '数字ic设计',
+    //         '数字ic前端',       '数字ic工程师',
+    //         '数字ic后端设计',   '数字ic设计工程师',
+    //         '数字ic前端设计',   'ic',
+    //         '数字ic后端工程师', '电子ic',
+    //         'ic采购员',         'ic版图',
+    //         'ic助理',           'ic芯片',
+    //         'ic工程师',         'ic焊接',
+    //         '数字芯片',         '数字文旅',
+    //         '数字推广',         '数字新媒体',
+    //         '数字工程师',       '数字能源',
+    //         '数字设计',         '数字电视',
+    //         '数字艺术家',       '数字交易员',
+    //         '数字电影',         '数字医疗',
+    //         '数字运营',         '数字前端',
+           
+    //       ]
+
+    //       let searchWordList6=   ['后端开发','前端/移动开发','测试','运维/技术支持','人工智能','销售技术支持','数据','技术项目管理','高端技术职位','其他技术职位','技术项目管理','半导体/芯片','电子/硬件开发','通信','电气/自动化','运维/技术支持','销售技术支持','产品经理','游戏策划/制作','用户研究','客服','内容运营','电商运营','业务运营','线下运营','编辑','高端运营职位','其他运营职位','销售','销售管理','销售行政/商务','外贸销售','课程销售','汽车销售','房地产销售/招商','服务业销售','医疗销售','广告/会展销售','金融销售','其他销售职位','行政','人力资源','法律服务','其他职能职位','会计','审计/税务','高级财务职位','其他财务岗位','普工','机械加工','技工','运输设备操作','质量管理','机械设计/制造','生产营运','生产安全','化工','服装/纺织/皮革','新能源汽车','汽车研发/制造','环保','其他生产制造职位','零售','美容美发','理疗保健','安保服务','家政保洁/维修','汽车服务','宠物服务','运动健身','服务业销售','驾驶员','其他服务业职位','前厅','后厨','餐饮管理','甜点饮品','其他餐饮岗位','酒店','旅游服务','旅游产品开发/策划','其他旅游职位','教师','幼少儿教师','教育行政','运动健身','文化艺术','科学探索培训','职业培训','IT培训','课程销售','教育产品研发','其他教育培训职位','视觉/交互设计','工业/家居设计','服装设计','美术/3D/动画','游戏设计','展示/照明设计','用户研究','高端设计职位','其他设计职位','工程管理','装饰装修','物业管理','建筑/规划设计','房地产规划开发','高端房地产职位','房地产销售','建筑/装修工人','其他房地产职位','直播','影视','广告','公关媒介','采编/写作/出版','其他传媒职位','市场/营销','公关媒介','政府事务','广告','会务会展','广告/会展销售','用户研究','高端市场职位','其他市场职位','物流/运输','配送理货','驾驶员','仓储','供应链','采购','外贸销售','进出口贸易','其他采购/贸易职位','新能源汽车','汽车研发/制造','汽车销售','汽车服务','护士/护理','医生/医技','保健理疗','药店','生物医药','临床试验','医疗器械','医疗销售','其他医疗健康职位','银行','证券/基金/期货','中后台','投融资','金融销售','保险','其他金融职位','咨询/调研','翻译','法律服务','其他咨询类职位','能源/地质','环保','农/林/牧/渔','高级管理职位','其他职位类别']
+       
+    //       let searchWordList7=   [   "药师","cos","售货员","林业","园艺","管家","猫娘","咖啡"]
+          
+    //       pushList(searchWordList,searchWordList4)
+    //       pushList(searchWordList,searchWordList5)
+    //       pushList(searchWordList,searchWordList6)
+    //       pushList(searchWordList,searchWordList7)
+
+    //     //   searchWordList. 
+    //     //   app 
+    //     // push 
+        
+    //     //   searchWordList+=hotBrandNameList
+          
+
+    //    let nowIdx= getNowIdx()
+    //   let searchWord= searchWordList[nowIdx+1]
+    //     // let searchWord="vue"
+    //     // inputDom.value="vue"
+    //     // fakeInput(inputDom)
+    //     // console.log("go ")
+    //     // zhiPinGetOne()
+    //     setTimeout(() => {
+    //         // https://www.zhipin.com/web/geek/job?query=%E7%A7%91%E6%8A%80&city=101210100&page=10
+    //         // zhiPinGetOne()
+    //         location.href=`https://www.zhipin.com/web/geek/job?query=${searchWord}&city=101210100&page=1&idx=${nowIdx+1}`
+    //     }, 3*1000);
+
+
+
+        let searchWordList=[]
+        let hotBrandNameList=  [
+              '阿里巴巴集团', '华为',     '网易',
+              '快手',         '滴滴出行', '天猫',
+              '遥望科技',     '饿了么',   'BOSS直聘',
+              '中软国际',     '九阳',     '婚礼纪',
+              '光云科技',     '微店',     '迪安诊断',
+              '美年大健康',   '朗新科技', '京东',
+              '英雄互娱',     '行动教育', '泛微网络',
+              '智云健康',     '顺网科技', '好未来',
+              '中国人寿',     '华东医药', '美团网',
+              '当贝网络',     '纷享销客', '百草味',
+              '微博',         '东信时代', '新课堂',
+              '丁香园',       '蘑菇街',   '长亮科技',
+              'Keep',         '鸿程系统', '亲宝宝',
+              '永辉超市集团'
+            ]
+  
+            let searchWordList2=[
+              "律师","保险员","飞行员",
+              
+            ]
+  
+           let jobStr= "教师、工人、记者、演员、厨师、医生、护士、司机、军人、律师、商人、会计、店员、出纳、作家、导游、模特、警察、歌手、画家、裁缝"
+          //   let 
+  
+        let searchWordList3=  jobStr.split("、")
+          //   pushList(searchWordList,hotBrandNameList)
+            pushList(searchWordList,searchWordList3)
+            let searchWordList4=  ["ic数字验证","贴膜","全栈","后端","数字ic前端设计"]
+            let searchWordList5=  [
+              '数字ic后端',       '数字ic设计',
+              '数字ic前端',       '数字ic工程师',
+              '数字ic后端设计',   '数字ic设计工程师',
+              '数字ic前端设计',   'ic',
+              '数字ic后端工程师', '电子ic',
+              'ic采购员',         'ic版图',
+              'ic助理',           'ic芯片',
+              'ic工程师',         'ic焊接',
+              '数字芯片',         '数字文旅',
+              '数字推广',         '数字新媒体',
+              '数字工程师',       '数字能源',
+              '数字设计',         '数字电视',
+              '数字艺术家',       '数字交易员',
+              '数字电影',         '数字医疗',
+              '数字运营',         '数字前端',
+             
+            ]
+  
+            let searchWordList6=   ['后端开发','前端/移动开发','测试','运维/技术支持','人工智能','销售技术支持','数据','技术项目管理','高端技术职位','其他技术职位','技术项目管理','半导体/芯片','电子/硬件开发','通信','电气/自动化','运维/技术支持','销售技术支持','产品经理','游戏策划/制作','用户研究','客服','内容运营','电商运营','业务运营','线下运营','编辑','高端运营职位','其他运营职位','销售','销售管理','销售行政/商务','外贸销售','课程销售','汽车销售','房地产销售/招商','服务业销售','医疗销售','广告/会展销售','金融销售','其他销售职位','行政','人力资源','法律服务','其他职能职位','会计','审计/税务','高级财务职位','其他财务岗位','普工','机械加工','技工','运输设备操作','质量管理','机械设计/制造','生产营运','生产安全','化工','服装/纺织/皮革','新能源汽车','汽车研发/制造','环保','其他生产制造职位','零售','美容美发','理疗保健','安保服务','家政保洁/维修','汽车服务','宠物服务','运动健身','服务业销售','驾驶员','其他服务业职位','前厅','后厨','餐饮管理','甜点饮品','其他餐饮岗位','酒店','旅游服务','旅游产品开发/策划','其他旅游职位','教师','幼少儿教师','教育行政','运动健身','文化艺术','科学探索培训','职业培训','IT培训','课程销售','教育产品研发','其他教育培训职位','视觉/交互设计','工业/家居设计','服装设计','美术/3D/动画','游戏设计','展示/照明设计','用户研究','高端设计职位','其他设计职位','工程管理','装饰装修','物业管理','建筑/规划设计','房地产规划开发','高端房地产职位','房地产销售','建筑/装修工人','其他房地产职位','直播','影视','广告','公关媒介','采编/写作/出版','其他传媒职位','市场/营销','公关媒介','政府事务','广告','会务会展','广告/会展销售','用户研究','高端市场职位','其他市场职位','物流/运输','配送理货','驾驶员','仓储','供应链','采购','外贸销售','进出口贸易','其他采购/贸易职位','新能源汽车','汽车研发/制造','汽车销售','汽车服务','护士/护理','医生/医技','保健理疗','药店','生物医药','临床试验','医疗器械','医疗销售','其他医疗健康职位','银行','证券/基金/期货','中后台','投融资','金融销售','保险','其他金融职位','咨询/调研','翻译','法律服务','其他咨询类职位','能源/地质','环保','农/林/牧/渔','高级管理职位','其他职位类别']
+         
+            let searchWordList7=   [   "药师","cos","售货员","林业","园艺","管家","猫娘","咖啡"]
+            let searchWordList8=   [      '市场营销', '产品经理', '数据分析师', 'UI/UX设计师', '网络安全工程师', '数据库管理员', '系统架构师', '项目经理', '电子商务专员', '人力资源经理', '财务分析师', '法律顾问', '教育培训师', '医生', '护士', '药剂师', '会计师', '审计师', '建筑师', '室内设计师', '汽车机械师', '电子工程师', '航空工程师', '翻译', '编辑', '作家', '艺术家', '摄影师', '音乐家', '演员', '导演']
+          
+  
+            let jobList = [
+              '后端开发',
+              '前端/移动开发',
+              '测试',
+              '运维/技术支持',
+              '人工智能',
+              '销售技术支持',
+              '市场营销', 
+              '产品经理', 
+              '数据分析师', 
+              'UI/UX设计师', 
+              '网络安全工程师', 
+              '数据库管理员', 
+              '系统架构师', 
+              '项目经理', 
+              '电子商务专员',
+              '人力资源经理', 
+              '财务分析师', 
+              '法律顾问', 
+              '教育培训师', 
+              '医生', 
+              '护士', 
+              '药剂师', 
+              '会计师', 
+              '审计师', 
+              '建筑师', 
+              '室内设计师', 
+              '汽车机械师', 
+              '电子工程师', 
+              '航空工程师', 
+              '翻译', 
+              '编辑', 
+              '作家', 
+              '艺术家', 
+              '摄影师', 
+              '音乐家', 
+              '演员', 
+              '导演',
+              '市场营销专员',
+              '品牌经理',
+              '公关专员',
+              '媒体策划师',
+              '广告创意总监',
+              '市场调研员',
+              '客户关系经理',
+              '市场推广专员',
+              '电商运营经理',
+              '内容编辑',
+              '社交媒体经理',
+              '用户体验设计师',
+              '游戏设计师',
+              '软件工程师',
+              '系统管理员',
+              '网络工程师',
+              '数据工程师',
+              '人力资源助理',
+              '招聘专员',
+              '薪酬福利经理', 
+              '培训发展经理', 
+              '财务经理', 
+              '税务专员',
+              '风险管理师',
+              '律师', 
+              '法务助理', 
+              '教师', 
+              '教育顾问', 
+              '心理咨询师', 
+              '健康顾问', 
+              '美容师', 
+              '时装设计师', 
+              '珠宝设计师', 
+              '游戏开发者',
+              '动画师',
+              '声音设计师',
+              '舞台剧导演',
+              '编舞',
+              '剧务',
+              '放映员'
+            ];
+  
+  
+            pushList(searchWordList,searchWordList4)
+            pushList(searchWordList,searchWordList5)
+            pushList(searchWordList,searchWordList6)
+            pushList(searchWordList,searchWordList7)
+            pushList(searchWordList,searchWordList8)
+            pushList(searchWordList,jobList)
+  
+          //   searchWordList. 
+          //   app 
+          // push 
+          
+          //   searchWordList+=hotBrandNameList
+            
+  
+         let nowIdx= getNowIdx()
+        let searchWord= searchWordList[nowIdx+1]
+   
+          setTimeout(() => {
+              // https://www.zhipin.com/web/geek/job?query=%E7%A7%91%E6%8A%80&city=101210100&page=10
+              // zhiPinGetOne()
+              location.href=`https://www.zhipin.com/web/geek/job?query=${searchWord}&city=101210100&page=1&idx=${nowIdx+1}`
+          }, 3*1000);
+
+
+}
+
+function bossNextPosCodePage(){
+  
+         let nowIdx= getNowIdx()
+        // let searchWord= searchWordList[nowIdx+1]
+    setTimeout(() => {
+        // https://www.zhipin.com/web/geek/job?query=%E7%A7%91%E6%8A%80&city=101210100&page=10
+        // zhiPinGetOne()
+       let positionCode= positionCodeList[nowIdx+1]
+       if(!positionCode){
+        return
+       }
+        location.href=`https://www.zhipin.com/web/geek/job?city=101210100&page=1&idx=${nowIdx+1}&position=${positionCode}`
+
+        // https://www.zhipin.com/web/geek/job?query=%E5%86%9B%E4%BA%BA&city=101210100&position=100607
+        // location.href=`https://www.zhipin.com/web/geek/job?query=${searchWord}&city=101210100&page=1&idx=${nowIdx+1}&position=${positionCodeList[nowIdx+1]}`
+    }, 3*1000);
+
+
 }
 
 
@@ -3873,13 +5110,20 @@ resMap['CompanySize'].texts =   CompanySizeList
 
 }
 
+
+jobDetailDownloadBoss
 /**
  * boss 直聘 只能10页面
  */
 function zhiPinGetAll() {
    
     // let pageNum=111
-    zhiPinGetOne()
+
+
+
+    // zhiPinGetOne()
+
+    bossZhiPinGetOnePageOfCode()
 
 
     // let pageNum=10
@@ -4092,6 +5336,8 @@ if (doGet) {
     // }, 1000);
 
 }
+
+jobDetailDownloadBoss
 
 function getLink(value){
     let  as =value.getElementsByTagName('a')
@@ -4426,13 +5672,13 @@ function get24365ByIndex(){
    
 }
 
-function fakeInput(dom_project_import_url){
+function fakeInput(dom){
     // let importUrl?='https://github.com/wuyouzhuguli/SpringAll'
     // let dom_project_import_url= document.getElementById('project_import_url')
     // document.getElementById('project_import_url').value=importUrl
     // 触发输入事件
 const inputEvent = new window.Event('input', { bubbles: true });
-dom_project_import_url.dispatchEvent(inputEvent);
+dom.dispatchEvent(inputEvent);
 }
 
 // let importUrls=[]
@@ -4758,6 +6004,27 @@ let spanDom=bookDom.getElementsByTagName('span')[1]
     downloadTxt(`kaggle_discussions_${location.href}.html`,txt)
   }
 
+//   https://tusi.art/
+  const tusi_pic_gen=()=>{
+    // setTimeout(() => {
+    //     document.getElementsByClassName('vi-button__wrap')[0].click()
+
+    // }, 3000);
+    // vi-button vi-button--size-medium vi-button--type-primary vi-button--full
+    let   className='vi-button vi-button--size-medium vi-button--type-primary vi-button--full'
+     document.getElementsByClassName(className)[0].click()
+
+    setInterval(() => {
+        let   className='vi-button vi-button--size-medium vi-button--type-primary vi-button--full'
+        // document.getElementsByClassName('vi-button__wrap')[0].click()
+        document.getElementsByClassName(className)[0].click()
+
+    }, 50*1000);
+    // let  dom=  document.getElementById('site-container')
+    // let txt= dom.innerHTML
+    // downloadTxt(`kaggle_discussions_${location.href}.html`,txt)
+  }
+//   vi-button__wrap
   const github_issues_crawler=()=>{
     let  dom=  document.getElementById('repo-content-pjax-container')
     let txt= dom.innerHTML
@@ -4889,6 +6156,9 @@ function alertWord(){
     alert("好活")
 }
 function strIsIn(smallStr,bigStr){
+    if(!bigStr){
+        return false
+    }
     return bigStr.includes(smallStr)
 }
 
@@ -5528,10 +6798,40 @@ for(let i=0;i<imgDoms.length;i++){
     imgDom.getElementsByTagName('img')[0]?.src
     imgLinks.push(src)
 }
+
+// https://twitter.com/home
+
 downloadTxt(`seaart_img_${location.href}.json`, JSON.stringify(imgLinks))
 
 // imgLinks
 }
+
+
+function tusi_imgs_get(){
+    
+
+let picDoms=
+document.getElementsByClassName('w-full h-full')
+// picDoms
+let resList=[]
+// https://tusi.art/images/611958480938613059?post_id=611962157426425110
+for( let i=i;i<picDoms.length;i++){
+    let picDom=
+    picDoms[i]
+    let src=
+    picDom.src
+    console.log(src);
+    resList.push({
+        src,
+    })
+}
+
+downloadTxt(`tusi_imgs_${location.href}.json`, JSON.stringify(resList))
+
+}
+
+
+
 function modelscope_file_names_get(){
 
 let names=
@@ -5586,6 +6886,17 @@ function hugDownLinks(){
     }
 
     downloadTxt(`hugDownLinks_${location.href}.json`, JSON.stringify(links))
+
+}
+
+// https://twitter.com/home
+
+
+function twitterDown(){
+    
+    let html=
+    document.getElementById('react-root').innerHTML
+    downloadTxt(`twitterDown_${location.href}.html`, html)
 
 }
 
@@ -6210,8 +7521,10 @@ function reddit_HtmlDown(){
 
   function zhihu_shouye_HtmlDown(){
     // App-main
+    // NowTimeStr()
+   let nowTimeStr= getNowTimeStr()
     let HtmlTxt=  document.getElementsByClassName('App-main')[0].innerHTML
-    downloadTxt(`zhihu_shouye_${location.href}.html`,HtmlTxt);
+    downloadTxt(`zhihu_shouye_${location.href}_${nowTimeStr}.html`,HtmlTxt);
   }
 //   App-main
 
@@ -6232,7 +7545,12 @@ function bingDown(){
   }
 
 //   https://ask.dcloud.net.cn/question/63456
-
+// https://discord.com/channels/1100710961549168640/1100712151867473930
+function  discordChatDown(){
+    // app-mount
+    let  douBanHtml=   document.getElementsByClassName('container-1eFtFS')[0].innerHTML
+    downloadTxt(`discord_chat_${location.href}.html`,douBanHtml);
+  }
 function  csdnDown(){
     let  douBanHtml=   document.getElementsByClassName('main_father clearfix d-flex justify-content-center')[0].innerHTML
     // let  douBanHtml=  document.getElementById('root').innerHTML

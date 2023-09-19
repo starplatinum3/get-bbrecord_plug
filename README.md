@@ -18,6 +18,10 @@ gitlab  https://git.doctorz.cn/starplatinumora/get-bbrecord_plug.git (fetch)
 echo '/mcm2022-czyzjhsjc/*' >> .git/info/sparse-checkout
 
 
+最大 的  boss 详细消息的 json的 id
+def get_max_num_boss_idx(dir_name=rf'D:\download'):
+    D:\proj\python\my_util_py_pub\read_job.py
+
 最多好像一下子只能点到 3k左右，后面其实还有，但是他是从3k开始，慢慢的点击往后的箭头，去拿到，不能直接拿到4k页面的数据
 
 def get_jobLinkLst_all_write():
