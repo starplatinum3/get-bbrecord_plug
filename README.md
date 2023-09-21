@@ -29,6 +29,8 @@ def get_jobLinkLst_all_write():
 这个json 的列表，写出一个js文件，放在插件代码里
 
 
+"D:\proj\js\get-bbrecord_plug\js\bossList.js"
+"D:\proj\js\get-bbrecord_plug\js\boss_link_list_2023_09_19_21_05_54.js"
 
 D:\proj\js\get-bbrecord_plug\manifest.json
 让他在前面加载，防止这个列表没有被content.js 读到

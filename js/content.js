@@ -1,5 +1,5 @@
 // get popup2content info
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime?.onMessage?.addListener((request, sender, sendResponse) => {
     // console.log(request.value);
     // {action:'putAns', value:'你好，我是popup！'}
     // sendResponse('我收到了你的情书，popup~');
@@ -355,6 +355,7 @@ function getChildText(element) {
 //   console.log(text);
 
 let baseUrl="http://localhost:8080"
+let baseUrlCodeGen="http://localhost:8889"
 function getMongoData(fileName){
     let url=`${baseUrl}/getMongoData`
     // getMongoData
@@ -1459,6 +1460,8 @@ function downloadMoocCourseLinks() {
 
 }
 
+// jobDetailDownloadBoss
+
 function biliDown(){
     // video-title tit
     let title= getTextContentByClassName('video-title tit')
@@ -1836,7 +1839,7 @@ let  hrName=document.getElementsByClassName("job-boss-info")[0].getElementsByCla
         let  detailLinkList=bossList
 
        let link= detailLinkList[idxIntNext-1]
-
+    //    profession_code=100103
 
 // CREATE TABLE `t_jobs` (
 //     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1871,15 +1874,19 @@ let welfare=jobTags
 let company_name=companyName
 let salary=monthlySalary
 
+let  profession_code= getQueryString('profession_code')
+
+// let  profession_code
  let  salaryObj=  salaryLowHighParse(salary)
     let  start_salary=  salaryObj?.low
     let  end_salary=  salaryObj?.high
 let delete_status=0
 
        let  obj={
+        profession_code,
         name,
         description,
-   
+        
         city,
         experiece,
         minimum_education,
@@ -1925,6 +1932,8 @@ let delete_status=0
 
         let downloadName=`boss_detail_${id}_${name}_idx_${idxIntNext-1}`
 
+    
+
        downloadTxt(`${downloadName}.json`, JSON.stringify(obj))
     //    downloadTxt(`boss_detail_${id}_${name}_idx_${idxIntNext-1}.json`, JSON.stringify(obj))
 
@@ -1967,6 +1976,11 @@ let delete_status=0
 
         // })
 
+
+        // findNextDataByJobLink
+        bossDetailNextDbOrLocal(detailLinkList,4000)
+        return
+     
         if (idxIntNext >= detailLinkList.length) {
             return
         }
@@ -1994,9 +2008,90 @@ let delete_status=0
         setTimeout(() => {
             window.location.href = nextLink
         }, waitMs)
+
+        // nextLinkBossDetail
     
 
 }
+
+function urlRmQuery(rmQueryName){
+    // 获取当前页面的 URL
+var url = new URL(window.location.href);
+
+// 获取特定的查询参数值
+// var queryValue = url.searchParams.get('queryParam');
+var queryValue = url.searchParams.get(rmQueryName);
+// 去掉特定的查询参数
+// url.searchParams.delete('queryParam');
+url.searchParams.delete(rmQueryName);
+// 重新拼接 URL
+var newUrl = url.href;
+return newUrl
+
+}
+
+function bossDetailNextDbOrLocal(detailLinkList,   waitMs =  4000){
+    // let  location_href= location.href
+   let   location_href=urlRmQuery('idx')
+    // js 去掉url上面的 &idx=3333 这个idx的 query
+    // js 获取 url 的信息,然后去掉某个 query,重新拼url
+        postData(`${baseUrlCodeGen}/job/findNextDataByJobLink`,{
+            // "companyTagList": "string",
+            // "companyName": "string",
+            // "jobTitle": "string",
+            // "placeWork": "string",
+            // "salary": "string",
+            // "infoPublic": "string",
+            // "infoDesc": "string",
+            "jobLink": location_href,
+            // "companyIntroduction": "string",
+            // "companyNature": "string",
+            // "tagListKey": "string",
+            // "tagList": [
+            //   "string"
+            // ],
+            // "name": "string",
+            // "company_name": "string",
+            // "city": "string",
+            // "welfare": "string",
+            // "start_salary": 0,
+            // "end_salary": 0,
+            // "profession_code": "string",
+            // "experiece": "string",
+            // "minimum_education": "string",
+            // "id": "string",
+            // "creator": "string",
+            // "deleted": true,
+            // "insertTime": 0,
+            // "updateTime": 0,
+            // "deleteTime": 0
+          }).then(res=>{
+
+            console.log("res aseUrlCodeGen}/job/findNextDataByJobLink")
+            console.log(res)
+
+        //    let  nextLink=res.Data.link
+           let  nextLink=res?.Data?.jobLink
+
+           if(!nextLink){
+            nextLinkBossDetail(detailLinkList,waitMs)
+            return
+           }
+            // let waitMs =  4000
+            setTimeout(() => {
+                window.location.href = nextLink
+            }, waitMs)
+
+            return
+
+          }).catch(err=>{
+            console.log(err)
+            nextLinkBossDetail(detailLinkList,waitMs)
+          })
+}
+
+// https://www.zhipin.com/job_detail/f321d882f374700e1HR739y6FVJZ.html?lid=3wBBM1nDAkE.search.51&securityId=-X42UbFqLdH7P-C1xY6iom3MQrZ45WQ5DR1NTYDqco-DvlboBEiXxkY0b7LO0YvyjhZI6YC4U-KlNe0_Ufx8Ii63feEB7HcWSADjnaLhBoFpVy5iagQ-&sessionId=&idx=2
+
 
 
 
@@ -3103,7 +3198,7 @@ else if (location_href.startsWith('https://tusi.art/images/') ) {
 // tusi_imgs_get
 else if (location_href.startsWith('https://www.seaart.ai/explore?keyword=') ) {
     setTimeout(() => {
-        strIsIn
+        // strIsIn
         seaart_img_links_get()
     }, 6000);
 }
@@ -3962,8 +4057,9 @@ function bossZhiPinGetOnePageOfCode(){
     // infoDesc
       dbObj.profession_code=position
       makeTag(dbObj)
+      dbObj.jobLink=  `${dbObj.jobLink}&profession_code=${position}`
     //   salaryLowHighParse
-   
+    // https://www.zhipin.com/job_detail/e82480cb209acba61HR72du-EFRT.html?lid=5KgnyBbyiIP.search.145&securityId=MAKhqrKjbmhX8-81VQIo2Kstzrf_6zHANsN8olw88hGodrGlKK6t8N4mQktYvBioHVdxmDsf5jLU61mS7xUg4D0H_iOSZBv6P27x-JJb_X0jtiSVL966VMCLbKHvbKfXJcvyzeT6o2EQT_QjD_gR&sessionId=&profession_code=100103
     //   "salary": "7-10K·13薪",
         dbList.push(  dbObj )
     }
@@ -4292,6 +4388,8 @@ document.getElementById("wrap")?.innerHTML
     downloadTxt(`${hostName}_page_${pageIndex}_${query}_${nowTimeStr}.html`,htmlTxt)
  }
 //  药师
+
+
 
 
 
@@ -5979,6 +6077,8 @@ let spanDom=bookDom.getElementsByTagName('span')[1]
     // let txt= dom.innerHTML
     // downloadTxt(`万象_${location.href}.html`,txt)
   }
+
+jobDetailGet
 
 
 //   

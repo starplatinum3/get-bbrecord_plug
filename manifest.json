@@ -16,8 +16,10 @@
     {
       "all_frames": true,
       "js": [
+    
         "js/nowcoderLinkList.js",
-        "js/bossList.js",
+     
+        "js/boss_link_list_2023_09_19_21_05_54.js",
         "js/kanZhunLinks.js",
         "js/zhihuAskList.js",
         "js/hugDown.js",
